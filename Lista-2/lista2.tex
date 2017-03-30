@@ -1,0 +1,177 @@
+\documentclass[a4paper, 12pt, notitlepage]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hmargin=2cm,vmargin=3cm,bmargin=3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}  %pacotes para matemática, opções de indentação, e links
+\usepackage{caption}  % caption to minipages
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.030}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+
+% Latex plots and drawings
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, angles, quotes}
+\tikzset{>={Latex[width=3mm,length=3mm]}}  %setas mais visíveis no tikz
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+% some useful math shortcuts
+\newtheorem{lema}{Lema }
+\newtheorem{teorema}{Teorema }
+\newtheorem{corolario}[teorema]{Corolário }
+\newtheorem{definicao}{Definição }[section]
+\newtheorem{postulado}{Postulado }[section]
+\newtheorem{proposicao}{Proposição }[section]
+\newtheorem{problema}{Problema }
+\newcommand{\cart}{\times}
+\newcommand{\ses}{\Longleftrightarrow}
+\newcommand{\entao}{\Longrightarrow}
+\newcommand{\e}{\wedge}
+\newcommand{\ou}{\vee}
+\newcommand{\vazio}{\varnothing}
+\newcommand{\sobre}{\longrightarrow}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\La}{\mathcal{L}}
+\newcommand{\cmod}[3]{#1 \equiv #2\textrm{ (mod }#3\textrm{)}}
+\newcommand{\tq}{\textrm{ tal que }}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\dsum}{\displaystyle \sum}
+\newcommand{\divg}[1]{\vec{\nabla} \cdot #1}
+\newcommand{\rot}[1]{\vec{\nabla} \times #1}
+\newcommand{\vecb}[1]{\mathbf{ #1}}
+\newcommand{\veb}[1]{\mathbf{\hat{#1}}}
+
+
+\begin{document}
+\title{Resolução da Lista 2 de Mecânica Quântica I\\ (F689, Turma B)}
+\author{Pedro Rangel Caetano\footnote{Email: p.r.caetano@gmail.com}} 
+\date{Universidade Estadual de Campinas, 1o. semestre de 2017}
+\maketitle
+
+\tableofcontents
+\pagebreak
+
+\begin{enumerate}
+
+% Exercício 1
+\addcontentsline{toc}{section}{Exercício 1}
+\item Dada a função de onda  
+
+\begin{equation*}
+  \psi(x) = \begin{cases}N &\text{, se }-\frac{a}{2} < x < \frac{a}{2} \\
+  0&\text{qualquer outro valor} \end{cases}
+\end{equation*}
+
+\begin{enumerate}
+  \item Calcule a normalização $N$ e o valor esperado de $\left\langle x \right\rangle$.
+  \item Calcule a transformada de Fourier desta função $\phi(k)$ conforme fórmula Eq. 2.103 do Griffiths.
+  \item Assuma que podemos definir o valor esperado do momento como
+  
+  \begin{equation*}
+    \left\langle p \right\rangle = \int \phi^{\ast}(k)\hbar k \phi(k) dk \qquad \left\langle p^2 \right\rangle = \int \phi^{\ast}(k) \hbar^2 k^2 \phi(k) dk
+  \end{equation*}
+  
+  Calcule explicitamente o valor esperado do momento e do momento ao quadrado usando a resposta do item anterior. O valor esperado do momento ao quadrado, $\left\langle p^2 \right\rangle$ tem sentido?
+\end{enumerate}
+
+% Exercício 2
+\addcontentsline{toc}{section}{Exercício 2}
+\item Uma partícula livre tem função de onda no instante $t=0$
+
+  \begin{equation*}
+  \Psi(x, 0) = Ae^{-ax^2}
+  \end{equation*}
+  
+  \noindent onde $A$ e $a$ são constantes e $a$ é uma constante real e positiva.
+  
+  \begin{enumerate}
+    \item Normalize $\Psi(x, 0)$.
+    \item Determine $\Psi(x, t)$. Dica: Integrais na forma
+    
+    \begin{equation*}
+    \int_{-\infty}^{\infty}e^{-ax^2 + bx}dx
+    \end{equation*}
+    
+    \noindent podem ser feitas \textit{completando o quadrado}. Seja $y \equiv \sqrt{a}(x + b/a)$ e note que $(ax^2 + bx) = y^2 - b^2/4a$. Resposta
+    
+    \begin{equation*}
+    \Psi(x,t) = \left(\frac{2a}{\pi}\right)^{1/4} \frac{e^{-ax^2/d(t)}}{\sqrt{d(t)}}
+    \end{equation*}
+    
+    \noindent $d(t) \equiv 1 + 2i\hbar at/m$.
+    
+    \item Calcule $|\Psi(x, t)|^2$.
+    Expresse a resposta em termos de $w \equiv \sqrt{\frac{a}{1 + \left(2\hbar at/m\right)^2}}$.
+    Desenhe $|\psi(x,t)|^2$ como função de $x$ em $t=0$ e um grande valor de $t$. De forma qualitativa o que acontece com $|\psi(x,t)|^2$?
+    \item Determine $\left\langle x \right\rangle$, $\left\langle p \right\rangle$, $\left\langle x^2 \right\rangle$, $\left\langle p^2 \right\rangle$, $\sigma_x$, $\sigma_p$.
+    Resposta parcial: $\left\langle p^2 \right\rangle = a\hbar^2$.
+    \item O princípio da incerteza é válido neste caso? Em qual tempo o sistema fica próximo do limite do princípio da incerteza?
+  \end{enumerate}
+
+
+% Exercício 3
+\addcontentsline{toc}{section}{Exercício 3}
+\item (Griffiths 2.5).\newline
+  Uma partícula no poço infinito tem como estado inicial uma mistura entre os dois primeiros estados estacionários:
+  
+  \begin{equation*}
+  \Psi(x,0) = A\left(\Psi_1(x) + \Psi_2(x)\right)
+  \end{equation*}
+  
+  \begin{enumerate}
+    \item Normalize $\Psi(x,0)$. Lembre que se você normalizar em $t=0$ a função de onda fica normalizada $\forall t$.
+    \item Encontre $\Psi(x,t)$ e $|\Psi(x,t)|^2$.
+    \item Determine $\left\langle x \right\rangle$. Qual a frequência de oscilação? Qual é a amplitude de oscilação?
+  \end{enumerate}
+ 
+% Exercício 4
+\addcontentsline{toc}{section}{Exercício 4}
+\item Versão modificada do Exemplo 2.2 do Griffiths. Dada a função de onda
+
+  \begin{equation*}
+  \Psi(x, 0) = Ax(a-x)
+  \end{equation*}
+  
+  \noindent como condição inicial das soluções do poço infinito. Ache os primeiros coeficientes $c_n$ para $n = 1, 2$ e $3$.
+  
+  \begin{enumerate}
+    \item No instante $t_0 > 0$ foi medido que o sistema estava no estado de energia $E_3$ que corresponde a energia do estado $n = 3$. Em um instante $t > t_0$ foi medido a energia do sistema. Qual o valor de $c_n$ para $n = 1, 2$ e $3$ neste instante?
+  \end{enumerate}
+
+% Exercício 5
+\addcontentsline{toc}{section}{Exercício 5}
+\item Assuma que o potencial unidimensional $V(x)$ seja dado por $V(x) = -\alpha\left(\delta(x+a) + \delta(x-a)\right)$. 
+
+  \begin{enumerate}  
+  \item Ache a solução geral da função de onda devido a este potencial quando a energia for $E < 0$.
+  \item Encontre a condição do estado ligado neste caso.
+  \end{enumerate}
+
+% Exercício 6
+\addcontentsline{toc}{section}{Exercício 6}
+\item Descreva a função de onda para quaisquer valores de $x$ para o potencial $V(x)$ mostrado abaixo. Assuma que a energia $E < V_0$. Você deve descrever se é um estado ligado ou um estado de espalhamento, e se possue soluções evanescentes. Não é necessário calcular a função de onda.
+
+  \begin{equation*}
+    V(x) = \begin{cases} V_0 & 0 < x < a\\ 0 & \text{qualquer outro valor} \end{cases}
+  \end{equation*}
+
+%FIM DOS EXERCÍCIOS
+\end{enumerate}
+\end{document}
