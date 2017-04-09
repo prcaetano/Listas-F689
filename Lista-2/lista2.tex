@@ -221,10 +221,10 @@
   Primeiramente então calculamos $\phi(k, 0)$:
 
   \begin{align*}
-  \phi(k, 0) &= \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} \Psi(x, 0) e^{ikx} dx \\
-  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-ax^2 + ikx\right) dx \\
-  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\left(\sqrt{a}x - \frac{ik}{2\sqrt{a}}\right)^2 - k^2/4a\right) dx \\
-  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\left(\sqrt{a}x - \frac{ik}{2\sqrt{a}}\right)^2\right) dx \\
+  \phi(k, 0) &= \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} \Psi(x, 0) e^{-ikx} dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-ax^2 - ikx\right) dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\left(\sqrt{a}x + \frac{ik}{2\sqrt{a}}\right)^2 - k^2/4a\right) dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\left(\sqrt{a}x + \frac{ik}{2\sqrt{a}}\right)^2\right) dx \\
   &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \int_{-\infty}^{\infty} e^{-u^2} \frac{du}{\sqrt{a}} \\
   &= \sqrt{\frac{1}{2\pi a}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \sqrt{\pi} \\
   &= \left(\frac{e^{-k^2/a}}{2a\pi}\right)^{1/4} \\
