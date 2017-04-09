@@ -91,6 +91,87 @@
   Calcule explicitamente o valor esperado do momento e do momento ao quadrado usando a resposta do item anterior. O valor esperado do momento ao quadrado, $\left\langle p^2 \right\rangle$ tem sentido?
 \end{enumerate}
 
+\textbf{Resolução:}\newline
+  \begin{enumerate}
+    \item
+    Temos para a normalização:
+  
+    \begin{align*}
+    1 &= \int_{-\infty}^{\infty} |\psi(x)|^2 dx \\
+    &= \int_{-a/2}^{a/2} N^2 dx \\
+    &= N^2 a \\
+    \therefore N &= \sqrt{\frac{1}{a}}.
+    \end{align*}
+  
+    Já para o valor médio:
+  
+    \begin{align*}
+    \left\langle x \right\rangle &= \int_{-\infty}^{\infty} \psi^{\ast}(x) x \psi(x) dx \\
+    &= \int_{-a/2}^{a/2} \frac{1}{a} x dx \\
+    &= 0,
+    \end{align*}
+  
+    \noindent (o integrando é ímpar e o intervalo simétrico).
+    
+    \item Temos
+    
+    \begin{align*}
+    \phi(k) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \psi(x) e^{-ikx} dx \\
+    &= \frac{1}{\sqrt{2\pi}} \int_{-a/2}^{a/2} \frac{1}{\sqrt{a}} e^{-ikx} dx \\
+    &= \frac{1}{\sqrt{2\pi a}} \left(\frac{e^{-ikx}}{-ik}\right)_{-a/2}^{a/2} \\
+    &= \frac{1}{\sqrt{2\pi a}} \frac{1}{ik} \left(e^{ika/2} - e^{-ika/2}\right) \\
+    &= \frac{1}{\sqrt{2\pi a}} \frac{2}{k} \sin(ka/2) \\
+    &= \sqrt{\frac{2}{\pi a}} \frac{\sin(ka/2)}{k}
+    \end{align*}
+    
+    \item Para o valor esperado do momento, temos
+    
+    \begin{align*}
+    \left\langle p \right\rangle &= \int_{-\infty}^{\infty} \hbar k |\phi(k)|^2 dk \\
+    &= \hbar \frac{2}{\pi a} \int_{-\infty}^{\infty} \frac{\sin^2(ka/2)}{k^2} k dk \\
+    &= \hbar \frac{2}{\pi a} \int_{-\infty}^{\infty} \frac{\sin^2(ka/2)}{k} dk. \\
+    \end{align*}
+    
+    Esta integral \textbf{não converge}, mas possui valor principal de Cauchy,
+    
+    \begin{equation*} \text{P.V} \int_{-\infty}^{\infty} \frac{\sin^2(ka/2)}{k} dk = \lim_{A \to \infty} \int_{-A}^{A} \frac{\sin^2(ka/2)}{k} dk = 0 \end{equation*}
+    
+    \noindent pois o integrando é ímpar. Obtemos então, reinterpretando adequadamente o significado da integral:
+    
+    \begin{equation*} \left\langle p \right \rangle = 0. \end{equation*}
+    
+    Note que este resultado concorda com o cálculo usando o operador momento na representação da posição: reescrevendo a função de onda como $\psi(x) = N(H(x + a/2)$ $- H(x - a/2))$\footnote{$H(x)$ é a função de Heaviside, definida por 
+    $$H(x) = \begin{cases} 1&\text{se }x > 0\\0&\text{se } x \le 0 \end{cases}$$
+    É útil saber que $\frac{d}{dx} H(x) = \delta(x)$.} obtemos
+    
+    \begin{align*}
+    \left\langle p \right\rangle &= N^2\int_{-\infty}^{\infty} \psi^{\ast}(x) \frac{\hbar}{i}\left( \frac{d}{dx} H(x+a/2) - \frac{d}{dx} H(x- a/2)\right) dx \\
+    &= N^2 \frac{\hbar}{i} \int_{-\infty}^{\infty}\left( \psi^{\ast}(x) \delta(x+a/2) -  \psi^{\ast}(x) \delta(x - a/2)\right) dx \\
+    &= N^2\frac{\hbar}{i} \left(\psi^{\ast}(-a/2) - \psi^{\ast}(a/2)\right) \\
+    &= 0.
+    \end{align*}
+    
+    Agora, para o valor esperado do momento ao quadrado temos
+    
+    \begin{align*}
+      \left\langle p^2 \right\rangle &= \int_{-\infty}^{\infty}\hbar^2 k^2 |\phi(k)|^2 dk \\
+      &= \hbar^2 \frac{2}{\pi a} \int_{-\infty}^{\infty} \frac{\sin^2\left(ka/2\right)}{k^2} k^2 dk \\
+      &= \hbar^2 \frac{2}{\pi a} \int_{-\infty}^{\infty} \sin^2\left(ka/2\right).
+    \end{align*}
+    
+    Esta integral \textbf{não converge, e nem mesmo possui valor principal}: note que o integrando é sempre positivo, e que os limites do mesmo em $\pm \infty$ não existem. Temos então,
+    
+    \begin{equation*}
+    \left\langle p^2 \right\rangle = \infty
+    \end{equation*}
+        
+    Uma maneira de interpretar este resultado é notando que existem modos com momento ao quadrado arbitrariamente alto compondo $\psi(x)$, devido às descontinuidades em $\pm a/2$.
+    
+    
+  \end{enumerate}
+  
+  
+
 % Exercício 2
 \addcontentsline{toc}{section}{Exercício 2}
 \item Uma partícula livre tem função de onda no instante $t=0$
@@ -125,6 +206,197 @@
     \item O princípio da incerteza é válido neste caso? Em qual tempo o sistema fica próximo do limite do princípio da incerteza?
   \end{enumerate}
 
+\textbf{Resolução: }
+\begin{enumerate}
+  \item Temos
+  \begin{align*}
+  1 &= \int_{-\infty}^{\infty} A^2 e^{-2ax^2} dx \\
+  &= A^2 \int_{-\infty}^{\infty} e^{-(\sqrt{2a}x)^2} dx \\
+  &= \frac{A^2}{\sqrt{2a}} \int_{-\infty}^{\infty} e^{-u^2} du \\
+  &= \frac{A^2}{\sqrt{2a}} \sqrt{\pi} \\
+  \therefore A &= \left(\frac{2a}{\pi}\right)^{1/4}
+  \end{align*}
+  
+  \item A estratégia aqui é decompor $\Psi(x,0)$ em ondas planas, o que corresponde a calcular a transformada de Fourier $\phi(k, 0)$. Como sabemos a evolução temporal das ondas planas - elas são estados estacionários, portanto $\phi(k, t) = \phi(k, 0) e^{-i\frac{E_k}{\hbar} t}$ com $E_k = \hbar^2 k^2/2m$ - para calcular $\Psi(x, t)$ basta realizar a transformada de Fourier inversa de $\phi(k, t)$.
+  Primeiramente então calculamos $\phi(k, 0)$:
+
+  \begin{align*}
+  \phi(k, 0) &= \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} \Psi(x, 0) e^{ikx} dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-ax^2 + ikx\right) dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\left(\sqrt{a}x - \frac{ik}{2\sqrt{a}}\right)^2 - k^2/4a\right) dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\left(\sqrt{a}x - \frac{ik}{2\sqrt{a}}\right)^2\right) dx \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \int_{-\infty}^{\infty} e^{-u^2} \frac{du}{\sqrt{a}} \\
+  &= \sqrt{\frac{1}{2\pi a}} \left(\frac{2a}{\pi} e^{-k^2/a}\right)^{1/4} \sqrt{\pi} \\
+  &= \left(\frac{e^{-k^2/a}}{2a\pi}\right)^{1/4} \\
+  \end{align*}
+
+  Temos então para $\phi(k, t)$:
+
+  \begin{equation*}
+  \phi(k, t) = \left(\frac{e^{-k^2/a}}{2a\pi}\right)^{1/4} e^{-i\hbar k ^2 t/2m} 
+  \end{equation*}
+
+  Daí, obtemos $\Psi(x,t)$:
+
+  \begin{align*}
+  \Psi(x,t) &= \sqrt{\frac{1}{2\pi}} \left(\frac{1}{2a\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\frac{k^2}{4a} - i\hbar \frac{k^2}{2m} t + ikx \right) dk \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{1}{2a\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\frac{k^2}{4a}\left(1 + \frac{2i\hbar at}{m}\right) + ikx \right) dk \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{1}{2a\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left(-\frac{k^2}{4a} d(t) + ikx \right) dk \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{1}{2a\pi}\right)^{1/4} \int_{-\infty}^{\infty} \exp\left( -\left(\frac{k}{2} \sqrt{\frac{d(t)}{a}}  - ix\sqrt{\frac{a}{d(t)}} \right)^2 - \frac{ax^2}{d(t)} \right)dk \\
+  &= \sqrt{\frac{1}{2\pi}} \left(\frac{1}{2a\pi}\right)^{1/4} e^{-ax^2/d(t)} \int_{-\infty}^{\infty} e^{-u^2} 2\sqrt{\frac{a}{d(t)}}du \\
+  &= 2\sqrt{\frac{a}{2\pi d(t)}} \left(\frac{1}{2a\pi}\right)^{1/4}\sqrt{\pi} e^{-ax^2/d(t)} \\
+  &= \sqrt{\frac{1}{d(t)}} \left(\frac{4a^2}{2a\pi}\right)^{1/4}\sqrt{\pi} e^{-ax^2/d(t)} \\
+  &= \left(\frac{2a}{\pi}\right)^{1/4} \frac{e^{-ax^2/d(t)}}{\sqrt{d(t)}}
+  \end{align*}
+  
+  \item Temos
+
+  \begin{align*}
+  |\psi(x,t)|^2 &= \psi(x,t)^{\ast} \psi(x,t) \\
+  &= \left(\frac{2a}{\pi}\right)^{1/2} \frac{e^{-ax^2/d(t)} e^{-ax^2/d^{\ast}(t)}}{\sqrt{d(t)d^{\ast}(t)}} \\
+  &= \left(\frac{2a}{\pi}\right)^{1/2} \frac{e^{-ax^2\left(1/d(t) + 1/d^{\ast}(t)\right)}}{\sqrt{d(t)d^{\ast}(t)}} \\
+  &= \left(\frac{2a}{\pi}\right)^{1/2} \frac{\exp\left(-ax^2\left(1/d(t) + 1/d^{\ast}(t)\right)\right)}{\sqrt{d(t)d^{\ast}(t)}}
+  \end{align*}
+  
+  Como
+  
+  \begin{align*}
+  d(t)d^{\ast}(t) &= \left(1 + 2i\hbar at/m \right)\cdot\left(1 - 2i\hbar at/m\right) \\
+  &= 1 + \left(2\hbar at/m \right)^2 \\
+  &= a/w^2
+  \end{align*}
+  
+  e
+  
+  \begin{align*}
+  \frac{1}{d(t)} + \frac{1}{d^{\ast}(t)} &= \frac{d^{\ast}(t) + d(t)}{d(t)d^{\ast}(t)} \\
+  &= \frac{2}{a/w^2} \\
+  &= \frac{2w^2}{a}
+  \end{align*}
+  
+  obtemos
+  
+  \begin{align*}
+  |\psi(x,t)|^2 &= \left(\frac{2a}{\pi}\right)^{1/2} \exp\left(-ax^2\left(\frac{2w^2}{a}\right)\right) \frac{w}{\sqrt{a}} \\
+  &= \left(\frac{2}{\pi}\right)^{1/2} w e^{-2w^2x^2}
+  \end{align*}
+  
+  Note que $w$ é mínimo para $t = 0$ e, conforme o tempo passa, $w$ diminui. Acontecem então dois fenômenos. Primeiro, calculando a largura da função de onda a meia altura $x_{1/2}$ temos
+  
+  \begin{align*}
+  1/2 &= \frac{\psi(x_{1/2}, t)}{\psi(0, t)} \\
+  &= e^{-2w^2 x^2} \\
+  \\
+  \Rightarrow 2w^2x^2 &= \ln 2 \\
+  \therefore x_{1/2} &= \sqrt{\frac{\ln 2}{2 w}}
+  \end{align*}
+  
+  É claro então que com a passagem do tempo $|\psi(x,t)|^2$ se alarga. Além disso, o valor máximo $\psi(0,t) = \left(\frac{2}{\pi}\right)^{1/2}w$ diminui. A partícula portanto ``se espalha'' pelo espaço com o passar do tempo, sua posição ficando cada vez menos definida.
+  
+  \def\FunctionW[#1]{sqrt(1 / (1 + 2 * 1 * #1)^2)}
+  \def\FunctionPsi[#1](#2){0.79788 * \FunctionW[#1] * exp(-2 * (\FunctionW[#1])^2 * #2^2)}
+  
+  \pgfkeys{/pgfplots/Axis Style/.style={
+    xmin=-4, xmax=4,
+    ymin=-0, ymax=1.0,
+    domain=-5:5,
+    xtick={-4, -2, 0.0, 2, 4},
+    xticklabels={$-4$, $-2$, $0$, $2$, $4$},
+    xlabel={$x$ [em unidades de $a^{-1/2}$]},
+    ytick={1, 0},
+    yticklabels={$1$, $0$},
+    samples=1000,
+    every axis plot post/.style= ultra thick,
+    width=1.0\textwidth ,
+  }}
+  
+  \begin{figure}[!h]  
+    \begin{minipage}[l]{0.32\linewidth}
+    \centering
+      \begin{tikzpicture}[>=latex]
+		    \begin{axis}[Axis Style, title={$|\psi(x,t)|^2$ para $t = 0$}]
+		    \addplot [blue] gnuplot {\FunctionPsi[0](x)};
+		    \end{axis}
+	    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[c]{0.32\linewidth}
+    \centering
+      \begin{tikzpicture}[>=latex]
+	  	  \begin{axis}[Axis Style, title={$|\psi(x,t)|^2$ para $t = 0.5 \frac{m}{a\hbar}$}]
+		    \addplot [blue] gnuplot {\FunctionPsi[0.5](x)};
+	  	  \end{axis}
+	    \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}[r]{0.32\linewidth}
+    \centering
+      \begin{tikzpicture}[>=latex]
+	  	  \begin{axis}[Axis Style, title={$|\psi(x,t)|^2$ para $t = 2 \frac{m}{a\hbar}$}]
+		    \addplot [blue] gnuplot {\FunctionPsi[2.0](x)};
+	  	  \end{axis}
+	    \end{tikzpicture}
+    \end{minipage}
+    \caption{Evolução temporal de $|\psi(x,t)|^2$.}
+    \label{fig:comp.I.aumento}
+  \end{figure}
+  
+  \item Temos
+  
+  \begin{align*}
+  \left\langle x \right\rangle &= \int_{-\infty}^{\infty} \psi^{\ast}(x,t) x \psi(x,t) dx \\
+  &= \left(\frac{2}{\pi}\right)^{1/2} \int_{-\infty}^{\infty} wxe^{-2w^2 x^2} dx \\
+  &= 0 \qquad \text{(o integrando é ímpar.)}
+  \end{align*}
+  
+  \begin{align*}
+  \left\langle x^2 \right\rangle &= \left(\frac{2}{\pi}\right)^{1/2} \int_{-\infty}^{\infty} wx^2 e^{-2w^2x^2} dx \\
+  &= \left(\frac{2}{\pi}\right)^{1/2} \frac{1}{-4}\frac{d}{dw} \int_{-\infty}^{\infty}  e^{-2w^2x^2} dx \\
+  &= \left(\frac{2}{\pi}\right)^{1/2} \frac{1}{-4}\frac{d}{dw} \int_{-\infty}^{\infty}  e^{-u^2} \frac{du}{\sqrt{2}w} \\
+  &= \left(\frac{2}{\pi}\right)^{1/2} \frac{1}{-4\sqrt{2}}\frac{d}{dw} \left(\frac{\sqrt{\pi}}{w}\right) \\
+  &= \left(\frac{2}{\pi}\right)^{1/2} \frac{1}{-4\sqrt{2}}\frac{-\sqrt{\pi}}{w^2} \\
+  &= \frac{1}{4w^2}
+  \end{align*}
+  
+  \begin{align*}
+  \left\langle p \right \rangle &= \int_{-\infty}^{\infty} \hbar k |\phi(k, t)|^2 dk \\
+  &= \int_{-\infty}^{\infty} \hbar k \left(\frac{e^{-k^2/a}}{2a \pi}\right)^{1/2} dk \\
+  &= 0 \qquad \text{(o integrando é impar).}
+  \end{align*}
+  
+  \begin{align*}
+  \left\langle p^2 \right \rangle &= \int_{-\infty}^{\infty} \hbar^2 k^2 |\phi(k, t)|^2 dk \\
+  &= \frac{\hbar^2}{\sqrt{2a\pi}} \int_{-\infty}^{\infty} k^2 e^{-k^2/2a} dk \\
+  &= \frac{\hbar^2}{\sqrt{2a\pi}} \left[-\frac{d}{d\beta}\int_{-\infty}^{\infty} e^{-\beta k^2} dk \right]_{\beta = 1/2a} \\
+  &= \frac{\hbar^2}{\sqrt{2a\pi}} \left[- \frac{d}{d\beta} \left(\sqrt{\frac{\pi}{\beta}}\right) \right]_{\beta = 1/2a} \\
+  &= \frac{\hbar^2}{\sqrt{2a\pi}} \frac{1}{2} \left[\sqrt{\frac{\pi}{\beta^{3}}}\right]_{\beta = 1/2a} \\
+  &= \frac{\hbar^2}{\sqrt{2a\pi}} \frac{1}{2} \sqrt{(2a)^3\pi} \\
+  &= a\hbar^2
+  \end{align*}
+  
+  Temos então, enfim
+  
+  \begin{align*}
+  \sigma_x &= \left(\left\langle x^2 \right\rangle - \left\langle x \right\rangle^2\right)^{1/2} \\
+  &= \left(\frac{1}{4w^2}\right)^{1/2} \\
+  &= \frac{1}{2w}
+  \end{align*}
+  
+  e
+  
+  \begin{align*}
+  \sigma_p &= \left(\left\langle p^2 \right\rangle - \left\langle p \right\rangle^2 \right)^{1/2} \\
+  &= \sqrt{a} \hbar
+  \end{align*}
+  
+  \item Considerando $\Delta x = \sigma_x$ e $\Delta p = \sigma_p$ temos
+  
+  \begin{align*}
+  \Delta x \cdot \Delta p &= \frac{1}{2w} \sqrt{a} \hbar \\
+  &= \frac{\hbar}{2} \sqrt{1 + \left(\frac{2 \hbar a t}{m}\right)^2}
+  \end{align*}
+  
+  Obtemos então $\Delta x \cdot \Delta p \ge \hbar/2$ para todos os valores de $t$, logo o princípio da incerteza é respeitado. Para $t = 0$ o sistema atinge o mínimo do produto das incertezas do momento e da posição permitido pelo princípio da incerteza: $\hbar/2$.
+
+\end{enumerate}
 
 % Exercício 3
 \addcontentsline{toc}{section}{Exercício 3}
@@ -140,6 +412,150 @@
     \item Encontre $\Psi(x,t)$ e $|\Psi(x,t)|^2$.
     \item Determine $\left\langle x \right\rangle$. Qual a frequência de oscilação? Qual é a amplitude de oscilação?
   \end{enumerate}
+  
+  \textbf{Resolução: }
+  \begin{enumerate}
+  \item Temos, lembrando que os estados representados por $\psi_n(x)$ e $\psi_m(x)$ com $n \neq m$ são ortogonais e que as $\psi_n(x)$ já estão normalizadas:
+  
+  \begin{align*}
+  1 &= |A|^2 \left(\int_{-\infty}^{\infty} \left( |\psi_1(x)|^2 + |\psi_2(x)|^2 + \psi_1^{\ast}(x) \psi_2(x) + \psi_1(x) \psi_2^{\ast} (x) \right) dx \right) \\
+  &= |A|^2  \left(1 + 1 + 0 + 0\right) \\
+  \therefore |A| &= \frac{1}{\sqrt{2}}
+  \end{align*}
+  
+  Assumindo $A$ real temos
+  
+  \begin{equation*}
+  \psi(x, 0) = \frac{1}{\sqrt{2}} \psi_1(x) + \frac{1}{\sqrt{2}} \psi_2(x).
+  \end{equation*}
+  
+  \item Como $\psi(x,0)$ já é escrita em termos dos estados estacionários $\psi_1(x)$ e $\psi_2(x)$ precisamos apenas descobrir a evolução temporal destes. Lembrando que as energias $E_n$ do poço infinito são
+  
+  \begin{equation*}
+  E_n = \frac{n^2 \pi^2 \hbar^2}{2ma^2}
+  \end{equation*}
+  
+  temos, definindo $\omega = E_1/\hbar = \pi^2 \hbar/(2ma^2)$,
+  
+  \begin{align*}
+  \psi_1(x,t) &= \psi_1(x) e^{-iE_1t/\hbar} \\
+  &= \psi_1(x) e^{-i\omega t} \\
+  &= \sqrt{2}{a} \sin\left(\frac{\pi}{a}x\right) e^{-i\omega t}
+  \end{align*}
+  
+  e
+  
+  \begin{align*}
+  \psi_2(x,t) &= \psi_2(x) e^{-iE_2t/\hbar} \\
+  &= \psi_2(x) e^{-i(4E_1/\hbar) t} \\
+  &= \sqrt{\frac{2}{a}} \sin\left(\frac{2\pi}{a}x\right) e^{-i(4\omega)t}
+  \end{align*}
+  
+  portanto
+  
+  \begin{align*}
+  \psi(x,t) &= \frac{1}{\sqrt{2}} \left(\psi_1(x,t) + \psi_2(x,t)\right) \\
+  &= \frac{1}{\sqrt{a}}\left(\sin\left(\frac{\pi}{a}x\right)e^{-i\omega t} + \sin\left(\frac{2\pi}{a}x\right)e^{-4i\omega t}\right) \\
+  &= \frac{1}{\sqrt{a}} e^{-i\omega t} \left(\sin\left(\frac{\pi}{a}x\right) + \sin\left(\frac{2\pi}{a}x\right)e^{-3i\omega t}\right)
+  \end{align*}  
+  
+%  \begin{align*}
+%  \psi(x, t) &= \frac{1}{\sqrt{2}}\psi_1(x) \exp\left(-i\frac{\hbar \pi^2}{2ma^2} t\right) + \frac{1}{\sqrt{2}}\psi_2(x) \exp\left(-i\frac{4\hbar \pi^2}{2ma^2} t\right) \\
+%  &= \sqrt{\frac{1}{a}} \sin\left(\frac{\pi}{a}x\right) \exp\left(-i\frac{\hbar \pi^2}{2ma^2} t\right) + \sqrt{\frac{1}{a}} \sin\left(\frac{2\pi}{a}x\right) \exp\left(-i\frac{4\hbar \pi^2}{2ma^2} t\right)
+%  \end{align*}
+  
+  Calculando $|\psi(x, t)|^2$ temos, notando que as $\psi_n(x)$ são reais:
+  
+  \begin{align*}
+  |\psi(x, t)|^2 &= \psi(x, t) \psi^{\ast}(x, t) \\
+  &= \frac{1}{a} \left[\sin\left(\frac{\pi}{a}x\right) + \sin\left(\frac{2\pi}{a}x\right)e^{-3i\omega t}\right] \left[\sin\left(\frac{\pi}{a}x\right) + \sin\left(\frac{2\pi}{a}x\right)e^{+3i\omega t}\right] \\
+  &= \frac{1}{a} \left[\sin^2 \left(\frac{\pi}{a} x\right) + \sin^2 \left(\frac{2\pi}{a} x\right) + \sin \left(\frac{\pi}{a}x\right) \sin \left(\frac{2\pi}{a} x\right) \left(e^{i(3\omega t)} + e^{-i(3\omega t)}\right)\right] \\
+  &= \frac{1}{a} \left[\sin^2\left(\frac{\pi}{a} x\right) + \sin^2\left(\frac{2\pi}{a} x\right) + 2\sin\left(\frac{\pi}{a}x\right)\sin\left(\frac{2\pi}{a}x\right)\cos\left(3\omega t\right) \right] \\
+  &= \frac{1}{a} \left[\sin^2\left(\frac{\pi}{a} x\right) + \sin^2\left(\frac{2\pi}{a} x\right) + 2\sin\left(\frac{\pi}{a}x\right)\sin\left(\frac{2\pi}{a}x\right)\cos\left(\Omega t\right) \right]
+  \end{align*}
+  
+  Onde fizemos $\Omega = 3 \omega$.
+  
+%  \begin{align*}
+%  |\psi(x, t)|^2 &= \frac{1}{\sqrt{2}}\left(\psi_1(x)\exp\left(-iE_1t/\hbar\right) + \psi_2(x)\exp\left(-iE_2 t/\hbar\right)\right) \\
+%  &= \frac{1}{2} \left( \psi_1^2(x) + \psi_2^2(x) + \psi_1(x)\psi_2(x) \left(e^{i(E_1 - E_2)t/\hbar} + e^{i(E_2 - E_1)t/\hbar}\right)\right) \\
+%  &= \frac{1}{2} \psi_1^2(x) + \frac{1}{2} \psi_2^2(x) + \psi_1(x) \psi_2(x)\cos\left(\frac{(E_2 - E_1)t}{\hbar}\right) \\
+%  &= \frac{1}{a} \sin^2\left(\frac{\pi x}{a}\right) + \frac{1}{a} \sin^2\left(\frac{2 \pi x}{a}\right) + \frac{2}{a}\sin\left(\frac{\pi x}{a}\right) \sin\left(\frac{2\pi x}{a}\right) \cos\left(\frac{(E_2 - E_1)t}{\hbar}\right)
+%  \end{align*}
+  
+%  Definindo
+  
+%  \begin{equation*}
+%  \omega_{21} = \frac{E_2 - E_2}{\hbar} = \frac{3\pi^2 \hbar}{2ma^2}
+%  \end{equation*}
+  
+%  temos
+  
+%  \begin{equation*}
+%  |\psi(x, t)|^2 = \frac{1}{a} \sin^2\left(\frac{\pi x}{a}\right) + \frac{1}{a} \sin^2\left(\frac{2 \pi x}{a}\right) + \frac{2}{a}\sin\left(\frac{\pi x}{a}\right) \sin\left(\frac{2\pi x}{a}\right) \cos\left(\omega_{21} t\right)
+%  \end{equation*}
+  
+  \item Temos
+  
+  \begin{align*}
+  \left\langle x \right\rangle &= \int_0^a x |\psi(x, t)|^2 dx \\
+  &= \frac{1}{a} \left[ \int_0^a x \sin^2 \left(\frac{\pi x}{a}\right)dx + \int_0^a x \sin^2 \left(\frac{2\pi x}{a}\right)dx + 2 \cos\left(\Omega t\right) \int_0^a x \sin\left(\frac{\pi x}{a}\right) \sin\left(\frac{2\pi x}{a}\right) dx \right]
+  \end{align*}
+  
+  Calculando as integrais necessárias
+  
+  \begin{align*}
+  \int_0^a x \sin^2\left(\frac{n\pi x}{a}\right) dx &= a^2 \int_0^1 x \sin^2\left(n\pi x\right) dx \\
+  &= \frac{a^2}{2} \left(\int_0^1 x dx - \int_0^1 x\cos(2n\pi x) dx\right) \\
+  &= \frac{a^2}{2} \left(\frac{1}{2} - \left[\frac{x \sin\left(2 n \pi x\right)}{2n\pi}\right]_0^1 + \frac{1}{2n\pi} \int_0^1 \sin(2n \pi x)dx \right) \\
+  &= \frac{a^2}{2}\left(\frac{1}{2} + \frac{1}{2n\pi} \left[\frac{\cos(2n\pi x)}{2n\pi}\right]_0^1 \right) \\
+  &= \frac{a^2}{4}
+  \end{align*}
+  
+  e, lembrando que $\cos(a - b) - \cos(a + b) = 2 \sin(a) \sin(b)$,
+  
+  \begin{equation*}
+  \int_0^a x \sin\left(\frac{\pi x}{a}\right) \sin\left(\frac{2\pi x}{a}\right) dx = \frac{a^2}{2} \int_0^1 x\left(\cos(\pi x) - \cos(3\pi x)\right)dx
+  \end{equation*}
+  
+  como
+  
+  \begin{align*}
+  \int_0^1 x \cos(n \pi x) dx &= \left[\frac{x \sin(n\pi x)}{n\pi}\right]_0^1 - \frac{1}{n\pi} \int_0^1 \sin(n\pi x) dx \\
+  &= \left[\frac{1}{(n\pi)^2} \cos(n\pi x)\right]_0^1 \\
+  &= \frac{(-1)^n - 1}{(n\pi)^2}
+  \end{align*}
+  
+  obtemos
+  
+  \begin{align*}
+  \int_0^a x \sin\left(\frac{\pi x}{a}\right) \sin\left(\frac{2\pi x}{a}\right) dx &= \frac{a^2}{2} \left(-\frac{2}{\pi^2} + \frac{2}{9\pi^2}\right) \\
+  &= -\frac{8a^2}{9\pi^2}
+  \end{align*}
+  
+  Portanto,
+  
+  \begin{align*}
+  \left\langle x \right\rangle &= \frac{1}{a}\left[\frac{a^2}{4} + \frac{a^2}{4} - \frac{16a^2}{9\pi^2}\cos\left(\Omega t\right) \right] \\
+  &= \frac{a}{2} - \frac{16 a}{9 \pi^2} \cos\left(\Omega t\right) \\
+  &= \frac{a}{2}\left[1 - \frac{32}{9\pi^2}\cos\left(\Omega t\right)\right]
+  \end{align*}
+  \end{enumerate}
+  
+  Por fim, a frequência das oscilações vale
+  
+  \begin{align*}
+  f &= \frac{\Omega}{2\pi} \\
+  &= \frac{3\omega}{2\pi} \\
+  &= \frac{3\pi^2 \hbar}{4\pi ma^2} \\
+  &= \frac{3 \pi \hbar}{4 m a^2}
+  \end{align*}
+  
+  e a amplitude
+  
+  \begin{equation*}
+  A = \frac{32}{9\pi^2} \frac{a}{2} \approx 0.3603 \left(\frac{a}{2}\right).
+  \end{equation*}
  
 % Exercício 4
 \addcontentsline{toc}{section}{Exercício 4}
@@ -155,6 +571,95 @@
     \item No instante $t_0 > 0$ foi medido que o sistema estava no estado de energia $E_3$ que corresponde a energia do estado $n = 3$. Em um instante $t > t_0$ foi medido a energia do sistema. Qual o valor de $c_n$ para $n = 1, 2$ e $3$ neste instante?
   \end{enumerate}
 
+\textbf{Resolução: }
+  Primeiramente devemos normalizar a função de onda.
+
+  \begin{align*}
+    1 &= \int_0^a A^2 x^2 (a - x)^2 dx \\
+    &= A^2 \int_0^a  x^2(a^2 - 2ax + x^2) dx \\
+    &= A^2 \left[ a^2 \int_0^a x^2 dx - 2a \int_0^a x dx + \int_0^a x^4 dx \right] \\
+    &= A^2 \left[ a^2 \frac{a^3}{3} - 2a \frac{a^4}{4} + \frac{a^5}{5} \right] \\
+    &= A^2 \left(\frac{a^5}{3} - \frac{a^5}{2} + \frac{a^5}{5}\right) \\
+    &= A^2 \frac{a^5}{30} \\
+    \therefore A &= \sqrt{\frac{30}{a^5}}
+  \end{align*}
+
+  Agora, como (Eq. 2.37 do Griffiths)
+  
+  \begin{equation*}
+  c_{n} = \sqrt{\frac{2}{a}} \int_0^a \sin\left(\frac{n\pi}{a} x\right) \Psi(x,0) dx
+  \end{equation*}
+  
+  temos
+  
+  \begin{align*}
+  c_n &= \sqrt{\frac{30}{a^5}} \sqrt{\frac{2}{a}} \int_0^a \sin\left(\frac{n\pi}{a} x \right) x(a-x) dx \\
+  &= \frac{2\sqrt{15}}{a^3}\left[ a\int_0^a x\sin\left(\frac{n\pi}{a} x \right) dx - \int_0^a x^2 \sin\left(\frac{n\pi}{a} x \right)dx \right]
+  \end{align*}
+  
+  Calculando as integrais necessárias:
+  
+  \begin{align*}
+  \int_0^a x \sin\left(\frac{n\pi x}{a}\right) dx &= a^2 \int_0^1 x \sin (n\pi x) dx \\
+  &= a^2\left[\left[\frac{-x\cos(n\pi x)}{n\pi}\right]_0^1 + \frac{1}{n\pi} \int_0^1 \cos(n\pi x) dx \right] \\
+  &= a^2\left[\left[\frac{-x\cos(n\pi x)}{n\pi}\right]_0^1 + \frac{1}{(n\pi)^2} \left[\sin(n\pi x)\right]_0^1 \right] \\
+  &= \frac{-a^2}{n\pi} (-1)^n \\
+  &= 
+    \begin{cases}
+      \frac{-a^2}{n\pi}&\text{ se n é par,}\\
+      \frac{a^2}{n\pi}&\text{ se n é ímpar.}
+    \end{cases}
+  \end{align*}
+  
+  e
+  
+  \begin{align*}
+  \int_0^a x^2 \sin\left( \frac{n\pi x}{a} \right) dx &= a^3 \int_0^1 x^2 \sin(n\pi x) dx \\
+  &= a^3 \frac{-1}{\pi^2} \frac{d^2}{dn^2} \int_0^1 \sin (n\pi x) dx \\
+  &= \frac{a^3}{\pi^2} \frac{d^2}{dn^2} \frac{\cos (n\pi) - 1}{n \pi} \\
+  &= \frac{a^3}{\pi^2} \frac{d}{dn} \left[\frac{-\sin(n\pi) \pi}{n \pi} - \frac{\cos(n\pi) - 1}{n^2 \pi} \right] \\
+  &= \frac{a^3}{\pi^2} \left[ \frac{-cos(n\pi) \pi^2}{n \pi} + \frac{\sin(n\pi) \pi}{n^2\pi} + \frac{\sin(n\pi) \pi}{n^2 \pi} + 2\frac{\cos(n\pi) - 1}{n^3\pi} \right] \\
+  &= \frac{a^3}{\pi^3} \left[ 2\frac{cos(n\pi) - 1}{n^3} - \frac{\cos(n\pi)\pi^2}{n} \right] \\
+  &= \frac{a^3}{\pi^3} \left[ \frac{2((-1)^n - 1)}{n^3} - \frac{(-1)^n \pi^2}{n} \right] \\
+  &= \begin{cases} 
+      \frac{-a^3}{n\pi}&\text{ se n é par,}\\
+      \frac{a^3}{\pi^3}\left[\frac{\pi^2}{n} - \frac{4}{n^3}\right]&\text{ se n é ímpar.} 
+    \end{cases}
+  \end{align*}
+  
+  Portanto, se $n$ é par temos
+  
+  \begin{align*}
+    c_n &= 2\sqrt{15} \left[ \frac{-1}{n\pi} - \frac{-1}{n\pi} \right] \\
+    &= 0
+  \end{align*}
+  
+  e, se $n$ é ímpar,
+  
+  \begin{align*}
+    c_n &= 2\sqrt{15\pi^3} \left[ \frac{\pi^2}{n} - \frac{4}{n^3} - \frac{pi^2}{n}\right] \\
+    &= \frac{8\sqrt{15}}{(n\pi)^3}
+  \end{align*}
+  
+  Portanto, temos
+  
+  \begin{align*}
+  c_1 &= \frac{8\sqrt{15}}{\pi^3} \approx 0.9993 \\
+  c_2 &= 0 \\
+  c_3 &= \frac{8\sqrt{15}}{27\pi^3} \approx 0.0370
+  \end{align*}
+  
+  \begin{enumerate}
+  \item No instante $t_0$ a função de onda colapsou no estado estacionário com energia $E_3$, i.e., $\psi(x, t_0) = \psi_3$. Como $\psi(x, t > t_0 ) = \psi_3(x)e^{iE_3(t-t_0)/\hbar} = 0 \cdot \psi_1(x) + 0\cdot \psi_2(x) + e^{-iE_3(t - t_0)/\hbar}\cdot \psi_3(c)$ temos,
+  \begin{align*}
+    c_1 &= 0 \\
+    c_2 &= 0 \\
+    c_3 &= e^{-iE_3(t - t_0)/\hbar}
+  \end{align*}
+  
+  Como fases puramente imaginárias são irrelevantes (quase sempre), podemos redefinir as constantes para $c_1 = 0$, $c_2 = 0$ e $c_3 = 1$.
+  \end{enumerate}
+
 % Exercício 5
 \addcontentsline{toc}{section}{Exercício 5}
 \item Assuma que o potencial unidimensional $V(x)$ seja dado por $V(x) = -\alpha\left(\delta(x+a) + \delta(x-a)\right)$. 
@@ -164,13 +669,256 @@
   \item Encontre a condição do estado ligado neste caso.
   \end{enumerate}
 
+\textbf{Resolução:}\newline
+  \begin{enumerate}
+    \item Começamos notando que, nas regiões onde o potencial é nulo, a equação de Schrödinger independente do tempo é escrita, quando $E < 0$:
+
+    \begin{align*}
+    \frac{d^2 \psi}{dx^2} &= \frac{\left(-2mE\right)}{\hbar^2} \psi \\
+    \therefore \frac{d^2 \psi}{dx^2} &= k^2 \psi \qquad \text{para } k = \sqrt{\frac{-2mE}{\hbar^2}}
+    \end{align*}
+
+    As soluções são portanto ondas evanescentes
+
+    \begin{equation*}
+    \psi(x) = A e^{kx} + B e^{-kx}.
+    \end{equation*}
+
+    Para encontrar as soluções da equação de Schrödinger no caso em que estamos trabalhando, separaremos o domínio em três regiões: $x < -a$, $-a < x < a$ e $x > a$. Nestas regiões já sabemos que as soluções serão ondas evanescentes: precisamos então encontrar as condições a impor em $x = -a$ e $x = a$. A primeira é a continuidade das soluções; a segunda costuma ser a continuidade da derivada das soluções, mas esta condição só se aplica quando o potencial é limitado, o que falha neste caso. Para encontrar a condição satisfeita pela derivada, integraremos a equação de Schrödinger ao redor dos pontos de divergência do potencial $p \in \{-a, a\}$:
+
+    \begin{align*}
+    \frac{-\hbar^2}{2m} \int_{p - \epsilon}^{p + \epsilon} \frac{d^2 \psi}{dx^2} dx + \int_{p - \epsilon}^{p + \epsilon} V(x)\psi(x)dx &= \int_{p - \epsilon}^{p + \epsilon} E \psi(x) dx \\
+    \frac{-\hbar^2}{2m} \frac{d\psi}{dx}\Big|_{p - \epsilon}^{p + \epsilon} &= \int_{p - \epsilon}^{p + \epsilon} E \psi(x) dx - \int_{p - \epsilon}^{p + \epsilon} V(x)\psi(x)dx
+    \end{align*}
+
+    Definindo a descontinuidade da derivada como 
+
+    \begin{equation*}
+    \Delta\left(\frac{d\psi}{dx}\right)_{x = p} = \lim_{\epsilon \to 0} \frac{d\psi}{dx}\Big|_{p - \epsilon}^{p + \epsilon}
+    \end{equation*} 
+    
+    \noindent temos
+
+    \begin{align*}
+    \Delta \left( \frac{d\psi}{dx} \right)_{x = p} &= -\frac{2m}{\hbar^2} \lim_{\epsilon \to 0} \int_{p - \epsilon}^{p + \epsilon} E \psi(x) dx - \int_{p - \epsilon}^{p + \epsilon} V(x)\psi(x)dx \\
+    \Delta \left( \frac{d\psi}{dx} \right)_{x = p} &= \frac{2m}{\hbar^2} \int_{p - \epsilon}^{p + \epsilon} -\alpha\left(\delta(x - a) + \delta(x + a)\right) \psi(x) dx \\
+    \Delta \left( \frac{d\psi}{dx} \right)_{x = p} &= -\frac{2m\alpha}{\hbar^2}\psi(p).
+    \end{align*}
+
+    Agora observamos que, uma vez que o potencial é par, podemos supor que as soluções possuem paridade definida (todas são pares ou ímpares), pois é sempre possível encontrar uma base de soluções pares ou ímpares neste caso\footnote{Note que se $\psi(x)$ é solução da equação de Schrödinger, então $\psi(-x)$ também o é, se o potencial é par, e $\frac{\psi(x) + \psi(-x)}{\sqrt{2}}$ e $\frac{\psi(x) - \psi(-x)}{\sqrt{2}}$ são, respectivamente, soluções par e ímpar da equação de Schrödinger.}. Buscaremos então soluções pares e ímpares, começando com soluções pares. Separando o domínio em três regiões onde o potencial é nulo e impondo que a solução seja par, obtemos
+
+    \begin{equation*}
+    \psi_{par}(x) = 
+    \begin{cases}
+      Ae^{kx} &\text{se }x \leq -a\\
+      B\left(e^{kx} + e^{-kx}\right) &\text{se }-a < x \leq a\\
+      Ae^{-kx} &\text{se }x > a
+    \end{cases}
+    \end{equation*}
+    
+    Possuímos agora as condições de continuidade de $\psi$ e descontinuidade da derivada. A imposição da paridade faz com que as condições em $-a$ e $a$ são redundantes, logo temos duas condições. Impondo a continuidade em $x = a$ obtemos
+    
+    \begin{align*}
+    B \left(e^{ka} + e^{-ka}\right) &= A e^{-ka} \\
+    B &= A \frac{e^{-ka}}{e^{ka} + e^{-ka}}.
+    \end{align*}
+    
+    Impondo agora a condição para a derivada:
+    
+    \begin{align*}
+    \Delta\left( \frac{d \psi_{par}}{dx} \right)_{x = a} &= -\frac{2m\alpha}{\hbar^2} Ae^{-ka} \\
+    -Ak e^{-ka} - Bk \left(e^{ka} - e^{-ka}\right) &= -\frac{2m\alpha}{\hbar^2} Ae^{-ka} \\
+    Ae^{-ka} \left(\frac{2m\alpha}{\hbar^2} - k \right) - Ak e^{-ka}\frac{e^{ka} - e^{-ka}}{e^{ka} + e^{-ka}} &= 0 \\
+    \left(\frac{2m\alpha}{\hbar^2} - k \right)\left(e^{ka} + e^{-ka}\right) - k\left(e^{ka} - e^{-ka}\right) &= 0  \\
+    \frac{2m\alpha}{\hbar^2}\left(e^{ka} + e^{-ka}\right) &= k \left(e^{ka} - e^{-ka} + e^{ka} + e^{-ka}\right) \\
+    \frac{m\alpha}{\hbar^2} \left(1 + e^{-2ka}\right) &= k
+    \end{align*}
+
+    As funções de $k$ de ambos os membros da expressão anterior devem coincidir. Observando a Figura \ref{fig:k.par}, notamos que os valores de $k$ permitidos são aqueles na intersecção dos dois gráficos. Há portanto apenas um valor de $k$ permitido neste caso, que chamaremos $k_{par}$.
+    
+    \begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}[>=latex]
+	    \begin{axis}[
+	       samples=500,
+	       axis x line=center,
+	       axis y line=center,
+	       xlabel={$x$},
+	       ylabel={$y$},
+	       xlabel style={below right},
+	       ylabel style={above left},
+         ytick={2},
+         yticklabels={$\frac{2m\alpha}{\hbar^2}$},
+         xtick=\empty,
+		     xmin=-1,
+		     xmax=5,
+		     ymin=-1,
+		     ymax=5]
+		     \addplot [mark=none,domain=-1:5] {x} node [below left] {$y = k$};
+		     \addplot [mark=none,domain=-1:5] {1 + exp(-2*x)} node [below left] {$y = \frac{m\alpha}{\hbar^2}\left(1 + e^{-2ka}\right)$};
+		   \end{axis}
+    \end{tikzpicture}
+	  \caption{Valores de $k$ permitidos para soluções pares do poço-delta duplo.}
+	  \label{fig:k.par}
+    \end{figure}
+    
+    Procederemos de forma semelhante agora, porém buscando soluções ímpares. Estas soluções possuem a forma
+    
+    \begin{equation*}
+    \psi_{ímpar}(x) = 
+    \begin{cases}
+      -Ae^{kx} &\text{se }x \leq -a\\
+      B\left(e^{kx} - e^{-kx}\right) &\text{se }-a < x \leq a\\
+      Ae^{-kx} &\text{se }x > a
+    \end{cases}
+    \end{equation*}
+    
+    Impondo a condição de continuidade em $x = a$, temos
+    
+    \begin{align*}
+    B\left(e^{ka} - e^{-ka}\right) &= Ae^{-ka} \\
+    B &= A \frac{e^{-ka}}{e^{ka} - e^{-ka}}.
+    \end{align*}
+    
+    Por outro lado, impondo que a derivada satisfaça à condição já deduzida,
+    
+    \begin{align*}
+    \Delta\left(\frac{d \psi_{ímpar}}{dx}\right)_{x = a} &= -\frac{2m\alpha}{\hbar^2} A e^{-ka} \\
+    -Ake^{-ka} - Bk\left(e^{ka} + e^{-ka}\right) &= -\frac{2m\alpha}{\hbar^2} A e^{-ka} \\
+    Ae^{-ka}\left(\frac{2m\alpha}{\hbar^2} - k\right) - Ak e^{-ka}\frac{e^{ka} + e^{-ka}}{e^{ka} - e^{-ka}} &= 0 \\
+    \left(\frac{2m\alpha}{\hbar^2} - k\right)\left(e^{ka} - e^{-ka}\right) - k \left(e^{ka} + e^{-ka}\right) &= 0 \\
+    \frac{2m\alpha}{\hbar^2} \left(e^{ka} - e^{-ka}\right) &= k \left(e^{ka} + e^{-ka} + e^{ka} - e^{-ka}\right) \\
+    \frac{m\alpha}{\hbar^2}\left(1 - e^{-2ka}\right) &= k
+    \end{align*}
+    
+    Há agora duas situações distintas. Quando $\alpha > \hbar^2/(2ma)$ a derivada do membro direito é maior que $1$ em $k = 0$, portanto temos a situação no gráfico da direita da Figura \ref{fig:k.impar}: além de $k = 0$ - inválido, pois não-normalizável - temos mais um único valor de $k$ permitido, que chamaremos $k_{ímpar}$. Se $\alpha < \hbar^2/(2ma)$, por outro lado, não há valor de $k$ permitido nesta situação (cf. gráfico da esquerda na Figura \ref{fig:k.impar}).
+    
+    \begin{figure}[!h]
+      \begin{minipage}[l]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[>=latex]
+	        \begin{axis}[
+	           title={$\alpha > \frac{\hbar^2}{2ma}$},
+	           samples=500,
+	           axis x line=center,
+	           axis y line=center,
+	           xlabel={$x$},
+	           ylabel={$y$},
+	           xlabel style={below right},
+	           ylabel style={above left},
+             ytick={1},
+             yticklabels={$\frac{m\alpha}{\hbar^2}$},
+             xtick=\empty,
+	  	       xmin=-1,
+	           xmax=2.5,
+  		       ymin=-1,
+		         ymax=2.5]
+		         \addplot [mark=none,domain=-1:2.5] {x} node [below left] {$y = k$};
+		         \addplot [mark=none,domain=-1:2.5] {1 - exp(-2*x)} node [below left] {$y = \frac{m\alpha}{\hbar^2}\left(1 - e^{-2ka}\right)$};
+		      \end{axis}
+        \end{tikzpicture}
+      \end{minipage}
+      \hfill
+      \begin{minipage}[r]{0.45\textwidth}
+        \centering
+        \begin{tikzpicture}[>=latex]
+	        \begin{axis}[
+	           title={$\alpha \leq \frac{\hbar^2}{2ma}$},
+	           samples=500,
+	           axis x line=center,
+	           axis y line=center,
+	           xlabel={$x$},
+	           ylabel={$y$},
+	           xlabel style={below right},
+	           ylabel style={above left},
+             ytick={1},
+             yticklabels={$\frac{m\alpha}{\hbar^2}$},
+             xtick=\empty,
+	  	       xmin=-1,
+	           xmax=2.5,
+  		       ymin=-1,
+		         ymax=2.5]
+		         \addplot [mark=none,domain=-1:2.5] {x} node [below left] {$y = k$};
+		         \addplot [mark=none,domain=-1:2.5] {1 - exp(-2*0.4*x)} node [below left] {$y = \frac{m\alpha}{\hbar^2}\left(1 - e^{-2ka}\right)$};
+		      \end{axis}
+        \end{tikzpicture}
+      \end{minipage}
+ 	    \caption{Valores de $k$ permitidos para soluções ímpares do poço-delta duplo (para $\alpha > \hbar^2/(2ma)$ e $\alpha \leq \hbar^2/(2ma)$).}
+	    \label{fig:k.impar}
+    \end{figure}
+    
+    A solução geral quando $E < 0 $ depende portanto do valor de $\alpha$: para $\alpha > \hbar^2/(2ma)$ a solução é combinação linear de $\psi_{par}$ e $\psi_{impar}$. Senão, a solução é $\psi_{par}$.
+    
+    \item Como $\lim_{x \to \pm \infty} V(x) = 0$, a condição de estado ligado é $E < 0$.
+    
+  \end{enumerate}
+
 % Exercício 6
 \addcontentsline{toc}{section}{Exercício 6}
 \item Descreva a função de onda para quaisquer valores de $x$ para o potencial $V(x)$ mostrado abaixo. Assuma que a energia $E < V_0$. Você deve descrever se é um estado ligado ou um estado de espalhamento, e se possue soluções evanescentes. Não é necessário calcular a função de onda.
 
   \begin{equation*}
-    V(x) = \begin{cases} V_0 & 0 < x < a\\ 0 & \text{qualquer outro valor} \end{cases}
+    V(x) = \begin{cases} V_0 & 0 < x < a\\ 0 & \text{qualquer outro valor.} \end{cases}
   \end{equation*}
+
+\textbf{Resolução: }
+  Para regiões do espaço onde o potencial é constante, sabemos que as soluções da equação de Schrödinger são de dois tipos: ondas planas e ondas evanescentes, a primeira ocorrendo quando a energia da partícula é maior que o potencial e a segunda no caso contrário. Neste caso temos necessariamente $E < V_0$, logo a solução para $x$ entre $0$ e $a$ é do tipo evanescente. Há então duas possibilidades: $E < 0$, caso em que a solução em todo o espaço seria evanescente, e $E > 0$, onde a solução para $x < 0$ e $x > a$ é do tipo onda plana. O primeiro caso, entretanto, é impossível pelo Problema 13 da lista 1. Temos portanto $E > 0$, um estado de espalhamento. Há então essencialmente duas situações: uma em que a partícula incide da esquerda, podendo tunelar pela barreira de potencial, e outra em que a partícula incide da direita. O esboço destas situações pode ser visto na Figura \ref{fig:barreira.potencial}.
+
+    \begin{figure}[!h]
+      \centering
+      \begin{minipage}[l]{0.45\textwidth}
+        \begin{tikzpicture}[>=latex]
+	        \begin{axis}[
+	          samples=500,
+	          axis x line=center,
+	          axis y line=center,
+	          xlabel={$x$},
+	          ylabel={$y$},
+	          xlabel style={below right},
+ 	          ylabel style={below left},
+            ytick=\empty,
+            xtick={0, 1},
+            xticklabels={$0$, $a$},
+	    	    xmin=-3,
+	          xmax=4,
+  		      ymin=-3.5,
+		        ymax=3.5]
+		        \addplot [mark=none,domain=-3:0] {cos(500*x)} ;
+		        \addplot [mark=none,domain=0:1] {exp(-1*x)} ;
+		        \addplot [mark=none,domain=1:4] {exp(-1)*cos(500*(x-1))};
+            \addplot [mark=none,color=blue,domain=-3:4, ultra thick] {x<0? 0 : (x > 1? 0 : 1.7)} ;
+		      \end{axis}
+        \end{tikzpicture}
+      \end{minipage}
+      \hfill
+      \begin{minipage}[r]{0.45\textwidth}
+        \begin{tikzpicture}[>=latex]
+	        \begin{axis}[
+	          samples=500,
+	          axis x line=center,
+	          axis y line=center,
+	          xlabel={$x$},
+	          ylabel={$y$},
+	          xlabel style={below right},
+ 	          ylabel style={below left},
+            ytick=\empty,
+            xtick={0, 1},
+            xticklabels={$0$, $a$},
+	    	    xmin=-3,
+	          xmax=4,
+  		      ymin=-3.5,
+		        ymax=3.5]
+		        \addplot [mark=none,domain=-3:0] {exp(-1)*cos(500*x)} ;
+		        \addplot [mark=none,domain=0:1] {exp(1*(x-1))} ;
+		        \addplot [mark=none,domain=1:4] {cos(500*(x-1))};
+            \addplot [mark=none,color=blue,domain=-3:4, ultra thick] {x<0? 0 : (x > 1? 0 : 1.7)} ;
+		      \end{axis}
+        \end{tikzpicture}
+      \end{minipage}
+ 	    \caption{Comportamento qualitativo das soluções do potencial do problema 6.}
+	    \label{fig:barreira.potencial}
+    \end{figure}
+
 
 %FIM DOS EXERCÍCIOS
 \end{enumerate}
