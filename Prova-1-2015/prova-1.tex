@@ -1,0 +1,295 @@
+\documentclass[a4paper, 12pt, notitlepage]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hmargin=2cm,vmargin=3cm,bmargin=3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}  %pacotes para matemática, opções de indentação, e links
+\usepackage{caption}  % caption to minipages
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.030}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+
+% Latex plots and drawings
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, angles, quotes}
+\tikzset{>={Latex[width=3mm,length=3mm]}}  %setas mais visíveis no tikz
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+% some useful math shortcuts
+\newtheorem{lema}{Lema }
+\newtheorem{teorema}{Teorema }
+\newtheorem{corolario}[teorema]{Corolário }
+\newtheorem{definicao}{Definição }[section]
+\newtheorem{postulado}{Postulado }[section]
+\newtheorem{proposicao}{Proposição }[section]
+\newtheorem{problema}{Problema }
+\newcommand{\cart}{\times}
+\newcommand{\ses}{\Longleftrightarrow}
+\newcommand{\entao}{\Longrightarrow}
+\newcommand{\e}{\wedge}
+\newcommand{\ou}{\vee}
+\newcommand{\vazio}{\varnothing}
+\newcommand{\sobre}{\longrightarrow}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\La}{\mathcal{L}}
+\newcommand{\cmod}[3]{#1 \equiv #2\textrm{ (mod }#3\textrm{)}}
+\newcommand{\tq}{\textrm{ tal que }}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\dsum}{\displaystyle \sum}
+\newcommand{\divg}[1]{\vec{\nabla} \cdot #1}
+\newcommand{\rot}[1]{\vec{\nabla} \times #1}
+\newcommand{\vecb}[1]{\mathbf{ #1}}
+\newcommand{\veb}[1]{\mathbf{\hat{#1}}}
+
+
+\begin{document}
+\title{Resolução da Prova 1 de Mecânica Quântica I\\ (F689, Turma B, 1o. semestre de 2015)}
+\author{Pedro Rangel Caetano\footnote{Email: p.r.caetano@gmail.com}} 
+\date{Universidade Estadual de Campinas, 1o. semestre de 2017}
+\maketitle
+
+%\tableofcontents
+%\pagebreak
+
+\begin{enumerate}
+
+% Problema 1
+\addcontentsline{toc}{section}{Problema 1}
+\item A função de onda de uma partícula de massa $m$ é
+
+\begin{equation*}
+\psi(x, t=0) =
+  \begin{cases}
+    Ax & 0 < x < a/2 \\
+    A(a-x) & a/2 < x < a
+  \end{cases}
+\end{equation*}
+
+\begin{enumerate}
+  \item Esboce $\psi(x, 0)$ e determine a constante $A$.
+  \item Escreva a função de onda inicial em termos das funções discretas de energia do poço infinito e encontre a função $\psi(x,t)$.
+  \item Qual é a probabilidade $P(E_1)$ de a medida de energia produza o valor $E_1$, o valor mais baixo possível de energia do sistema?
+\end{enumerate}
+
+O poço infinito tem soluções $\Psi_n(x) = \sqrt{\frac{2}{a}}\sin\left(\frac{n\pi x}{a}\right)\qquad E_n=\frac{n^2\hbar^2\pi^2}{2ma^2}$.
+
+\begin{align*}
+\int_0^{a/2} dx x \sin\left(\frac{n\pi x}{a}\right) &= \frac{a^2}{n^2\pi^2}\left(-n\pi\cos(n\pi/2) + \sin(n\pi/2)\right) \\
+\int_0^a dx x^2 \sin\left(\frac{n\pi x}{a}\right) &= \frac{a^3}{n^3 \pi^3}\left(-2 + (2 - n^2\pi^2)\cos(n\pi) + 2n\pi\sin(n\pi)\right)
+\end{align*}
+
+\textbf{Resolução: }
+
+\begin{enumerate}
+  \item Temos
+  
+  \begin{align*}
+  \int_{-\infty}^{\infty} |\psi(x,0)|^2 dx &= \int_0^{a/2} A^2 x^2 dx + \int_{a/2}^a A^2 (a-x)^2 dx \\
+  &= A^2 \left[ \frac{a^3}{24} + \int_{a/2}^{0} x^2 (-dx) \right] \\
+  &= A^2 \left[ \frac{a^3}{24} + \frac{a^3}{24} \right] \\
+  &= A^2 \frac{a^3}{12}
+  \end{align*}
+  
+  Portanto
+  
+  \begin{align*}
+  \int_{-\infty}^{\infty} |\psi(x,0)|^2 dx &= 1 \\
+  \Rightarrow A &= \sqrt{\frac{12}{a^3}}
+  \end{align*}
+  
+  O esboço de $\psi(x,0)$ pode ser visto na Figura \ref{fig:psi.prob.1}.
+
+  \begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}[>=latex]
+		\begin{axis}[
+		  samples=500,
+		  axis x line=center,
+		  axis y line=center,
+		  xtick={3, 6},
+		  xticklabels={$a/2$, $a$},
+		  ytick={1},
+		  yticklabels={$Aa/2$},
+		  xlabel={$x$},
+		  ylabel={$\Psi(x)$},
+		  xlabel style={below right},
+		  ylabel style={above left},
+		  xmin=-1,
+		  xmax=7,
+		  ymin=-0.5,
+		  ymax=1.5]
+		\addplot [mark=none,domain=-1:8] {x < 0 ? 0 : x <= 3 ? x/3 : (x <= 6 ? (6 - x)/(6 - 3) : 0)};
+		\end{axis}
+	\end{tikzpicture}
+  \caption{Gráfico de $\Psi(x)$.}
+  \label{fig:psi.prob.1}
+  \end{figure}
+  
+  \item Temos
+  
+  \begin{equation*}
+  \psi(x,0) = \sum_{n = 1}^{\infty} c_n \psi_n(x)
+  \end{equation*}
+  
+  \noindent com
+  
+  \begin{equation*}
+  c_n = \sqrt{\frac{2}{a}} \int_0^a \sin\left(\frac{n\pi x}{a}\right) \psi(x,0) dx
+  \end{equation*}
+  
+  Calculando os coeficientes $c_n$:
+  
+  \begin{align*}
+  c_n &= \frac{2\sqrt{6}}{a^2}\left[ \int_0^{a/2} x \sin\left(\frac{n\pi x}{a}\right) dx + \int_{a/2}^a (a-x)\sin\left(\frac{n\pi x}{a}\right) \right] \\
+  &= \frac{2\sqrt{6}}{a^2} \left[ \int_0^{a/2} x \sin\left(\frac{n\pi x}{a}\right) dx  + \int_{a/2}^0 x \sin\left(n\pi - \frac{n\pi x}{a}\right) (-dx) \right] \\
+  &= \frac{2\sqrt{6}}{a^2} \left[ \int_0^{a/2} x \sin\left(\frac{n\pi x}{a}\right) dx - \int_0^{a/2} \sin\left(\frac{n\pi x}{a}\right) \cos(n\pi) dx \right] \\
+  &= \frac{2\sqrt{6}}{a^2}\left(1 - \cos(n\pi)\right) \int_0^{a/2} x \sin\left(\frac{n\pi x}{a}\right) dx \\
+  &= \frac{2\sqrt{6}}{a^2}\left(1 - \cos(n\pi)\right) \frac{a^2}{n^2 \pi^2} \left(-n\pi \cos(n\pi/2) + \sin(n\pi/2)\right) \\
+  &= 
+  \begin{cases}
+  0 &\text{ para $n$ par} \\
+  \frac{4\sqrt{6}}{n^2 \pi^2} \sin\left(\frac{n\pi}{2}\right) &\text{ para $n$ ímpar}
+  \end{cases}
+  \end{align*}
+  
+  Portanto
+  
+  \begin{align*}
+  \psi(x,t) &= \sum_{\text{n ímpar}} c_n \psi_n(x) e^{-i\omega_n t}
+  \end{align*}
+  
+  \noindent onde $\omega_n = E_n/\hbar = n^2\pi^2\hbar/(2ma^2)$.
+  
+  \item A probabilidade de obter no instante $t$ o valor $E_n$ para  a energia é dada por
+  
+  \begin{align*}
+  P(E = E_n) &= \left|\int \psi_n^{\ast}(x) \psi(x, t) dx\right|^2 \\
+  &= \left|c_n e^{-i\omega_n t}\right|^2 \\
+  &= \left|c_n\right|^2
+  \end{align*}
+  
+  Então,
+  
+  \begin{align*}
+  P(E = E_1) &= \left|\frac{4\sqrt{6}}{\pi^2}\right|^2 \\
+  &= \frac{96}{\pi^4}
+  \end{align*}
+
+\end{enumerate}
+
+% Problema 2
+\addcontentsline{toc}{section}{Problema 2}
+\item Seja o potencial $V(x)$ dado por
+
+\begin{equation*}
+  V(x) = 
+  \begin{cases}
+  0 & x < 0 \\
+  V_1 & 0 < x < a \\
+  V_2 & a < x < b \\
+  V_3 & b < x < c \\
+  0 & x > c
+  \end{cases}
+\end{equation*}
+
+\noindent onde $V_1 > V_3 > V_2$. Observe o ordenamento dos valores do potencial.
+
+\begin{enumerate}
+  \item Assuma que a energia da partícula $V_2 < E < V_3$. Determine as soluções nas diferentes regiões. As soluções encontradas tem estados ligados?
+  \item Quais são as regiões classicamente proibidas no caso $V_3 < E < V_2$. Existem soluções quanticamente permitidas nesta região?
+  \item Mostre graficamente uma possível solução $\psi(x)$ e seu comportamento em todas as regiões.
+\end{enumerate}
+
+\textbf{Resolução: }
+\begin{enumerate}
+  \item Sabemos que as soluções da equação de Schrödinger em regiões de potencial $V$ constante são
+  \begin{itemize}
+    \item ondas evanescentes da forma $e^{\pm k x}$, com $k = \frac{\sqrt{2m(V - E)}}{\hbar}$, se $V < E$ ou
+    \item ondas planas da forma $e^{ikx}$, com $k = \frac{\sqrt{2m(E-V)}}{\hbar}$, se $V > E$.
+  \end{itemize}
+  Tendo em vista que $V_1 > V_3 > E > V_2$ as soluções serão ondas planas para $x < 0$, $a < x < b$ e $x > c$ e ondas evanescentes para $0 < x < a$ e $b < x < c$. Assumindo que a partícula vem da esquerda para a direita:
+  
+  \begin{equation*}
+  \psi(x) = 
+    \begin{cases}
+      A e^{ik_0x} & x < 0 \\
+      B e^{-k_1x} + Ce^{k_1 x} & 0 < x < a \\
+      D e^{ik_2x} + E e^{-ik_3 x} & a < x < b \\
+      F e^{-k_3x} + G e^{k_3 x} & b < x < c \\
+      H e^{ik_0x} & x > c
+    \end{cases}
+  \end{equation*}
+  
+  \noindent onde as constantes de $A$ a $H$ são fixadas pelas condições de continuidade de $\psi$ e da derivada de $\psi$ e pela normalização, e $k_i = \frac{\sqrt{2m|E - V_i|}}{\hbar}$ para $i \neq 0$ e $k_0 = \frac{\sqrt{2mE}}{\hbar}$.
+  
+  Não há estados ligados: a condição para isto é que $E < 0$ (já que $\lim_{x \to \pm \infty} V(x) = 0$), mas não existem estados que satisfaçam isso, já que neste caso $E < V_{min}$ e portanto as soluções não são normalizáveis (da equação de Schrödinger obtemos que a derivada de $\psi$ e $\psi$ deveriam ter o mesmo sinal para todo valor de $x$ caso isso ocorresse, mas neste caso o gráfico da função se afasta do eixo $x$ e disto decorre que é impossível que a integral de $|\psi|^2$ convirja).
+  
+  \item Esta condição é impossível pois $V_3 > V_2$. As regiões classicamente proibidas são, porém, as regiões para as quais $E < V$. Se $E < V_2$, a região $a < x < b$ é classicamente proibida.
+  
+  \item Confira a Figura \ref{fig:ex2}.
+  
+  \begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[>=latex]
+	    \begin{axis}[
+	      samples=500,
+	      axis x line=center,
+	      axis y line=center,
+        xlabel={$x$},
+	      ylabel={$y$},
+	      xlabel style={below right},
+        ylabel style={below left},
+        ytick=\empty,
+        xtick={0, 1, 2, 3},
+        xticklabels={$0$, $a$, $b$, $c$},
+	      xmin=-3,
+	      xmax=4,
+  	    ymin=-3.5,
+		    ymax=3.5]
+		    \addplot [mark=none,domain=-3:0] {2*cos(1800*x)} ;
+		    \addplot [mark=none,domain=0:1] {2*exp(-1*x)} ;
+		    \addplot [mark=none,domain=1:2] {2*exp(-1)*cos(415*pi*(x-1))};
+		    \addplot [mark=none,domain=2:3] {2*exp(-1)*cos(415*pi*1)*exp(-0.5*(x-2))};
+		    \addplot [mark=none,domain=3:6] {2*exp(-1)*cos(415*pi)*exp(-0.5)*cos(1800*(x-3))};
+        \addplot [mark=none,color=blue,domain=-3:6, ultra thick] {x<0? 0 : (x < 1? 2.0 : (x < 2? 1.0 : (x < 3? 1.5 : 0)))} ;
+		  \end{axis}
+    \end{tikzpicture}
+    \caption{Esboço da função de onda no caso em que a partícula incide da esquerda para a direita.}
+    \label{fig:ex2}
+  \end{figure}
+\end{enumerate}
+
+% Problema 3
+\addcontentsline{toc}{section}{Problema 3}
+\item Seja a Equação de Schrödinger independente do tempo.
+
+\begin{enumerate}
+  \item Escreve a Equação de Schrödinger independente do tempo para o caso unidimensional. Quais são as condições gerais que qualquer função de onda deve satisfazer?
+  \item Assuma que o potencial unidimensional $V(x)$ seja dado por $V(x) = -\alpha\left(\delta(x+a) + \delta(x-a)\right)$. Ache a solução geral da função de onda devido a este potencial quando a energia for $E < 0$.
+  \item Encontre a condição do estado ligado neste caso. Não é necessário resolver a equação.
+\end{enumerate}
+A função Delta de Dirac satisfaz $\int f(x)\delta(x-a)dx = f(a)$.
+
+\textbf{Resolução: }
+Confira o exercício 5 da lista 2.
+
+%FIM DOS PROBLEMAS
+\end{enumerate}
+\end{document}
