@@ -1,0 +1,191 @@
+\documentclass[a4paper, 12pt, notitlepage]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hmargin=2cm,vmargin=3cm,bmargin=3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}  %pacotes para matemática, opções de indentação, e links
+\usepackage{caption}  % caption to minipages
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.030}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+
+% Latex plots and drawings
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, angles, quotes}
+\tikzset{>={Latex[width=3mm,length=3mm]}}  %setas mais visíveis no tikz
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+% some useful math shortcuts
+\newtheorem{lema}{Lema }
+\newtheorem{teorema}{Teorema }
+\newtheorem{corolario}[teorema]{Corolário }
+\newtheorem{definicao}{Definição }[section]
+\newtheorem{postulado}{Postulado }[section]
+\newtheorem{proposicao}{Proposição }[section]
+\newtheorem{problema}{Problema }
+\newcommand{\cart}{\times}
+\newcommand{\ses}{\Longleftrightarrow}
+\newcommand{\entao}{\Longrightarrow}
+\newcommand{\e}{\wedge}
+\newcommand{\ou}{\vee}
+\newcommand{\vazio}{\varnothing}
+\newcommand{\sobre}{\longrightarrow}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\La}{\mathcal{L}}
+\newcommand{\cmod}[3]{#1 \equiv #2\textrm{ (mod }#3\textrm{)}}
+\newcommand{\tq}{\textrm{ tal que }}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\dsum}{\displaystyle \sum}
+\newcommand{\divg}[1]{\vec{\nabla} \cdot #1}
+\newcommand{\rot}[1]{\vec{\nabla} \times #1}
+\newcommand{\vecb}[1]{\mathbf{ #1}}
+\newcommand{\veb}[1]{\mathbf{\hat{#1}}}
+
+
+\begin{document}
+\title{Resolução da Lista 3 de Mecânica Quântica I\\ (F689, Turma B)}
+\author{Pedro Rangel Caetano\footnote{Email: p.r.caetano@gmail.com}} 
+\date{Universidade Estadual de Campinas, 1o. semestre de 2017}
+\maketitle
+
+\tableofcontents
+\pagebreak
+
+\begin{enumerate}
+
+% Exercício 1
+\addcontentsline{toc}{section}{Exercício 1}
+(Bransdeen and Joachian, página 260)\linebreak
+Seja o conjunto de operadores: são operadores lineares? e caso sejam são operadores hermitianos?
+\begin{enumerate}[(a)]
+  \item $\hat{A}_1\Psi(x) = \left(\Psi(x)\right)^2$
+  \item $\hat{A}_2\Psi(x) = \frac{d}{dx} \Psi(x)$
+  \item $\hat{A}_3\Psi(x) = \int_0^x \Psi(x')dx'$
+  \item $\hat{A}_4\Psi(x) = x^2\Psi(x)$
+  \item $\hat{A}_5\Psi(x) = \sin \Psi(x)$
+  \item $\hat{A}_6\Psi(x) = \frac{d^2}{dx^2} \Psi(x)$
+  \item $\hat{A}_7\Psi(x) = -i\hbar\frac{d}{dx}\Psi(x)$
+  \item $\hat{A}_8 = 
+  \begin{pmatrix} 
+    1 && 1\\
+    0 && 1\\
+  \end{pmatrix}$
+  \item $\hat{A}_8 = 
+  \begin{pmatrix} 
+    1 && i\\
+    -i && 1\\
+  \end{pmatrix}$
+  \item $\hat{\vec{L}} = \hat{\vec{R}} \times \hat{\vec{P}}$, onde $\hat{\vec{R}}$ é o operador vetor posição e $\hat{\vec{P}}$ é o operador vetor momento.
+\end{enumerate}
+
+% Exercício 2
+\addcontentsline{toc}{section}{Exercício 2}
+Mostre que a ação de dois operadores $\hat{A}$ e $\hat{B}$ pode ser representada em forma matricial da seguinte forma: $(AB)_{mn} = \sum_p A_{mp}B_{pn}$.
+
+% Exercício 3
+\addcontentsline{toc}{section}{Exercício 3}
+Seja o projetor $\hat{P}_n = \ket{\phi_n}\bra{\phi_n}$, onde $\ket{\phi_n}$ são os vetores normalizados de uma base no espaço de Hilbert.
+  \begin{enumerate}[(A)]
+    \item Mostre que é um operador hermitiano.
+    \item O nome projetor vem do fato da propriedade $\hat{P}_n^2 = \hat{P}_n$. Mostre essa propriedade.
+    \item Calcule os autovalores e autovetores.
+  \end{enumerate}
+
+% Exercício 4
+\addcontentsline{toc}{section}{Exercício 4}
+Um Hamiltoniano é dado por
+
+\begin{equation}\label{eq:H.neutrinos}
+  H = c^2
+    \begin{pmatrix}
+    m_\mu && m \\
+    m && m_\tau
+    \end{pmatrix}
+\end{equation}
+
+\noindent onde $m$, $m_\mu$ e $m_\tau$ são números reais e os vetores da base são dados por
+
+\begin{equation*}
+  \ket{v_\mu} = \begin{pmatrix} 1 \\ 0\end{pmatrix} \qquad
+  \ket{v_\tau} = \begin{pmatrix} 0 \\ 1\end{pmatrix}
+\end{equation*}
+
+\begin{enumerate}[(A)]
+  \item Ache os autovalores e autovetores deste Hamiltoniano.
+  \item Assuma que no instante $t=0$, o sistema está no estado $\ket{\Psi(t = 0)} = \ket{v_\mu}$. Então o sistema no instante $t$ estará no estado $\ket{\Psi(t)}$, determine este estado. Qual é a probabilidade de o sistema estar no estado $\ket{v_\tau}$ no instante $t$?\linebreak
+  Esta probabilidade está relacionado com o Prêmio Nobel de 2015, pela descoberta da oscilação dos neutrinos. \href{http://assinaturadigital.cienciahoje.org.br/revistas/reduzidas/332/files/assets/basic-html/index.html#1}{Ciência Hoje de Dezembro de 2015: Metamorfose Fantasmagórica}
+  \item A matrix $H$ \eqref{eq:H.neutrinos} é Hermitiana? Se sim use a propriedade que pode ser diagonalizada por uma matriz unitária escrita na forma:
+  \begin{equation}
+  U = 
+    \begin{pmatrix}
+    \cos \theta && \sin \theta \\
+    -\sin \theta && \cos \theta \\
+    \end{pmatrix}
+  \end{equation}
+  Mostre que esta matriz é unitária: $U^{-1} = U^\dagger$.
+  Diagonalize a matriz $H$ por esta transformação unitária e ache o valor do ângulo $\theta$ que diagonaliza esta matriz $H$. Como podemos achar os autovetores de $H$ usando este procedimento?
+\end{enumerate}
+
+% Exercício 5
+\addcontentsline{toc}{section}{Exercício 5}
+O Hamiltoniano de um sistema de três níveis é representado pela matriz  
+\begin{equation*}
+\hat{H} = \hbar \omega
+  \begin{pmatrix}
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2 \\
+  \end{pmatrix}
+\end{equation*}
+\noindent e tem dois observáveis $A$ e $B$ representados por
+\begin{equation}
+\hat{A} = \lambda
+  \begin{pmatrix*}
+    0 && 1 && 0\\
+    1 && 0 && 0\\
+    0 && 0 && 2\\
+  \end{pmatrix}
+\end{equation*}
+\noindent e
+\begin{equation}
+\hat{B} = \mu
+  \begin{pmatrix*}
+    2 && 0 && 0\\
+    0 && 0 && 1\\
+    0 && 1 && 0\\
+  \end{pmatrix}
+\end{equation*}
+\noindent onde $\omega$, $\lambda$ e $\mu$ são reais positivos.
+\begin{enumerate}[(A)]
+  \item Os operadores $A$ e $B$ são operadores lineares? São hermitianos?
+  \item Encontre os autovalores e autovetores normalizados de $H$, $A$ e $B$.
+  \item Quais são os valores possíveis das quantidades $H$, $A$ e $B$?
+  \item Ache os comutadores entre $H$, $A$ e $B$.
+  \item Suponha que o sistema começa no estado
+    \begin{equation*}
+      \ket{\psi(t = 0)} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+    \end{equation*}
+  \noindent que é um estado normalizado. Encontre os valores esperados de $H$, $A$ e $B$ em $t$.
+  \item Qual é o estado $\ket{\psi(t)}$? Se você medir a energia no tempo $t$ que valores você pode ter? Qual é a probabilidade de obter cada um desses valores?
+\end{enumerate}
+
+%FIM DOS EXERCÍCIOS
+\end{enumerate}
+\end{document}
