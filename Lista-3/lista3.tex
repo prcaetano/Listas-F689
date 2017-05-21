@@ -72,45 +72,144 @@
 
 % Exercício 1
 \addcontentsline{toc}{section}{Exercício 1}
-(Bransdeen and Joachian, página 260)\linebreak
+\item (Bransdeen and Joachian, página 260)
+
 Seja o conjunto de operadores: são operadores lineares? e caso sejam são operadores hermitianos?
-\begin{enumerate}[(a)]
-  \item $\hat{A}_1\Psi(x) = \left(\Psi(x)\right)^2$
-  \item $\hat{A}_2\Psi(x) = \frac{d}{dx} \Psi(x)$
-  \item $\hat{A}_3\Psi(x) = \int_0^x \Psi(x')dx'$
-  \item $\hat{A}_4\Psi(x) = x^2\Psi(x)$
-  \item $\hat{A}_5\Psi(x) = \sin \Psi(x)$
-  \item $\hat{A}_6\Psi(x) = \frac{d^2}{dx^2} \Psi(x)$
-  \item $\hat{A}_7\Psi(x) = -i\hbar\frac{d}{dx}\Psi(x)$
-  \item $\hat{A}_8 = 
-  \begin{pmatrix} 
-    1 && 1\\
-    0 && 1\\
-  \end{pmatrix}$
-  \item $\hat{A}_8 = 
-  \begin{pmatrix} 
-    1 && i\\
-    -i && 1\\
-  \end{pmatrix}$
+
+\begin{enumerate}[(A)]
+  \item $\hat{A}_1 \Psi(x) = \left(\Psi(x)\right)^2$
+  \item $\hat{A}_2 \Psi(x) = \frac{d}{dx} \Psi(x)$
+  \item $\hat{A}_3 \Psi(x) = \int_0^x \Psi(x')dx'$
+  \item $\hat{A}_4 \Psi(x) = x^2\Psi(x)$
+  \item $\hat{A}_5 \Psi(x) = \sin \Psi(x)$
+  \item $\hat{A}_6 \Psi(x) = \frac{d^2}{dx^2} \Psi(x)$
+  \item $\hat{A}_7 \Psi(x) = -i\hbar \frac{d}{dx} \Psi(x)$
+  \item
+  \[ \hat{A}_8 = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} \]
+  \item
+  \[ \hat{A}_9 = \begin{pmatrix} 1 & i \\ -i & 1 \end{pmatrix} \]
   \item $\hat{\vec{L}} = \hat{\vec{R}} \times \hat{\vec{P}}$, onde $\hat{\vec{R}}$ é o operador vetor posição e $\hat{\vec{P}}$ é o operador vetor momento.
+\end{enumerate}
+
+\textbf{Resolução: }
+\begin{enumerate}[(A)]
+  \item Não é linear:
+  \[ \hat{A}_1 \left(a\Psi_1(x) + b\Psi_2(x)\right) = \left(a\Psi_1(x) + b\Psi_2(x)\right)^2 \neq a \hat{A}_1 \Psi_1(x) + b \hat{A}_1 \Psi_2(x) \]
+  \item É linear pois a derivada é linear. Não é hermitiano (é anti-hermitiano):
+  \begin{align*}
+    \bra{\phi} \hat{A}_2 \ket{\Psi} &= \int_{-\infty}^{\infty} dx \phi^\ast(x) \frac{d}{dx} \Psi(x) \\
+    &= \phi^\ast(x) \Psi(x) \Big|_{-\infty}^{\infty} - \int_{-\infty}^\infty dx \Psi(x) \frac{d}{dx} \phi^\ast(x) \\
+    &= -\left(\bra{\Psi} \hat{A}_2 \ket{\Psi}\right)^\ast
+  \end{align*}
+  \noindent (o termo de bordo se anula pois para que o produto interno $\bra{\phi}\ket{\Psi}$ convirja o integrando deve tender a zero em $\pm \infty$).
+  \item É linear, pois a integral é linear. Não é hermitiano: este operador é o inverso de $\hat{A}_2$, pelo teorema fundamental do cálculo, portanto $\hat{A}_3$ é hermitiano se e somente se $\hat{A}_2$ o for.
+  \item É linear, pois a multiplicação é distributiva. É hermitiano:
+  \begin{align*}
+    \bra{\phi} \hat{A}_4 \ket{\Psi} &= \int dx \phi^\ast(x) x^2 \Psi(x) \\
+    &= \left(\int dx \Psi^\ast(x) x^2 \phi(x)\right)^\ast \\
+    &= \left(\bra{\Psi} \hat{A}_4 \ket{\Psi}\right)^\ast
+  \end{align*}
+  \item Não é linear, pois $\sin(a + b) \neq \sin(a) + \sin(b)$.
+  \item É linear, novamente pois derivadas n-ésimas são lineares. É hermitiano:
+  \begin{align*}
+    \bra{\phi} \hat{A}_6 \ket{\Psi} &= \int_{-\infty}^{\infty} dx \phi^\ast(x) \frac{d^2}{dx^2} \Psi(x) \\
+    &= \phi^\ast \frac{d\phi^\ast}{dx} \Big|_{-\infty}^{\infty} - \int_{-\infty}^{\infty} dx \frac{d \phi^\ast(x)}{dx} \frac{d\Psi(x)}{dx} \\
+    &= -\frac{d\phi}{dx} \frac{d\Psi}{dx}\Big|_{-\infty}^{\infty} + \int_ {-\infty}^{\infty} dx \frac{d^2 \phi^\ast(x)}{dx^2} \Psi(x) \\
+    &= \left(\bra{\Psi} \hat{A}_6 \ket{\phi} \right)^\ast
+  \end{align*}
+  \noindent (novamente os termos de bordo se anulam pois as funções devem ser de quadrado integrável).
+  \item É linear, pois derivadas são lineares. É hermitiano: basta notar que $\hat{A}_7 = -i\hbar \hat{A}_2$, portanto
+  \[ \hat{A}_7^\dagger = i\hbar \hat{A}_2^\dagger = - i\hbar \hat{A}_2 = \hat{A}_7^\dagger \]
+  \item É linear, pois multiplicação de matrizes é distributiva. Não é hermitiana, pois
+  \[ \hat{A}_8^\dagger = \begin{pmatrix} 
+  1^\ast && 1^\ast \\
+  0^\ast && 1^\ast \end{pmatrix}^T = \begin{pmatrix}
+  1 && 0 \\
+  1 && 1 \end{pmatrix} \neq \hat{A}_8 \]
+  \item Novamente é linear pois multiplicação de matrizes é distributiva. É hermitiana, pois
+    \[ \hat{A}_9^\dagger = \begin{pmatrix} 
+  1^\ast && i^\ast \\
+  -i^\ast && 1^\ast \end{pmatrix}^T = \begin{pmatrix}
+  1 && i \\
+  -i && 1 \end{pmatrix} = \hat{A}_9 \]
+  \item Fazendo a identificação
+  \[ 1 \rightarrow x \qquad 2 \rightarrow y \qquad 3 \rightarrow z \]
+  Temos 
+  \[\hat{\vec{L}} = \sum \epsilon_{ijk} \hat{x_i} \hat{p_j} e_k,\]
+  \noindent onde $\epsilon_{ijk}$ denota o símbolo de Levi-Civita. A linearidade é consequência da linearidade dos operadores posição e momento (pois composições de operadores lineares são lineares). Para a hermiticidade temos, usando que os operadores posição e momento são hermitianos:
+  \[ \hat{\vec{L}}^\dagger = \sum \epsilon_{ijk} \left(\hat{x_i} \hat{p_j}\right)^\dagger e_k = \sum \epsilon_{ijk} \hat{p_j}^\dagger \hat{x_i}^\dagger e_k = \sum \epsilon_{ijk} \hat{x_i} \hat{p_j} e_k = \hat{\vec{L}} \]
+  \noindent (onde comutamos $x_i$ e $p_j$ pois estes operadores falham em comutar somente caso $i = j$, e neste caso $\epsilon_{iik} = 0$.)
 \end{enumerate}
 
 % Exercício 2
 \addcontentsline{toc}{section}{Exercício 2}
-Mostre que a ação de dois operadores $\hat{A}$ e $\hat{B}$ pode ser representada em forma matricial da seguinte forma: $(AB)_{mn} = \sum_p A_{mp}B_{pn}$.
+\item Mostre que a ação de dois operadores $\hat{A}$ e $\hat{B}$ pode ser representada em forma matricial da seguinte forma: $(AB)_{mn} = \sum_p A_{mp}B_{pn}$.
+
+\textbf{Resolução: }
+Sendo $\ket{u_i}$ uma base do espaço, temos
+\[ A_{ij} = \bra{u_i} \hat{A} \ket{u_j} \]
+Usando a identidade
+\[ \sum_i \ket{u_i}\bra{u_i} = \hat{1} \]
+Temos
+\begin{align*}
+(AB)_{mn} &= \bra{u_m} (AB) \ket{u_n} \\
+&= \sum_p \bra{u_m} A \ket{u_p} \bra{u_p} B \ket{u_n} \\
+&= \sum_p A_{mp}B_{pn}
+\end{align*}
 
 % Exercício 3
 \addcontentsline{toc}{section}{Exercício 3}
-Seja o projetor $\hat{P}_n = \ket{\phi_n}\bra{\phi_n}$, onde $\ket{\phi_n}$ são os vetores normalizados de uma base no espaço de Hilbert.
+\item Seja o projetor $\hat{P}_n = \ket{\phi_n}\bra{\phi_n}$, onde $\ket{\phi_n}$ são os vetores normalizados de uma base no espaço de Hilbert.
   \begin{enumerate}[(A)]
     \item Mostre que é um operador hermitiano.
     \item O nome projetor vem do fato da propriedade $\hat{P}_n^2 = \hat{P}_n$. Mostre essa propriedade.
     \item Calcule os autovalores e autovetores.
   \end{enumerate}
 
+\textbf{Resolução: }
+  \begin{enumerate}[(A)]
+    \item Basta notar que
+    \[ \hat{P}_n^\dagger = \left(\ket{\phi_n}\bra{\phi_n}\right)^\dagger = \ket{\phi_n}\bra{\phi_n} = \hat{P}_n \]
+    \item Temos, lembrando que $\ket{\phi_n}$ é normalizado e portanto $\bra{\phi_n}\ket{\phi_n} = 1$:
+    \begin{align*}
+      \hat{P}_n^2 &= \hat{P}_n \hat{P}_n \\
+      &= \ket{\phi_n}\bra{\phi_n}\ket{\phi_n}\bra{\phi_n} \\
+      &= \ket{\phi_n}\bra{\phi_n} \\
+      &= \hat{P}_n
+    \end{align*}
+    \item O problema de autovalores para o operador $\hat{P}_n$ é escrito
+    \[ \hat{P}_n \ket{\Psi_i} = \lambda_i \ket{\Psi_i} \]
+    Como os vetores $\ket{\phi_k}$ formam uma base normalizada do espaço, vale a identidade
+    \[ \sum_k \ket{\phi_k}\bra{\phi_k} = \hat{1} \]
+    Portanto, assumindo que a base é ortonormal
+    \begin{align*}
+      \sum_k P_n \ket{\phi_k}\bra{\phi_k}\ket{\Psi_i} &= \sum_k \lambda_i \ket{\phi_k}\bra{\phi_k}\ket{\Psi_i} \\
+      \sum_k \bra{\phi_k}\ket{\Psi_i} \ket{\phi_n}\bra{\phi_n}\ket{\phi_k} &= \sum_k \lambda_i \bra{\phi_k}\ket{\Psi_i} \ket{\phi_k} \\
+      \sum_k \delta_{nk}\bra{\phi_k}\ket{\Psi_i} \ket{\phi_k} &= \sum_k \lambda_i \bra{\phi_k}\ket{\Psi_i} \ket{\phi_k}
+    \end{align*}
+    Como os $\ket{\phi_k}$ são linearmente independentes devemos ter, para todo $k$,
+    \[ (\lambda_i - \delta_{nk}) \bra{\phi_k}\ket{\Psi_i} = 0 \]
+    Desmembrando esta equação nos casos $k = n$ e $k \neq n$ temos
+    \[ \begin{cases}
+    (\lambda_i - 1) \bra{\phi_k}\ket{\Psi_i} =0&\text{ se }k = n\\
+    \lambda_i \bra{\phi_k}\ket{\Psi_i} =0&\text{ se }k \neq n
+    \end{cases} \]
+    Analisando as equações anteriores, notamos que há apenas dois valores possíveis para $\lambda_i$: $\lambda_0 = 0$ e $\lambda_1 = 1$ (para todos os outros valores as equações acima implicam $\bra{\phi_k}\ket{\Psi_i} = 0$ para todo $k$; como $\ket{\Psi_i} = \sum_k \bra{\phi_k}\ket{\Psi_i} \ket{\phi_k}$ isto implicaria $\ket{\Psi_i} = 0$).
+    \begin{itemize}
+      \item $\lambda_0 = 0$:
+      Neste caso a segunda equação é satisfeita para quaisquer valores de $\bra{\phi_k}\ket{\Psi_0}$. A primeira equação, entretanto, exige que $\bra{\phi_n}\ket{\Psi_0} = 0$. Concluímos então que os autovetores são todos da forma
+      \[ \ket{\Psi_0} = \sum_{k\neq n} c_k \ket{\phi_k} \]
+      \noindent sendo $c_k$ arbitrário.
+      \item $\lambda_1 = 1$:
+      Neste caso a primeira equação é automaticamente satisfeita, portanto $\bra{\phi_n}\ket{\Psi_1}$ pode assumir qualquer valor. A segunda equação, porém, exige que $\bra{\phi_k}\ket{\Psi_1} = 0$ para todo $k \neq n$. Os autovetores são então da forma
+      \[ \ket{\Psi_1} = c_n \ket{\phi_n} \]
+      \noindent para $c_n$ arbitrário.
+    \end{itemize}
+  \end{enumerate}
+
 % Exercício 4
 \addcontentsline{toc}{section}{Exercício 4}
-Um Hamiltoniano é dado por
+\item Um Hamiltoniano é dado por
 
 \begin{equation}\label{eq:H.neutrinos}
   H = c^2
@@ -143,9 +242,129 @@ Um Hamiltoniano é dado por
   Diagonalize a matriz $H$ por esta transformação unitária e ache o valor do ângulo $\theta$ que diagonaliza esta matriz $H$. Como podemos achar os autovetores de $H$ usando este procedimento?
 \end{enumerate}
 
+\textbf{Resolução: }
+
+\begin{enumerate}[(A)]
+  \item O polinômio característico do Hamiltoniano é
+  \[ p(E) = c^2\left[(m_\mu - E)(m_\tau - E) - m^2\right] = E^2 - (m_\tau + m_\mu) E + m_\mu m_\tau - m^2 \]
+  As raízes deste polinômio são
+  \begin{align*}
+   E_{\pm}/c^2 &= \frac{m_\mu + m_\tau}{2} \pm \frac{1}{2} \sqrt{(m_\tau + m_\mu)^2 - 4m_\mu m_\tau + 4m^2} \\
+   &= \overline{m} \pm m \sqrt{ \left(\frac{m_\tau - m_\mu}{2m}\right)^2 + 1} \\
+   &= \overline{m} \pm m \sqrt{ \left(\frac{\Delta m}{2m}\right)^2 + 1} \\
+   &= \overline{m} \pm m \sqrt{ \cot^2 2\theta + 1 } \\
+   &= \overline{m} \pm \frac{m}{\sin 2\theta}
+  \end{align*}
+  
+  \noindent onde definimos
+
+  \[ \overline{m} = \frac{m_\mu + m_\tau}{2} \qquad \Delta m = m_\tau - m_\mu \qquad \theta = \frac{1}{2} \cot^{-1} \frac{\Delta m}{2m} \]
+  
+  O autovetor associado ao autovalor $E_+$ satisfaz
+  \begin{align*}
+    c^2 \begin{pmatrix} m_\mu && m \\ m && m_\tau \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} &= E_+ \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \\
+    \begin{pmatrix} m_\mu && m \\ m && m_\tau \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} &= \left(\overline{m} + \frac{m}{\sin 2\theta}\right) \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \\
+    \Rightarrow m_\mu \alpha + m \beta &= \left(\overline{m} + \frac{m}{\sin 2\theta}\right) \alpha \\
+   \left( m_\mu - \frac{m_\mu + m_\tau}{2} - \frac{m}{\sin 2\theta} \right) \alpha + m\beta &= 0 \\
+   -\left(\frac{\Delta m}{2m} - \frac{1}{\sin 2\theta} \right) \alpha + \beta &= 0 \\
+   -\left(\frac{\cos 2\theta}{\sin 2\theta} \sin 2\theta + 1\right) \alpha + \sin 2\theta \beta &= 0 \\
+   -\left(\cos^2 \theta - \sin^2 \theta + 1\right) \alpha + 2 \sin \theta \cos \theta \beta &= 0 \\
+   -2\cos^2 \theta \alpha + 2\sin\theta \cos \theta \beta &= 0 \\
+   -\cos \theta \alpha + \sin\theta \beta &= 0
+  \end{align*}
+  O autovetor associado ao autovalor $E_+$ pode então ser escrito como
+  \[ \ket{\nu_+} = \sin \theta \ket{\nu_\mu} + \cos \theta \ket{\nu_\tau} \]
+  Lembrando que autovetores associados a autovalores distintos são sempre ortogonais podemos agora imediatamente escrever o autovetor associado a $E_-$
+  \[ \ket{\nu_-} = -\cos \theta \ket{\nu_\mu} + \sin \theta \ket{\nu_\tau} \]
+  
+  \item Primeiramente vamos escrever $\ket{\nu_\mu}$ e $\ket{\nu_\tau}$ na base de autoestados de $H$:
+  \begin{align*}
+  \ket{\nu_\mu} &= \bra{\nu_+}\ket{\nu_\mu} + \bra{\nu_-}\ket{\nu_\mu} \\
+  &= \sin \theta \ket{\nu_+} - \cos\theta \ket{\nu_-}
+  \end{align*}
+  \begin{align*}
+  \ket{\nu_\tau} &= \bra{\nu_+}\ket{\nu_\tau} + \bra{\nu_-}\ket{\nu_\tau} \\
+  &= \cos \theta \ket{\nu_+} + \sin\theta \ket{\nu_-}
+  \end{align*}
+  Notamos agora que a evolução temporal dos ket's $\ket{\nu_\pm}$ é obtida multiplicando-os por $\exp(-iE_\pm t/\hbar)$. Temos então para $\ket{\Psi(t)}$:
+  \begin{align*}
+  \ket{\Psi(t)} &= \sin \theta e^{-i\frac{E_+}{\hbar} t} \ket{\nu_+} - \cos \theta e^{-i\frac{E_+}{\hbar} t} \ket{\nu_-} \\
+  &= e^{-\frac{i\overline{m} c^2 t}{\hbar}} \left(\sin \theta e^{-\frac{imc^2t}{\hbar \sin 2\theta}}\ket{\nu_+} - \cos \theta e^{\frac{imc^2t}{\hbar \sin 2\theta}}\ket{\nu_-}\right)
+  \end{align*}
+  A probabilidade de o sistema estar no estado $\ket{\nu_\tau}$ no instante $t$ é dada pelo valor $|\bra{\nu_\tau}\ket{\Psi(t)}|^2$. Calculando
+  \begin{align*}
+    \bra{\nu_\tau}\ket{\Psi(t)} &= e^{-\frac{i\overline{m} c^2 t}{\hbar}} \left(\sin \theta e^{-\frac{imc^2t}{\hbar \sin 2\theta}}\bra{\nu_\tau}\ket{\nu_+} - \cos \theta e^{\frac{imc^2t}{\hbar \sin 2\theta}}\bra{\nu_\tau}\ket{\nu_-}\right) \\
+    &= e^{-\frac{i\overline{m} c^2 t}{\hbar}} \left(\sin \theta \cos \theta e^{-\frac{imc^2t}{\hbar \sin 2\theta}} - \sin \theta \cos \theta e^{\frac{imc^2t}{\hbar \sin 2\theta}}\right) \\
+    &= e^{-\frac{i\overline{m} c^2 t}{\hbar}} \sin 2\theta i \frac{1}{2i}\left(e^{-\frac{imc^2t}{\hbar \sin 2\theta}} -  e^{\frac{imc^2t}{\hbar \sin 2\theta}}\right) \\
+    &= -i e^{-\frac{i\overline{m} c^2 t}{\hbar}} \sin 2\theta \sin \left(\frac{mc^2 \hbar}{\sin 2\theta} t\right)
+  \end{align*}
+  A probabilidade desejada é, portanto
+  \[ p = \sin^2 2\theta \cdot \sin^2 \left(\frac{mc^2 \hbar}{\sin 2\theta} t\right). \]
+  
+  \item Sim, a matriz $H$ é hermitiana:
+  \[ H^\dagger = c^2 \begin{pmatrix}
+  m_\mu^\ast && m^\ast \\
+  m^\ast && m_\tau^\ast \end{pmatrix}^T = c^2 \begin{pmatrix}
+  m_\mu && m \\
+  m && m_\tau\end{pmatrix} = H \]
+  A matriz de rotação $U$ é unitária:
+  \begin{align*}
+  U U^\dagger &= \begin{pmatrix} \cos \theta && \sin \theta \\
+  -\sin \theta && \cos \theta \end{pmatrix} \begin{pmatrix} 
+  \cos \theta && -\sin \theta \\
+  \sin \theta && \cos\theta \end{pmatrix} \\
+  &= \begin{pmatrix}
+  \cos^2 \theta + \sin^2 \theta && -\sin\theta \cos\theta + \sin\theta \cos \theta \\
+  -\sin \theta \cos \theta + \sin \theta \cos \theta && \sin^2\theta + \cos^2 \theta
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+  1 && 0 \\
+  0 && 1
+  \end{pmatrix}
+  \end{align*} 
+  Podemos então diagonalizar $H$ na forma
+  \begin{align*}
+  U^\dagger H U &= c^2\begin{pmatrix} 
+  \cos \theta && -\sin \theta \\
+  \sin \theta && \cos\theta 
+  \end{pmatrix}\begin{pmatrix}
+  m_\mu && m \\
+  m && m_\tau
+  \end{pmatrix} \begin{pmatrix}
+  \cos \theta && \sin \theta \\
+  -\sin \theta && \cos \theta
+  \end{pmatrix} \\
+  &= c^2\begin{pmatrix} 
+  \cos \theta && -\sin \theta \\
+  \sin \theta && \cos\theta 
+  \end{pmatrix} \begin{pmatrix}
+  m_\mu \cos \theta - m \sin \theta && m_\mu \sin \theta + m \cos \theta \\
+  m\cos \theta - m_\tau \sin \theta && m\sin \theta + m_\tau \cos \theta
+  \end{pmatrix} \\
+  &= c^2 \begin{pmatrix}
+  m_\mu \cos^2 \theta - m \sin 2\theta + m_\tau \sin^2 \theta && m \cos 2\theta - \frac{m_\tau - m_\mu}{2} \sin 2\theta \\
+  m \cos 2\theta - \frac{m_\tau - m_\mu}{2} \sin 2\theta && m_\mu \sin^2 \theta + m \sin 2\theta + m_\tau \cos^2 \theta
+  \end{pmatrix}
+  \end{align*}
+  
+  Para que a última matriz seja diagonal é preciso que as entradas não diagonais se anulem. Temos, então
+  \begin{align*}
+  m\cos 2\theta - \frac{\Delta m}{2} \sin 2\theta &= 0 \\
+  \cot 2\theta &= \frac{\Delta m}{2 m} \\
+  \theta &= \frac{1}{2} \cot^{-1} \left(\frac{\Delta m}{2m}\right)
+  \end{align*}
+  
+  Para encontrar os autovetores de $H$ usando este método, basta notar que os vetores coluna
+  \[ \begin{pmatrix}1 \\ 0\end{pmatrix} \qquad \begin{pmatrix} 0 \\ 1 \end{pmatrix} \]
+  \noindent são autovetores da matriz $U^\dagger H U$, cujo autovalor associado é a entrada correspondente na diagonal da matriz. Nestas condições,
+  \[ U\begin{pmatrix} 1 \\ 0\end{pmatrix} \qquad U\begin{pmatrix} 0 \\ 1 \end{pmatrix} \]
+  \noindent serão autovetores de $H$, como pode ser provado multiplicando o problema de autovalores para $U^\dagger H U$ por $U$. Consequentemente, \textbf{os autovetores de $H$ correspondem às colunas de $U$}. 
+  
+\end{enumerate}
+
 % Exercício 5
 \addcontentsline{toc}{section}{Exercício 5}
-O Hamiltoniano de um sistema de três níveis é representado pela matriz  
+\item O Hamiltoniano de um sistema de três níveis é representado pela matriz  
 \begin{equation*}
 \hat{H} = \hbar \omega
   \begin{pmatrix}
@@ -155,22 +374,22 @@ O Hamiltoniano de um sistema de três níveis é representado pela matriz
   \end{pmatrix}
 \end{equation*}
 \noindent e tem dois observáveis $A$ e $B$ representados por
-\begin{equation}
+\begin{equation*}
 \hat{A} = \lambda
-  \begin{pmatrix*}
+  \begin{pmatrix}
     0 && 1 && 0\\
     1 && 0 && 0\\
     0 && 0 && 2\\
   \end{pmatrix}
 \end{equation*}
 \noindent e
-\begin{equation}
+\begin{equation*}
 \hat{B} = \mu
   \begin{pmatrix*}
     2 && 0 && 0\\
     0 && 0 && 1\\
     0 && 1 && 0\\
-  \end{pmatrix}
+  \end{pmatrix*}
 \end{equation*}
 \noindent onde $\omega$, $\lambda$ e $\mu$ são reais positivos.
 \begin{enumerate}[(A)]
@@ -184,6 +403,980 @@ O Hamiltoniano de um sistema de três níveis é representado pela matriz
     \end{equation*}
   \noindent que é um estado normalizado. Encontre os valores esperados de $H$, $A$ e $B$ em $t$.
   \item Qual é o estado $\ket{\psi(t)}$? Se você medir a energia no tempo $t$ que valores você pode ter? Qual é a probabilidade de obter cada um desses valores?
+\end{enumerate}
+
+\textbf{Resolução: }
+\begin{enumerate}[(A)]
+  \item Sim, são lineares pois a multiplicação de matrizes por vetores é distributiva. Também são hermitianos: basta notar que a transposta conjugada de $A$ e $B$ é idêntica aos próprios:
+  \[ A^\dagger = \lambda^\ast 
+  \begin{pmatrix} 
+  0^\ast && 1^\ast && 0^\ast \\
+  1^\ast && 0^\ast && 0^\ast \\
+  0^\ast && 0^\ast && 2^\ast
+  \end{pmatrix}^T = \lambda \begin{pmatrix}
+  0 && 1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix} = A
+  \]
+  \[ B^\dagger = \mu^\ast 
+  \begin{pmatrix} 
+  2^\ast && 0^\ast && 0^\ast \\
+  0^\ast && 0^\ast && 1^\ast \\
+  0^\ast && 1^\ast && 0^\ast
+  \end{pmatrix}^T = \lambda \begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 1 \\
+  0 && 1 && 0
+  \end{pmatrix} = B
+  \]
+  \item Como $H$ é diagonal, por inspeção concluímos que seus autovalores são $E_1 = \hbar \omega$ e $E_2 = E_3 = 2\hbar \omega$, e seus autovetores associados são $\ket{\Psi_H^{(1)}} = \ket{1}$, $\ket{\Psi_H^{(2)}} = \ket{2}$ e $\ket{\Psi_H^{(3)}} = \ket{3}$.
+
+  Para $A$ temos o polinômio característico
+  \[ p_A(\xi) = \lambda\begin{vmatrix}
+    -\xi && 1 && 0 \\ 1 && -\xi && 0 \\ 0 && 0 && 2 - \xi
+  \end{vmatrix} = \lambda(\xi^2 - 1)(2 - \xi) \]
+  Os autovalores de $A$ são portanto 
+  \[\lambda_A^{(1)} = -\lambda \qquad \lambda_A^{(2)} = \lambda \qquad \lambda_A^{(3)} = 2\lambda.\]
+  Como $A$ é diagonal por blocos podemos estudar os autovetores de cada bloco separadamente. No bloco superior temos os autovetores associados aos autovalores $\lambda_A^{(1)} = -\lambda$ e $\lambda_A^{(2)} = \lambda$:
+  \begin{align*}
+  \begin{pmatrix}0 && \lambda \\ \lambda && 0 \end{pmatrix}
+  \begin{pmatrix}a \\ b \end{pmatrix} &= \pm \lambda \begin{pmatrix} a \\ b \end{pmatrix} \\
+  &= \begin{pmatrix}
+  \pm\lambda a \\ \pm\lambda b
+  \end{pmatrix} \\
+  \Rightarrow b &= \pm a
+  \end{align*}
+  Escolhemos então os autovetores
+  \[ \ket{\Psi_A^{(1)}} = \frac{1}{\sqrt{2}}\left(\ket{1} - \ket{2}\right) \qquad \ket{\Psi_A^{(2)}} = \frac{1}{\sqrt{2}}\left(\ket{1} + \ket{2}\right) \]
+  Já ao bloco inferior está associado o autovetor
+  \[ \ket{\Psi_A^{(3)}} = \ket{3}. \]
+  
+  Para $B$ por sua vez, temos o polinômio característico
+  \[
+  p_B(\xi) = \mu\begin{vmatrix}
+  2 - \xi && 0 && 0 \\
+  0 && -\xi && 1 \\
+  0 && 1 && -\xi
+  \end{vmatrix} = \mu(2-\xi)(\xi^2 - 1)
+  \]
+  Os autovalores de $B$ são, então
+  \[ \lambda_B^{(1)} = -\mu \qquad \lambda_B^{(2)} = \mu \qquad \lambda_B^{(3)} = 2\mu. \]
+  Novamente vamos analisar os autovalores por blocos. O primeiro bloco é trivial, e o autovetor, associado ao autovalor $2\mu$, é
+  \[ \ket{\Psi_B^{(3)}} = \ket{1} \]
+  O outro bloco é quase idêntico ao bloco já analisado para a matriz $A$. Escolhemos então os autovetores
+  \[ \ket{\Psi_B^{(1)}} = \frac{1}{\sqrt{2}}\left(\ket{2} - \ket{3}\right) \qquad \ket{\Psi_B^{(2)}} = \frac{1}{\sqrt{2}}\left(\ket{2} + \ket{3}\right). \]
+  
+  \item Os valores possíveis para um observável são os autovalores do mesmo. Os valores possíveis para $H$ são, portanto, $\hbar \omega$ e $2\hbar \omega$; os de $A$ são $-\lambda$, $\lambda$ e $2\lambda$ e os de $B$ são $-\mu$, $\mu$ e $2\mu$.
+  
+  \item Temos
+  \begin{align*}
+  [H, A] &= \hbar \omega \lambda \left[ 
+  \begin{pmatrix} 
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\begin{pmatrix}
+  0 && 1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 2  
+  \end{pmatrix} - \begin{pmatrix}
+  0 && 1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 2  
+  \end{pmatrix} \begin{pmatrix} 
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\right] \\
+  &= \hbar \omega \lambda\begin{pmatrix}
+  0 && 1 && 0 \\
+  2 && 0 && 0 \\
+  0 && 0 && 4
+  \end{pmatrix} - \begin{pmatrix}
+  0 && 2 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 4
+  \end{pmatrix} \\
+  &= \hbar \omega \lambda\begin{pmatrix}
+  0 && -1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 0
+  \end{pmatrix}
+  \end{align*}
+  
+  \begin{align*}
+  [H, B] &= \hbar \omega \mu \left[ 
+  \begin{pmatrix} 
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 1 \\
+  0 && 1 && 0  
+  \end{pmatrix} - \begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 1 \\
+  0 && 1 && 0
+  \end{pmatrix} \begin{pmatrix} 
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\right] \\
+  &= \hbar \omega \mu \begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 2 \\
+  0 && 2 && 0
+  \end{pmatrix} - \begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 2 \\
+  0 && 2 && 0
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+  0 && 0 && 0 \\
+  0 && 0 && 0 \\
+  0 && 0 && 0
+  \end{pmatrix}
+  \end{align*}
+  
+  \begin{align*}
+  [A, B] &= \lambda \mu \left[ 
+  \begin{pmatrix} 
+  0 && 1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 1 \\
+  0 && 1 && 0  
+  \end{pmatrix} - \begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 1 \\
+  0 && 1 && 0
+  \end{pmatrix} \begin{pmatrix} 
+  0 && 1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\right] \\
+  &= \lambda \mu \begin{pmatrix}
+  0 && 0 && 1 \\
+  2 && 0 && 0 \\
+  0 && 2 && 0
+  \end{pmatrix} - \begin{pmatrix}
+  0 && 2 && 0 \\
+  0 && 0 && 2 \\
+  1 && 0 && 0
+  \end{pmatrix} \\
+  &= \lambda \mu \begin{pmatrix}
+  0 && -2 && 1 \\
+  2 && 0 && -2 \\
+  -1 && 2 && 0
+  \end{pmatrix}
+  \end{align*}
+  
+  \item Temos para o valor esperado de $H$, $\left\langle H \right\rangle_\Psi$:
+  \begin{align*}
+  \left\langle H \right\rangle_\Psi &= \hbar \omega \begin{pmatrix}
+  1 && 0 && 0 \end{pmatrix} \begin{pmatrix}
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\
+  &= \hbar \omega\begin{pmatrix} 1 && 0 && 0 \end{pmatrix} \begin{pmatrix}
+  1 \\ 0 \\ 0 \end{pmatrix} \\
+  &= \hbar \omega
+  \end{align*}
+  Já para o valor esperado de $A$:
+  \begin{align*}
+  \left\langle A \right\rangle_\Psi &= \lambda \begin{pmatrix}
+  1 && 0 && 0 \end{pmatrix} \begin{pmatrix}
+  0 && 1 && 0 \\
+  1 && 0 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\
+  &= \lambda\begin{pmatrix} 1 && 0 && 0 \end{pmatrix} \begin{pmatrix}
+  0 \\ 1 \\ 0 \end{pmatrix} \\
+  &= 0
+  \end{align*}
+  E, por fim, para o valor esperado de $B$:
+  \begin{align*}
+  \left\langle B \right\rangle_\Psi &= \mu \begin{pmatrix}
+  1 && 0 && 0 \end{pmatrix} \begin{pmatrix}
+  2 && 0 && 0 \\
+  0 && 0 && 1 \\
+  0 && 1 && 0
+  \end{pmatrix} \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \\
+  &= \mu \begin{pmatrix} 1 && 0 && 0 \end{pmatrix} \begin{pmatrix}
+  2 \\ 0 \\ 0 \end{pmatrix} \\
+  &= 2\mu
+  \end{align*}
+  
+  \item Como $\ket{\Psi(t=0)}$ é autovetor de $H$ com autovalor $\hbar \omega$ o sistema está em um estado estacionário. Temos então $\ket{\Psi(t)} = e^{-i\omega t}\ket{1}$, e o único valor possível para uma medida futura da energia é $\hbar \omega$, com probabilidade 1.
+\end{enumerate}
+
+% Exercício 6
+\addcontentsline{toc}{section}{Exercício 6}
+\item Seja um espaço de Hilbert de três dimensões com uma base ortonormal $\ket{1}$, $\ket{2}$, $\ket{3}$:
+
+\begin{equation*}
+  \ket{\Psi} = a\ket{1} + b\ket{2} + c\ket{3} \qquad \ket{\phi} = b\ket{1} + a\ket{2}
+\end{equation*}
+
+\begin{enumerate}[(A)]
+  \item Calcule $\bra{\Psi}$, $\bra{\phi}$. Compute $\bra{\Psi}\ket{\phi}$ e $\bra{\phi}\ket{\Psi}$.
+  \item Expresse $\ket{\Psi}$ e $\ket{\phi}$ como vetores coluna e recalcule.
+  \item Calcule $A = \ket{\Psi} \bra{\phi}$. Encontre a representação 3x3 deste operador.
+  \item Calcule $Q = \ket{\Psi}\bra{\Psi} + \ket{\phi}\bra{\phi}$. Este operador é hermitiano? Mostre que tem um autovalor nulo.
+\end{enumerate}
+
+\textbf{Resolução: }
+
+\begin{enumerate}[(A)]
+  \item Para conjugar uma expressão, trocamos todos os bra's por ket's e todos os números complexos por seus conjugados. Temos então
+  \[
+  \bra{\Psi} = a^\ast \bra{1} + b^\ast \bra{2} + c^\ast \bra{3} \qquad \bra{\phi} = b^\ast \bra{1} + a^\ast \bra{2}
+  \]
+  Portanto
+  \begin{align*}
+    \bra{\Psi}\ket{\phi} &= \left(a^\ast \bra{1} + b^\ast \bra{2} + c^\ast \bra{3}\right)\left(b\ket{1} + a\ket{2}\right) \\
+    &= a^\ast b + b^\ast a
+  \end{align*}
+  e
+  \begin{align*}
+    \bra{\phi}\ket{\Psi} &= \left(b^\ast \bra{1} + a^\ast \bra{2}\right)\left(a\ket{1} + b\ket{2} + c\ket{3}\right) \\
+    &= b^\ast a + a^\ast b
+  \end{align*}
+  \item Temos
+  \[
+    \ket{\Psi} = \begin{pmatrix} a \\ b \\ c \end{pmatrix} \qquad \ket{\phi} = \begin{pmatrix} b \\ a \\ 0 \end{pmatrix}
+  \]
+  Neste caso, a operação de conjugação consiste em transpor as matrizes ou vetores envolvidos e conjugar os números complexos. Temos então
+  \[
+    \bra{\Psi} = \begin{pmatrix} a^\ast && b^\ast && c^\ast \end{pmatrix} \qquad \bra{\phi} = \begin{pmatrix} b^\ast && a^\ast && 0 \end{pmatrix}
+  \]
+  Portanto
+  \begin{align*}
+    \bra{\Psi}\ket{\phi} &= \begin{pmatrix} a^\ast && b^\ast && c^\ast\end{pmatrix} \begin{pmatrix} b \\ a \\ 0 \end{pmatrix} \\
+    &= a^\ast b + b^\ast a
+  \end{align*}
+  e
+  \begin{align*}
+    \bra{\phi}\ket{\Psi} &= \begin{pmatrix} b^\ast && a^\ast && 0 \end{pmatrix} \begin{pmatrix} a \\ b \\ c \end{pmatrix} \\
+    &= b^\ast a + a^\ast b
+  \end{align*}
+  
+  \item Temos
+  \begin{align*}
+    A &= \ket{\Psi}\bra{\phi} \\
+    &= \left(a\ket{1} + b\ket{2} + c\ket{3}\right)\left( b^\ast\bra{1} + a^\ast\bra{2} \right) \\
+    &= ab^\ast \ket{1}\bra{1} + aa^\ast\ket{1}\bra{2} + bb^\ast \ket{2}\bra{1} + ba^\ast \ket{2}\bra{2} + cb^\ast \ket{3}\bra{1} + ca^\ast \ket{3}\bra{2}
+  \end{align*}
+  A representação 3x3 é dada por
+  \begin{align*}
+  A &= \begin{pmatrix} a \\ b \\ c \end{pmatrix} \begin{pmatrix} b^\ast && a^\ast && 0 \end{pmatrix} \\
+  &= \begin{pmatrix}
+    ab^\ast && aa^\ast && 0 \\
+    bb^\ast && ba^\ast && 0 \\
+    cb^\ast && ca^\ast && 0
+  \end{pmatrix}
+  \end{align*}
+  
+  \item Podemos calcular o conjugado hermitiano de $Q$ utilizando as regras usuais: basta inverter a ordem das expressões, trocar bra's por ket's, ket's por bra's e números complexos por seus conjugados. Temos então para $Q^{\dagger}$:
+  \[
+  Q^{\dagger} = \left(\ket{\Psi}\bra{\Psi} + \ket{\phi}\bra{\phi}\right)^{\dagger} = \ket{\Psi}\bra{\Psi} + \ket{\phi}\bra{\phi} = Q
+  \]
+  Portanto $Q$ é hermitiano.
+  
+  Para o autovalor nulo, note que um autovetor com autovalor nulo de um operador é simplesmente um vetor do núcleo do operador (ou seja, um vetor que atuado pelo operador é levado ao vetor nulo). Para mostrar que $Q$ possui um autovalor nulo basta portanto mostrar que existe um vetor $\ket{\xi}$ tal que
+  \[
+    Q\ket{\xi} = \bra{\Psi}\ket{\xi} \ket{\Psi} + \bra{\phi}\ket{\xi} \ket{\phi} = 0.
+  \]
+  Analisando a expressão anterior, podemos buscar $\ket{\xi}$ simultaneamente ortogonal a $\ket{\Psi}$ e $\ket{\phi}$, de forma que $\bra{\Psi}\ket{\xi} = \bra{\phi}\ket{\xi} = 0$. Se estivéssemos em $\R^3$ esta tarefa seria fácil: bastaria realizar o produto vetorial. Podemos porém definir um produto vetorial complexo da seguinte forma:
+  \begin{align*}
+    \ket{\xi} &= (a\ket{1} + b\ket{2} + c\ket{3}) \times (b\ket{1} + a\ket{2} + 0\ket{3} \equiv \begin{vmatrix}
+    \ket{1} && \ket{2} && \ket{3} \\
+    a^{\ast} && b^{\ast} && c^{\ast} \\
+    b^{\ast} && a^{\ast} && 0
+    \end{vmatrix} \\
+    &= -a^\ast c^\ast \ket{1} + b^\ast c^\ast \ket{2} + (a^\ast{}^2 - c^{\ast}{}^2)\ket{3}
+  \end{align*}
+   Então
+   \[
+     \bra{\Psi}\ket{\xi} = 
+     \begin{pmatrix}
+     a^{\ast} && b^{\ast} && c^{\ast}
+     \end{pmatrix}
+     \begin{pmatrix}
+     -a^\ast c^\ast \\ b^\ast c^\ast \\ a^\ast{}^2 - c^\ast{}^2
+     \end{pmatrix} = -a^\ast{}^2 c^\ast + b^\ast{}^2 c^\ast - (a^\ast{}^2 - c^\ast{}^2)c^\ast = 0
+   \]
+   e
+   \[
+   \bra{\phi}\ket{\xi} =
+   \begin{pmatrix}
+   b^\ast && a^\ast && 0
+   \end{pmatrix}
+   \begin{pmatrix}
+   -a^\ast c^\ast \\ b^\ast c^\ast \\ a^\ast{}^2 - c^\ast{}^2
+   \end{pmatrix}
+   = -a^\ast b^\ast c^\ast + a^\ast b^\ast c^\ast = 0
+   \]
+   Segue então imediatamente que $\ket{\xi}$ é autovetor de $Q$ com autovalor nulo.
+   Alternativamente, é possível encontrar a representação 3x3 de $Q$,
+   \begin{equation*}
+   Q = \begin{pmatrix} 
+   |a|^2 + |b|^2 && ab^\ast + ba^\ast && ac^\ast \\
+   ab^\ast + ab^\ast && |a|^2 + |b|^2 && bc^\ast \\
+   a^\ast c && b^\ast c && |c|^2   
+   \end{pmatrix}
+   \end{equation*}
+   
+   E mostrar que $\lambda = 0$ é raiz do polinômio característico
+   \begin{equation*}
+   p(\lambda) = \begin{vmatrix}
+   |a|^2 + |b|^2 -\lambda&& ab^\ast + ba^\ast && ac^\ast \\
+   ab^\ast + ab^\ast && |a|^2 + |b|^2 -\lambda && bc^\ast \\
+   a^\ast c && b^\ast c && |c|^2 - \lambda
+   \end{vmatrix}
+   \end{equation*}
+
+  
+\end{enumerate}
+% Exercício 7
+\addcontentsline{toc}{section}{Exercício 7 }
+\item Sejam dois operadores $A$ e $B$:
+
+\begin{equation*}
+  A = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 2 \end{pmatrix} \qquad B = \begin{pmatrix} 3 & 0 & 0 \\ 0 & 1 & 2i \\ 0 & -2i & 1 \end{pmatrix}
+\end{equation*}
+
+descritos na base ortonormal $\ket{1}$, $\ket{2}$ e $\ket{3}$.
+
+\begin{enumerate}[(A)]
+  \item Mostre que $A$ e $B$ são operadores hermitianos.
+  \item Mostre que $A$ e $B$ comutam.
+  \item Ache os autovalores e autovetores de $A$ e $B$.
+  \item Ache uma base comum para $A$ e $B$. Mostre a forma de $A$ e $B$ nesta base comum.
+\end{enumerate}
+
+\textbf{Resolução: }
+\begin{enumerate}[(A)]
+  \item
+  Tomando as transpostas conjugadas de $A$ e $B$ temos
+  \begin{equation*}
+    A^\dagger =
+    \begin{pmatrix}
+      1 && 0 && 0 \\
+      0 && 2 && 0 \\
+      0 && 0 && 2
+    \end{pmatrix} = A \qquad
+    B^\dagger = 
+    \begin{pmatrix}
+      3 && 0 && 0 \\
+      0 && 1 && (-2i)^\ast \\
+      0 && (2i)^\ast && 1
+    \end{pmatrix} = B
+  \end{equation*}
+  
+  \item
+  Temos
+  \begin{align*}
+    [A, B] &= AB - BA \\
+    &= \begin{pmatrix}
+    1 && 0 && 0 \\
+    0 && 2 && 0 \\
+    0 && 0 && 2
+    \end{pmatrix}
+    \begin{pmatrix}
+    3 && 0 && 0 \\
+    0 && 1 && 2i \\
+    0 && -2i && 1
+    \end{pmatrix} - 
+    \begin{pmatrix}
+    3 && 0 && 0 \\
+    0 && 1 && 2i \\
+    0 && -2i && 1
+    \end{pmatrix}
+    \begin{pmatrix}
+    1 && 0 && 0 \\
+    0 && 2 && 0 \\
+    0 && 0 && 2
+    \end{pmatrix}\\
+    &= \begin{pmatrix}
+    3 && 0 && 0 \\
+    0 && 2 && 4i \\
+    0 && -4i && 2
+    \end{pmatrix}
+    - \begin{pmatrix}
+    3 && 0 && 0 \\
+    0 && 2 && 2i \\
+    0 && -4i && 2
+    \end{pmatrix}\\
+    &= \begin{pmatrix}
+    0 && 0 && 0 \\
+    0 && 0 && 0 \\
+    0 && 0 && 0
+    \end{pmatrix}
+  \end{align*}
+  
+  \item Da forma de $A$ é imediato que os autovalores são 
+  \[\lambda_A^{(1)} = 1 \qquad \lambda_A^{(2)} = \lambda_A^{(3)} = 2 \]
+  \noindent (note que o autovalor $2$ é duplamente degenerado) com os respectivos autovetores
+  \[ \ket{v_A^{(1)}} = \ket{1} \qquad \ket{v_A^{(2)}} = \ket{2} \qquad \ket{v_A^{(3)}} = \ket{3} \]
+  Já para $B$, temos o polinômio característico
+  \[ p_B(\lambda) = \begin{vmatrix}
+  3 - \lambda && 0 && 0 \\
+  0 && 1-\lambda && 2i \\
+  0 && -2i && 1-\lambda
+  \end{vmatrix} = (3-\lambda)((1 - \lambda)^2 - 4) \]
+  \noindent que possui como raízes
+  \[ \lambda_B^{(1)} = -1 \qquad \lambda_B^{(2)} = \lambda_B^{(3)} = 3 \]
+  Para o autovetor associado ao primeiro autovalor temos
+  \begin{align*}
+    \begin{pmatrix}
+    3 && 0 && 0 \\
+    0 && 1 && 2i \\
+    0 && -2i && 1
+    \end{pmatrix}
+    \begin{pmatrix}
+    \alpha \\ \beta \\ \gamma
+    \end{pmatrix}
+    &= -1\begin{pmatrix}\alpha \\ \beta \\ \gamma \end{pmatrix} \\
+    \begin{pmatrix} 3\alpha \\ \beta + 2i \gamma \\ \gamma - 2i \beta \end{pmatrix} &= \begin{pmatrix} -\alpha \\ -\beta \\ -\gamma    \end{pmatrix} \\
+    \Rightarrow \begin{cases}
+    3 \alpha &= -\alpha \\
+    \beta + 2i \gamma &= -\beta \\
+    \gamma - 2i \beta &= -\gamma
+    \end{cases}
+  \end{align*}
+  O sistema obtido pode ser satisfeito tomando (já levando em conta a normalização)
+  \[
+ \begin{cases}
+    \alpha &= 0 \\
+    \beta &= \frac{i}{\sqrt{2}} \\
+    \gamma &= \frac{-1}{\sqrt{2}}
+  \end{cases}
+  \]
+  \noindent e obtemos portanto o autovetor
+  \[ \ket{v_B^{(1)}} = \frac{1}{\sqrt{2}} \left(i\ket{2} - \ket{3}\right) \]
+  Já para o outro autovalor, observe que a matriz $B$ se decompõe em dois blocos: o bloco superior, composto apenas pelo número $3$, e o bloco inferior, formado por uma matriz 2x2. Um dos autovetores é o associado ao primeiro bloco, $\ket{v_B^{(2)}} = \ket{1}$, e o outro é o autovetor associado à matriz 2x2:
+  \begin{align*}
+  \begin{pmatrix}1 && 2i \\ -2i && 1\end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} &= \begin{pmatrix} 3\alpha \\ 3\beta \end{pmatrix} \\
+  \Rightarrow \begin{cases} \alpha + 2i \beta &= 3\alpha \\
+  \beta - 2i\alpha &= 3\beta \end{cases}
+  \end{align*}
+  Uma solução, já levando em conta a normalização, do sistema anterior é $\alpha = \frac{i}{\sqrt{2}}$ e $\beta = \frac{1}{\sqrt{2}}$, portanto obtemos o autovetor
+  \[ \ket{v_B^{(3)}} = \frac{1}{\sqrt{2}} \left(i\ket{2} + \ket{3}\right) \]
+  Em suma, os autovalores de $A$ são
+  \[ \lambda_A^{(1)} = 1 \qquad \lambda_A^{(2)} = \lambda_A^{(3)} = 3 \]
+  \noindent com os autovetores associados
+  \[ \ket{v_A^{(1)}} = \ket{1} \qquad \ket{v_A^{(2)}} = \ket{2} \qquad \ket{v_A^{(3)}} = \ket{3} \]
+  \noindent enquanto os autovalores de $B$ são
+  \[ \lambda_B^{(1)} = -1 \qquad \lambda_B^{(2)} = \lambda_B^{(3)} = 3 \]
+  \noindent com os autovetores associados
+  \[ \ket{v_B^{(1)}} = \frac{1}{\sqrt{2}}\left(i\ket{2} - \ket{3}\right) \qquad \ket{v_B^{(2)}} = \ket{1} \qquad \ket{v_B^{(3)}} = \frac{1}{\sqrt{2}}\left(i\ket{2} + \ket{3}\right). \]
+  
+  \item Precisamos encontrar $3$ vetores linearmente independentes que sejam simultaneamente autovetores de $A$ e $B$. É imediato que $\ket{v_A^{(1)}} = \ket{v_B^{(2)}} = \ket{1}$ deve ser um destes vetores. Para os restantes, note que $\ket{v_A^{(2)}}$ e $\ket{v_A^{(3)}}$ são autovetores de $A$ com o mesmo autovalor ($\lambda_A^{(2)} = \lambda_A^{(3)} = 2$), logo combinações lineares destes são também autovetores de $A$ com autovalor $2$. Como $\ket{v_B^{(1)}}$ e $\ket{v_B^{(2)}}$ são combinações lineares dos vetores citados é claro que são autovetores de $A$. O conjunto $\left\{\ket{v_B^{(1)}}, \ket{v_B^{(2)}}, \ket{v_B^{(3)}}\right\}$ é portanto formado por vetores LI que são simultaneamente autovetores de A (com autovalores $2$, $1$ e $2$, respectivamente) e de $B$ (com autovalores $-1$, $3$ e $3$, respectivamente).
+  
+  Para escrever os operadores nesta nova base, note que se $\{\ket{v_i}\}$ e $\{\ket{u_i}\}$ são bases ortogonais de um espaço vetorial e $A$ é um operador cuja matriz na base $\{\ket{v_i}\}$ é $a_{ij}$ temos
+  \begin{align*}
+  A &= \sum a_{ij} \ket{v_i}\bra{v_j} \\
+  &= \sum a_{ij} \ket{u_l}\bra{u_l}\ket{v_i}\bra{v_j}\ket{u_m}\bra{u_m} \\
+  &= \sum \bra{u_l}\ket{v_i} a_{ij} \bra{v_j}\ket{u_m} \ket{u_l}\bra{u_m}
+  \end{align*}
+  Definindo a matriz de mudança de base $M$ como $m_{ij} = \bra{v_i}\ket{u_j}$ a representação de $A$ na base $\{\ket{u_i}\}$ é dada pelo produto $M^\dagger A M$. No caso em questão, a matriz de mudança de base é dada por
+  \[ M = \begin{pmatrix} 
+  \bra{1}\ket{v_B^{(1)}} && \bra{1}\ket{v_B^{(2)}} && \bra{1}\ket{v_B^{(3)}} \\
+  \bra{2}\ket{v_B^{(1)}} && \bra{2}\ket{v_B^{(2)}} && \bra{2}\ket{v_B^{(3)}} \\
+  \bra{3}\ket{v_B^{(1)}} && \bra{3}\ket{v_B^{(2)}} && \bra{3}\ket{v_B^{(3)}}
+  \end{pmatrix} =
+  \begin{pmatrix}
+  0 && 1 && 0 \\
+  \frac{i}{\sqrt{2}} && 0 && \frac{i}{\sqrt{2}} \\
+  \frac{-1}{\sqrt{2}} && 0 && \frac{1}{\sqrt{2}}
+  \end{pmatrix}
+  \]
+  \noindent (basta escrever os vetores da nova base, escritos na base antiga, como as colunas da matriz). Sendo $\tilde{A}$ e $\tilde{B}$ as representações de $A$ e $B$ na nova base temos
+  \begin{align*}
+  \tilde{A} &= M^\dagger A M \\
+  &= 
+  \begin{pmatrix}
+  0 && \frac{-i}{\sqrt{2}} && \frac{-1}{\sqrt{2}} \\
+  1 && 0 && 0 \\
+  0 && \frac{-i}{\sqrt{2}} && \frac{1}{\sqrt{2}}
+  \end{pmatrix}\begin{pmatrix}
+  1 && 0 && 0 \\
+  0 && 2 && 0 \\
+  0 && 0 && 2
+  \end{pmatrix}\begin{pmatrix}
+  0 && 1 && 0 \\
+  \frac{i}{\sqrt{2}} && 0 && \frac{i}{\sqrt{2}} \\
+  \frac{-1}{\sqrt{2}} && 0 && \frac{1}{\sqrt{2}}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+  0 && \frac{-i}{\sqrt{2}} && \frac{-1}{\sqrt{2}} \\
+  1 && 0 && 0 \\
+  0 && \frac{-i}{\sqrt{2}} && \frac{1}{\sqrt{2}}
+  \end{pmatrix}\begin{pmatrix}
+  0 && 1 && 0 \\
+  \sqrt{2}i && 0 && \sqrt{2}i \\
+  -\sqrt{2} && 0 && \sqrt{2}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+    2 && 0 && 0 \\
+    0 && 1 && 0 \\
+    0 && 0 && 2
+  \end{pmatrix}
+  \end{align*}
+  \noindent e
+  \begin{align*}
+  \tilde{B} &= M^\dagger B M \\
+  &= \begin{pmatrix}
+  0 && \frac{-i}{\sqrt{2}} && \frac{-1}{\sqrt{2}} \\
+  1 && 0 && 0 \\
+  0 && \frac{-i}{\sqrt{2}} && \frac{1}{\sqrt{2}}
+  \end{pmatrix}\begin{pmatrix}
+  3 && 0 && 0 \\
+  0 && 1 && 2i \\
+  0 && -2i && 1
+  \end{pmatrix}\begin{pmatrix}
+  0 && 1 && 0 \\
+  \frac{i}{\sqrt{2}} && 0 && \frac{i}{\sqrt{2}} \\
+  \frac{-1}{\sqrt{2}} && 0 && \frac{1}{\sqrt{2}}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+  0 && \frac{-i}{\sqrt{2}} && \frac{-1}{\sqrt{2}} \\
+  1 && 0 && 0 \\
+  0 && \frac{-i}{\sqrt{2}} && \frac{1}{\sqrt{2}}
+  \end{pmatrix}\begin{pmatrix}
+  0 && 3 && 0\\
+  -\frac{1}{\sqrt{2}}i && 0 && \frac{3}{\sqrt{2}}i \\
+  \frac{1}{\sqrt{2}} && 0 && \frac{3}{\sqrt{2}}
+  \end{pmatrix} \\
+  &= \begin{pmatrix}
+  -1 && 0 && 0 \\
+  0 && 3 && 0 \\
+  0 && 0 && 3
+  \end{pmatrix}
+  \end{align*}
+
+  Alternativamente, basta argumentar que, como sabemos que
+  \begin{align*}
+  A\ket{v_B^{(1)}} = 2\ket{v_B^{(1)}} \qquad A\ket{v_B^{(2)}} &= 1\ket{v_B^{(2)}} \qquad A\ket{v_B^{(3)}} = 2\ket{v_B^{(3)}} \\
+  B\ket{v_B^{(1)}} = -1\cdot\ket{v_B^{(1)}} \qquad B\ket{v_B^{(2)}} &= 3\ket{v_B^{(2)}} \qquad B\ket{v_B^{(3)}} = 3\ket{v_B^{(3)}}
+  \end{align*}
+  \noindent as matrizes de $A$ e $B$ na base comum devem ser $\tilde{A} = \text{diag}(2, 1, 2)$ e $\tilde{B} = \text{diag}(-1, 3, 3)$.
+  
+\end{enumerate}
+
+%Exercício 8
+\addcontentsline{toc}{section}{Exercício 8}
+\item Propriedades da função Delta de Dirac:
+
+\begin{equation*}
+  \int_a^b dx f(x)\delta(x - x_0) = \begin{cases}
+    f(x_0)&\text{se }a < x_0 < b \\
+    0 & \text{se }x_0 < a \text{ ou }x_0 > b
+    \end{cases}
+\end{equation*}
+
+\begin{enumerate}[(A)]
+  \item Prove que $\delta(g(x)) = \sum_i \frac{1}{g'(x_i)}\delta(x - x_i)$ onde $g'(x_i) \equiv \frac{dg}{dx_i}\Big|_{x_i}$ onde $x_i$ são as raízes de $g(x_i) = 0$ se $a < x_i < b$.
+  \item $\int_a^b dx f(x)\delta'(x - x_0) = -f'(x_0)$ se $a < x_0 < b$.
+  
+\end{enumerate}
+
+\textbf{Resolução: }
+\begin{enumerate}[(A)]
+  \item Seja $x_i$ uma raiz qualquer de $g(x)$, e suponha que $g'(x_i) \neq 0 $. Existem então $a_i$ e $b_i$ tais que $x_i \in (a_i, b_i)$ e $g$ restrita a $(a_i, b_i)$ é injetiva. Note que isso implica que $x_i$ é a única raiz de $g(x)$ neste intervalo. Além disso, fazendo a mudança de variáveis $x' = g(x)$ temos:
+  \begin{align*}
+  \int_{a_i}^{b_i} f(g(x))\delta(g(x)) dx &= \int_{g^{-1}(a_i)}^{g^{-1}(b_i)} f(x') \delta(x') \frac{dx'}{g'(x)} \\
+  &= \frac{f(g(x_i))}{g'(x_i)} \\
+  &= \int_{-\infty}^{\infty} f(g(x)) \frac{\delta(x-x_i)}{g'(x_i)} dx
+  \end{align*}
+  
+  Suponha agora que $g'(x_i) \neq 0$ para todas as raízes $x_i$. Temos então
+  \begin{align*}
+  \int_{-\infty}^{\infty} f(g(x)) \delta(g(x)) &= \sum_i \int_{a_i}^{b_i} f(g(x)) \delta(g(x))dx \\
+  &= \sum_i \int_{-\infty}^{\infty} f(g(x)) \frac{\delta(x-x_i)}{g'(x_i)}dx \\
+  &= \int_{-\infty}^{\infty} f(g(x)) \left(\sum_i \frac{\delta(x-x_i)}{g'(x_i)}\right) dx
+  \end{align*}
+  
+  Daí concluímos que
+  
+  \begin{equation*}
+    \delta(g(x)) = \sum_i \frac{\delta(x-x_i)}{g'(x_i)}
+  \end{equation*}
+  
+  \item Utilizando integração por partes temos
+  
+  \begin{align*}
+  \int_a^b dx f(x) \delta'(x-x_0) &= f(x)\delta(x-x_0)\Big|_a^b - \int_a^b dx f'(x) \delta(x - x_0) \\
+  &= -f'(x_0).
+  \end{align*}
+
+\end{enumerate}
+
+% Exercício 9
+\addcontentsline{toc}{section}{Exercício 9}
+\item Dados os operadores contínuos, operador posição $\hat{\vec{R}} = (\hat{X}, \hat{Y}, \hat{Z})$ e operador momento $\hat{\vec{P}} = (\hat{P_x}, \hat{P_y}, \hat{P_z})$ que satisfazem as equações de autovalores:
+
+\begin{align*}
+  \hat{X}\ket{r} = x \ket{r} \qquad \hat{P_x}\ket{p} = p_x \ket{p} \\
+  \hat{Y}\ket{r} = y \ket{r} \qquad \hat{P_y}\ket{p} = p_y \ket{p} \\
+  \hat{Z}\ket{r} = z \ket{r} \qquad \hat{P_z}\ket{p} = p_z \ket{p} \\
+\end{align*}
+
+Admita que estes operadores estão definidos em todo o espaço vetorial: $(-\infty, \infty)$.
+
+\begin{enumerate}[(A)]
+  \item Mostre que os operadores $\hat{X}$ e $\hat{P_x}$ são hermitianos.
+  \item Calcule os comutadores $[X, P_x]$ e $[Y, P_x]$.
+  \item Com esta informação os operadores $\hat{X}, \hat{Y}, \hat{P_x}$ são um conjunto completo de observáveis que comuta (C. C. O. C)? Justifique a sua resposta.
+  \item Dada a equação de autovalores de $\hat{P_x}$, $\hat{P_x}\ket{p} = p_x \ket{p}$, ache os autovetores deste sistema na representação de posição x.
+  É dado que a matriz de mudança de base de momento $\ket{p}$ para a base de posição $\ket{r}$ é $\bra{r}\ket{p} = v^\ast_{\vec{p}}((\vec{r}) = \frac{e^{-i\vec{p} \cdot \vec{r}/\hbar}}{(2\pi\hbar)^{3/2}}$.
+\end{enumerate}
+
+\textbf{Resolução: }
+
+\begin{enumerate}[(A)]
+  \item O conjugado hermitiano de um operador $A$ é definido de forma que
+  \[ \bra{\Phi}A\ket{\Psi} = \left(\bra{\Psi}A^{\dagger}\ket{\Phi} \right)^{\ast} \]
+  Escrevendo esta condição para o operador $X$ na representação da posição temos
+  \begin{align*}
+    \bra{\Phi}X\ket{\Psi} &= \int d^3 r \Phi^{\ast}(r) x \Psi(r) \\
+    &= \left(\int d^3 r \Psi^\ast(r) x \Phi(r)\right)^\ast \\
+    &= \left(\bra{\Psi}X\ket{\Phi}\right)^\ast
+  \end{align*}
+  \noindent logo $\hat{X}$ é hermitiano. Analogamente, escrevendo $\bra{\Phi}\hat{P}_x\ket{\Psi}$ na representação do momento temos
+  \begin{align*}
+    \bra{\Phi}\hat{P}_x\ket{\Psi} &= \int d^3 p \Phi^\ast(p) p_x \Psi(p) \\
+    &= \left( \int d^3 p \Psi^\ast(p) p_x \Phi(p)\right)^\ast \\
+    &= \left( \bra{\Psi}\hat{P}_x \ket{\Phi} \right)^\ast.
+  \end{align*}
+  Logo $P_x$ também é hermitiano.
+  
+  \item Aplicando o comutador em $\ket{\Psi}$ e fazendo as contas na representação da posição temos
+  
+  \begin{align*}
+    \bra{r} [X, P_x] \ket{\Psi} &= \bra{r} XP_x - P_xX \ket{\Psi} \\
+    &= x\bra{r}P_x\ket{\Psi} - \frac{\hbar}{i}\frac{d}{dx}\bra{r}X\ket{\Psi} \\
+    &= x\frac{\hbar}{i}\frac{d}{dx}\bra{r}\ket{\Psi} - \frac{\hbar}{i}\frac{d}{dx}\left(x \bra{r}\ket{\Psi}\right)\\
+    &= x\frac{\hbar}{i}\frac{d}{dx}\bra{r}\ket{\Psi} - \frac{\hbar}{i}\bra{r}\ket{\Psi} - \frac{\hbar}{i}x\frac{d}{dx}\bra{r}\ket{\Psi} \\
+    &= -\frac{\hbar}{i} \bra{r}\ket{\Psi} \\
+    &= \bra{r}i\hbar\ket{\Psi}
+  \end{align*}
+  
+  Obtemos portanto
+  \[
+    [X, P_x] = i\hbar
+  \]
+  
+  Analogamente para $[Y, P_x]$ temos
+  \begin{align*}
+    \bra{r} [Y, P_x] \ket{\Psi} &= \bra{r} YP_x - P_xY \ket{\Psi} \\
+    &= y\bra{r}P_x\ket{\Psi} - \frac{\hbar}{i}\frac{d}{dx}\bra{r}Y\ket{\Psi} \\
+    &= y\frac{\hbar}{i}\frac{d}{dx} \bra{r}\ket{\Psi} - \frac{\hbar}{i} \frac{d}{dx} \left(y\bra{r}\ket{\Psi}\right) \\
+    &= 0
+  \end{align*}
+  
+  Portanto:
+  \[
+    [Y, P_x] = 0.
+  \]
+  
+  \item Não, pois como $[X, P_x] = i\hbar \neq 0$, nem todos os observáveis em questão comutam.
+  
+  \item Escrevendo o problema de autovalores de $\hat{P}_x$ na representação da posição temos, definindo $\bra{r}\ket{p} = \nu_{\vec{p}} (x, y, z)$:
+  \begin{align*}
+  \bra{r}P_x\ket{p} &= p_x \bra{r}\ket{p} \\
+  \frac{\hbar}{i} \frac{\partial}{\partial x} \nu_{\vec{p}}(x, y, z) &= p_x \nu_{\vec{p}}(x, y, z) \\
+  \frac{\partial}{\partial x} \nu_{\vec{p}}(x, y, z) &= \frac{ip_x}{\hbar} \nu_{\vec{p}}(x, y, z) \\
+  \Rightarrow \nu_{\vec{p}}(x, y, z) &= \exp\left(\frac{ip_x x}{\hbar}\right) f(y, z)
+  \end{align*}
+  Procedendo analogamente com os operadores $\hat{P}_y$ e $\hat{P}_z$ obtemos
+  \[ \nu_{\vec{p}}(x, y, z) = \exp \left(\frac{ip_y y}{\hbar}\right)f(x, z) \qquad \nu_{\vec{p}}(x, y, z) = \exp \left(\frac{ip_z z}{\hbar}\right)f(x, y) \]
+  A solução final é, portanto
+  \[ \nu_{\vec{p}}(x, y, z) = A\exp\left(\frac{i \vec{p} \cdot \vec{r}}{\hbar}\right) \]
+  
+\end{enumerate}
+
+% Exercício 10
+\addcontentsline{toc}{section}{Exercício 10} 
+\item Seja o operador momento angular em coordenadas esféricas
+
+\[ \hat{L}_z = -i\hbar \frac{\partial}{\partial \phi} \]
+
+\noindent onde $\phi$ é a coordenada no sistema de coordenadas esféricas com valor entre $0$ e $2\pi$.
+
+\begin{enumerate}[(A)]
+  \item Quais são as condições para que $\hat{L_z}$ seja hermitiano?
+\end{enumerate}
+
+\textbf{Resolução: }
+
+\begin{enumerate}[(A)]
+  \item A condição de hermiticidade é
+  \[
+    \bra{\Psi}L_z\ket{\Phi} = \bra{\Phi}L_z\ket{\Psi}^{\ast}
+  \]
+  Escrevendo estes produtos internos na representação da posição usando coordenadas esféricas
+  \[
+    \int_0^\infty r^2 dr \int_{-\pi}^{\pi} d\theta \int_0^{2\pi} d\phi \Psi^{\ast} (-i\hbar) \frac{\partial \Phi}{\partial \phi} = \left(\int_0^\infty r^2 dr \int_{-\pi}^{\pi} d\theta \int_0^{2\pi} d\phi \Phi^{\ast} (-i\hbar) \frac{\partial \Psi}{\partial \phi}\right)^{\ast}
+  \]
+  Para que isto seja satisfeito basta que
+  \[
+    \int_0^{2\pi} d\phi \Psi^{\ast}(-i\hbar)\frac{\partial \Phi}{\partial \phi} = \left(\int_0^{2\pi} d\phi \Phi^{\ast} (-i\hbar) \frac{\partial \Psi}{\partial \phi}\right)^{\ast}
+  \]
+  Aplicando integração por partes observamos que para esta realção ser satisfeita devemos ter
+  \begin{align*}
+    \int_0^{2\pi} \Phi^{\ast}(-i\hbar) \frac{\partial \Phi}{\partial \phi} &= (i\hbar\Phi \Psi^{\ast})\Big|_{\phi=0}^{2\pi} - \int_0^{2\pi} d\phi \frac{\partial\Phi}{\partial\phi}(i\hbar)\Psi^{\ast} \\
+    &\Rightarrow \Phi(r, \theta, 2\pi)\Psi(r, \theta, 2\pi) - \Phi(r, \theta, 0)\Psi(r, \theta, 0) = 0
+  \end{align*}
+  Basta portanto que as funções de onda estejam bem definidas, i.e., que $\Psi(r, \theta, 2\pi) = \Psi(r, \theta, 0)$.
+  
+\end{enumerate}
+
+
+% Exercício 11
+\addcontentsline{toc}{section}{Exercício 11}Bransdeen and Joachian, página 260:
+\item Seja uma partícula de massa $m$ em 1 dimensão espacial, sob a ação do Hamiltoniano $H = \frac{p_x^2}{2m}$.
+
+\begin{enumerate}[(A)]
+  \item Mostre que os autovalores do Hamiltoniano $H$ são duplamente degenerados.
+  \item Mostre que a degenerescência pode ser removida por considerar autovetores de $H$ e de $p_x$.
+  \item No caso do poço do potencial infinito as soluções são autovetores de $H$ e de $p_x$? Se não, como podemos escrever a solução para ser um autovetor de $H$ e de $p_x$.
+\end{enumerate}
+
+\textbf{Resolução: }
+
+\begin{enumerate}[(A)]
+  \item O problema de autovalores para o Hamiltoniano neste caso é
+  \[
+    \frac{p_x^2}{2m} \ket{\Psi} = E\ket{\Psi}
+  \]
+  Na representação da posição esta equação lê-se
+  \begin{align*}
+    -\frac{\hbar^2}{2m} \frac{d^2}{dx^2} \bra{x}\ket{\Psi} &= E \bra{x} \ket{\Psi} \\
+    \frac{d^2\Psi(x)}{dx^2} = -\frac{2mE}{\hbar^2} \Psi(x)
+  \end{align*}
+  
+  As soluções desta equação são combinações lineares das soluções linearmente independentes
+  
+  \begin{equation*}
+    \ket{\Psi_+} =  \int dx \exp\left(i\frac{\sqrt{2mE}}{\hbar x}\right) \ket{x} \qquad \ket{\Psi_-} =  \int dx \exp\left(-i\frac{\sqrt{2mE}}{\hbar x}\right)\ket{x} 
+  \end{equation*}
+  
+  Cada autovalor $E$ do problema possui portanto um autoespaço de dimensão dois associado, logo os autovalores do Hamiltoniano são duplamente degenerados.
+  
+  \item O problema de autovalores para $p_x$ na representação do momento é
+  
+  \[
+    \frac{\hbar}{i} \frac{d}{dx} \bra{x}\ket{\Psi} = p_x \bra{x}\ket{\Psi}
+  \]
+  
+  O único autovetor associado ao autovalor $p_x$ é, então
+  
+  \[
+    \ket{\Psi} = \int dx exp\left(\frac{ip_x x}{\hbar}\right) \ket{x}
+  \]
+  
+  É fácil perceber que para cada $E$ as duas soluções LI que obtemos anteriormente correspondem aos autovetores do momento com autovalores $+\sqrt{2mE}$ e $-\sqrt{2mE}$. Logo a cada par de autovalores $(p_x, E)$ do momento e do Hamiltoniano, respectivamente, satisfazendo $p_x^2 = 2mE$ está associado um subespaço de autovetores de dimensão 1, portanto a degerescência é removida.
+  
+  \item Naturalmente todas as soluções da equação de Schrödinger independente do tempo são autovetores de $H$: esta equação é exatamente o problema de autovalores do Hamiltoniano escrito na representação da posição. As soluções do poço infinito escritas como senos,
+  
+  \[
+    \Psi_n(x) = \sqrt{\frac{2}{a}} \sin\left(\frac{n\pi}{a}x\right)
+  \]
+  
+  \noindent no entanto, não são autovetores de $p_x$:
+  
+  \begin{align*}
+    \bra{x}\hat{p}_x \ket{\Psi_n} &= \frac{\hbar}{i} \frac{d\Psi_n}{dx} \\
+    &= \frac{\hbar}{i} \sqrt{\frac{2}{a}} \frac{n\pi}{a} \cos\left(\frac{n\pi}{a}x\right) \\
+    &\neq p_x \bra{x}\ket{\Psi_n}
+  \end{align*}
+  
+  Entretanto, vimos no Problema 12 da Lista 1 que as soluções do poço infinito também podem ser escritas como combinação linear das soluções
+  
+  \[
+    \Psi_n^+(x) = e^{ik_nx} \qquad \Psi_n^-(x) = e^{-ik_nx}
+  \]
+  
+  \noindent onde $k_n = n\pi/a$ e $E_n = (\hbar k_n)^2/2m$. Estas soluções sim são autovetores do operador momento com autovalor $\pm \hbar k_n$ (e do Hamiltoniano com autovalor $(\hbar k_n)^2/2m$):
+  
+  \begin{align*}
+    \bra{x}\hat{p}_n \ket{\Psi_n^{\pm}} &= \frac{\hbar}{i} \frac{d}{dx} e^{\pm ik_nx} \\
+    &= \pm \frac{\hbar}{i} (ik_n) e^{\pm ik_nx} \\
+    &= \pm \hbar k_n \bra{x}\ket{\Psi_n^{\pm}}
+  \end{align*}
+  
+\end{enumerate}
+
+
+% Exercício 12
+\addcontentsline{toc}{section}{Exercício 12}
+\item Seja o oscilador harmônico unidimensional, e o estado fundamental do sistema é $\ket{0}$. Seja o Hamiltoniano dado por
+
+\[ H = \frac{1}{2m} \left(p_x^2 + (m\omega x)^2 \right) = \hbar \omega(N + 1/2) \]
+
+Onde $\left\langle x | 0 \right\rangle \equiv \psi_0(x) = \left(\frac{m\omega}{\pi \hbar}\right)^{1/4} e^{-m\omega x^2/2\hbar}$ é a função de onda do estado fundamental. $N$ é o operador número com propriedades
+
+\begin{align*}
+  N &= a_+ a_- \\
+  E_n &= \hbar \omega \left(n + 1/2\right)\qquad n = 0, 1, ... \\
+  a_{\pm} &= \frac{1}{\sqrt{2\hbar m\omega}}\left(\mp ip_x + m\omega x\right) \\
+  [a_-, a_+] &= 1 \\
+  [N, a_{\pm}] &= \pm a_{\pm} \\
+  a_+ \ket{n} &= \sqrt{n + 1}\ket{n+1}
+\end{align*}
+
+\begin{enumerate}[(A)]
+  \item Ache a expressão do estado $\ket{n}$ em termos de operadores escada $a_+$ e $a_-$ e do estado fundamental do sistema $\ket{0}$.
+  \item Escreve a equação diferencial da função de onda do estado fundamental $\bra{r}\ket{0}$ e ache a solução $\phi_0(x)$. Não é necessário determinar a constante de normalização.
+  \item O Hamiltoniano de um sistema em uma dimensão tem a forma
+  
+  \[ \hat{H} = \frac{\hat{p}^2}{2m} + \frac{K\hat{x}^2}{2} + \frac{e\Phi_0\hat{x}}{a} \]
+  
+  \noindent onde $K$, $e$, $\Phi_0$ e $a$ são constantes positivas. Ache os autovalores e autovetores deste sistema.
+\end{enumerate}
+
+\textbf{Resolução:}
+\begin{enumerate}[(A)]
+  \item Basta agir com o operador $a_+$ $n$ vezes:
+  \begin{equation*}
+    a_+^n \ket{0} = \sqrt{n!} \ket{n}
+  \end{equation*}
+  Portanto
+  \begin{equation*}
+    \ket{n} = \frac{1}{\sqrt{n!}} a_+^n \ket{0}.
+  \end{equation*}
+  
+  \item Por definição o estado fundamental deve satisfazer à relação
+  \begin{equation*}
+    a_- \ket{0} = 0
+  \end{equation*}
+
+   Escrevendo o operador $a_-$ na representação da posição temos
+  \begin{align*}
+    \bra{x}a_- &= \frac{1}{\sqrt{2\hbar m \omega}} \left(i\bra{x}\hat{p}_x + m\omega\bra{x}\hat{x} \right) \\
+    &= \frac{1}{\sqrt{2\hbar m \omega}} \left(\hbar \frac{d}{dx} \bra{x} + m\omega x \bra{x} \right)
+  \end{align*}
+  
+  Portanto
+  
+  \begin{equation*}
+    \frac{1}{\sqrt{2\hbar m \omega}} \left(\hbar \frac{d}{dx} \bra{x}\ket{0} + m\omega x \bra{x}\ket{0} \right) = 0
+  \end{equation*}
+  
+  A função de onda do estado fundamental $\psi_0(x)$ é dada por $\bra{x}\ket{0}$, portanto obtemos a equação diferencial
+  
+  \begin{align*}
+  \frac{d\psi_0}{dx} &= -\frac{m\omega}{\hbar} x \psi_0 \\
+  \end{align*}
+  
+  Dividindo por $\psi_0$ e lembrando da derivada logarítmica temos
+  
+  \begin{align*}
+  \frac{d}{dx} \log(\psi_0) &= -\frac{m\omega}{\hbar} x \\
+  \psi_0(x) &= \left(\frac{m\omega}{8\pi^2\hbar}\right)^{1/4}e^{-\frac{m\omega}{2\hbar} x^2}
+  \end{align*}
+  
+  A solução é portanto uma gaussiana centrada na origem, com desvio padrão $\sqrt{2\hbar/(m\omega)}$. 
+  
+  \item Primeiramente vejamos o significado deste Hamiltoniano. Trata-se de um sistema com energia potencial
+  \begin{equation*}
+    V = \frac{Kx^2}{2} + \frac{e\Phi_0 x}{a}
+  \end{equation*}
+  O primeiro termo é o potencial de um oscilador harmônico. O segundo fornece uma força $F = -\grad\left(\frac{e\Phi_0 x}{a}\right) = -\frac{e\Phi_0}{a} \hat{i}$, logo este sistema é um oscilador harmônico submetido a uma força constante. Classicamente, obtemos uma equação diferencial da forma
+  \[
+    \ddot{x} = -\frac{K}{m}x - \frac{e\Phi_0}{ma}
+  \]
+  que pode ser facilmente resolvida fazendo uma mudança de variáveis $x' = x + \frac{e\Phi_0}{K}$, de onde obtemos a equação do oscilador harmônico. Isto é intuitivo: um sistema massa mola submetido à força peso, por exemplo, oscila com exatamente a mesma frequência, com seu ponto de equilíbrio deslocado para baixo.
+  Adaptando este processo ao caso quântico, tentamos uma mudança de variáveis que faça o termo linear desaparecer do Hamiltoniano (pagando o preço de adicionar uma constante ao mesmo). Completando o quadrado, temos
+  \begin{align*}
+    H &= \frac{p^2}{2m} + \frac{K}{2}\left(x^2 + \frac{2e\Phi_0x}{Ka} + \left(\frac{e\Phi_0}{Ka}\right)^2 - \left(\frac{e\Phi_0}{Ka}\right)^2\right) \\
+    &= \frac{p^2}{2m} + \frac{K}{2}\left(x + \frac{e\Phi_0}{Ka}\right)^2 - \frac{e^2 \Phi_0^2}{2Ka^2} \\
+    &= \frac{p^2}{2m} + \frac{K\tilde{x}}{2} - \frac{e^2 \Phi_0^2}{2Ka^2} \\
+    &= H_{O.H.} - \Delta E
+  \end{align*}
+  \noindent onde definimos $\tilde{x} = x + \frac{e\Phi_0}{Ka}$, $H_{O.H.} = p^2/2m + K\tilde{x}^2/2$ (o Hamiltoniano do oscilador harmônico) e $\Delta E = e^2 \Phi_0^2/(2Ka^2)$.
+  
+  O problema de autovalores para este Hamiltoniano nos fornece, então
+  
+  \begin{align*}
+    H\ket{\Psi} &= E\ket{\Psi} \\
+    (H_{O.H.} - \Delta E)\ket{\Psi} &= E\ket{\Psi} \\
+    H_{O.H.} \ket{\Psi} &= (E + \Delta E) \ket{\Psi} \\
+    H_{O.H.} \ket{\Psi} &= \tilde{E} \ket{\Psi}    
+  \end{align*}
+  
+  Note que a última expressão é precisamente o problema de autovalores para o oscilador harmônico. Já sabemos portanto suas soluções:
+
+  \begin{align*}
+    \tilde{E}_n &= \hbar \omega(n + 1/2) \\
+    \ket{n} &= \frac{\tilde{a}_+^n}{\sqrt{n!}} \ket{0}.
+  \end{align*}
+  
+  Onde
+  
+  \begin{align*}
+  \tilde{a}_+ &= \frac{1}{\sqrt{2\hbar m \omega}}\left(-i\tilde{p}_x + m\omega \tilde{x}\right) \\
+  \bra{\tilde{x}}\ket{0} &= \left(\frac{m\omega}{8\pi^2\hbar}\right)^{1/4} e^{-\frac{m\omega}{2\hbar} \tilde{x}^2}.
+  \end{align*}
+  
+  Os autovalores e autovetores do oscilador harmônico com força constante são, então
+  
+  \begin{align*}
+  E_n &= \hbar\omega(n + 1/2) + \frac{e^2 \Phi_0^2}{2Ka^2} \\
+  \ket{n} &= \frac{\tilde{a}_+^n}{\sqrt{n!}} \ket{0}.
+  \end{align*}
+  
+  \end{enumerate}
+
+
+%Exercício 13
+\addcontentsline{toc}{section}{Exercício 13}
+\item Responda as questões justificando se a sentença está correta ou não:
+\begin{enumerate}[(A)]
+  \item Operadores hermitianos tem autovalores que podem ser reais ou imaginários
+  \item Se o sistema está no autovetor de um operador $Q$, então o valor esperado de um operador $Q'$ será independente do tempo se $Q$ e $Q'$ comutam.
+  \item O autovetor de qualquer operador não é um estado estacionário.
+  \item Se você faz uma medida de uma quantidade observável $Q$ de um sistema de forma repetida e quase instantânea então você espera obter o mesmo valor em cada medida.
+  \item Uma partícula está submetida a um potencial de oscilador harmônico. Se a partícula está num estado de autoestado do operador momento então o valor esperado do operador $Q$ não depende do tempo.
+  \item Uma partícula está submetida a um potencial de oscilador harmônico. Se a partícula está num estado de autoestado do operador energia então o valor esperado do operador $Q$ depende do tempo.
+  \item Se dois operadores $A$ e $A'$ comutam então eles sempre são representados por matrizes diagonais.
+  \item O desvio padrão do valor esperado de um operador $A$ que é hermitiano é não nulo.
+\end{enumerate}
+
+\textbf{Resolução:}
+\begin{enumerate}[(A)]
+  \item \textit{Falso}. Os autovalores de um operador hermitiano $A$ são sempre reais, pois, já que dados $\ket{\Psi}$ e $\ket{\Phi}$ vale
+  
+  \[
+  \bra{\Phi}A\ket{\Psi} = \left(\bra{\Psi}A\ket{\Phi}\right)^\ast
+  \]
+  
+  \noindent é claro que se $\ket{\Psi} = \ket{\Phi}$ é autovetor de $A$, i.e., $A\ket{\Psi} = \lambda \ket{\Psi}$ temos
+  
+  \begin{align*}
+  \lambda \bra{\Psi}\ket{\Psi} &= \lambda^{\ast} \bra{\Psi}\ket{\Psi} \\
+  \Rightarrow \lambda &= \lambda^\ast.
+  \end{align*}
+  
+  \item \textit{Falso}. A evolução temporal do valor esperado de um operador obedece à relação
+  \[ \frac{d}{dt} \left\langle Q \right\rangle_\Psi = \frac{i}{\hbar}\left\langle [H, Q]\right\rangle_\Psi + \left\langle \frac{\partial Q}{\partial t}\right\rangle_\Psi\]
+  Basta que $Q'$ não comute com $H$, ou dependa explicitamente do tempo, para que a derivada do valor esperado não se anule.
+  \item \textit{Falso}. Autovetores do operador Hamiltoniano são estados estacionários, já que a equação de Schrödinger independente do tempo é exatamente o problema de autovalores para este operador. Há porém, naturalmente, operadores cujos autoestados não são estacionários: autoestados do operador momento para a partícula livre, por exemplo, não são estacionários - o valor esperado da posição depende do tempo.
+  \item \textit{Verdadeiro.}
+  \item \textit{Falso.} Se $Q = \hat{x}$, por exemplo, temos $[H, x] = -i\hat{p_x}\hbar/m$. Num autoestado $\ket{\Psi}$ com momento $p$ temos então
+  \[ \frac{d}{dt} \left\langle x \right\rangle_\Psi = \frac{i}{\hbar} \frac{ip\hbar}{m} = -\frac{p}{m} \]
+  \noindent que pode ser diferente de $0$. 
+  \item \textit{Falso.} O valor esperado da energia, por exemplo, não depende do tempo nesta situação.
+  \item \textit{Falso.} Eles serão representados por matrizes diagonais numa base de autovetores comuns a ambos; em quaisquer outras bases isto não ocorrerá.
+  \item \textit{Falso.} O desvio padrão do valor esperado da energia num estado estacionário é nulo, por exemplo.
+  
 \end{enumerate}
 
 %FIM DOS EXERCÍCIOS
