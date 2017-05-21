@@ -1165,7 +1165,7 @@ Admita que estes operadores estão definidos em todo o espaço vetorial: $(-\inf
   As soluções desta equação são combinações lineares das soluções linearmente independentes
   
   \begin{equation*}
-    \ket{\Psi_+} =  \int dx \exp\left(i\frac{\sqrt{2mE}}{\hbar x}\right) \ket{x} \qquad \ket{\Psi_-} =  \int dx \exp\left(-i\frac{\sqrt{2mE}}{\hbar x}\right)\ket{x} 
+    \ket{\Psi_+} =  \int dx \exp\left(i\frac{\sqrt{2mE}}{\hbar}x\right) \ket{x} \qquad \ket{\Psi_-} =  \int dx \exp\left(-i\frac{\sqrt{2mE}}{\hbar}x\right)\ket{x} 
   \end{equation*}
   
   Cada autovalor $E$ do problema possui portanto um autoespaço de dimensão dois associado, logo os autovalores do Hamiltoniano são duplamente degenerados.
@@ -1293,7 +1293,7 @@ Onde $\left\langle x | 0 \right\rangle \equiv \psi_0(x) = \left(\frac{m\omega}{\
   \[
     \ddot{x} = -\frac{K}{m}x - \frac{e\Phi_0}{ma}
   \]
-  que pode ser facilmente resolvida fazendo uma mudança de variáveis $x' = x + \frac{e\Phi_0}{K}$, de onde obtemos a equação do oscilador harmônico. Isto é intuitivo: um sistema massa mola submetido à força peso, por exemplo, oscila com exatamente a mesma frequência, com seu ponto de equilíbrio deslocado para baixo.
+  que pode ser facilmente resolvida fazendo uma mudança de variáveis $x' = x + \frac{e\Phi_0}{Ka}$, de onde obtemos a equação do oscilador harmônico. Isto é intuitivo: um sistema massa mola submetido à força peso, por exemplo, oscila com exatamente a mesma frequência, com seu ponto de equilíbrio deslocado para baixo.
   Adaptando este processo ao caso quântico, tentamos uma mudança de variáveis que faça o termo linear desaparecer do Hamiltoniano (pagando o preço de adicionar uma constante ao mesmo). Completando o quadrado, temos
   \begin{align*}
     H &= \frac{p^2}{2m} + \frac{K}{2}\left(x^2 + \frac{2e\Phi_0x}{Ka} + \left(\frac{e\Phi_0}{Ka}\right)^2 - \left(\frac{e\Phi_0}{Ka}\right)^2\right) \\
@@ -1368,7 +1368,7 @@ Onde $\left\langle x | 0 \right\rangle \equiv \psi_0(x) = \left(\frac{m\omega}{\
   \item \textit{Falso}. A evolução temporal do valor esperado de um operador obedece à relação
   \[ \frac{d}{dt} \left\langle Q \right\rangle_\Psi = \frac{i}{\hbar}\left\langle [H, Q]\right\rangle_\Psi + \left\langle \frac{\partial Q}{\partial t}\right\rangle_\Psi\]
   Basta que $Q'$ não comute com $H$, ou dependa explicitamente do tempo, para que a derivada do valor esperado não se anule.
-  \item \textit{Falso}. Autovetores do operador Hamiltoniano são estados estacionários, já que a equação de Schrödinger independente do tempo é exatamente o problema de autovalores para este operador. Há porém, naturalmente, operadores cujos autoestados não são estacionários: autoestados do operador momento para a partícula livre, por exemplo, não são estacionários - o valor esperado da posição depende do tempo.
+  \item \textit{Falso}. Autovetores do operador Hamiltoniano são estados estacionários, já que a equação de Schrödinger independente do tempo é exatamente o problema de autovalores para este operador. Há porém, naturalmente, operadores cujos autoestados não são estacionários: autoestados do operador momento para o oscilador harmônico, por exemplo, não são estacionários - o valor esperado da posição depende do tempo.
   \item \textit{Verdadeiro.}
   \item \textit{Falso.} Se $Q = \hat{x}$, por exemplo, temos $[H, x] = -i\hat{p_x}\hbar/m$. Num autoestado $\ket{\Psi}$ com momento $p$ temos então
   \[ \frac{d}{dt} \left\langle x \right\rangle_\Psi = \frac{i}{\hbar} \frac{ip\hbar}{m} = -\frac{p}{m} \]
