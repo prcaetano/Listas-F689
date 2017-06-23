@@ -1,0 +1,250 @@
+\documentclass[a4paper, 12pt, notitlepage]{article}
+\usepackage[brazil]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[hmargin=2cm,vmargin=3cm,bmargin=3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{physics}
+\usepackage{amsmath,amssymb,amsthm}  %pacotes para matemática, opções de indentação, e links
+\usepackage{caption}  % caption to minipages
+\usepackage{indentfirst}
+\usepackage{makeidx}
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+
+\usepackage[sc,osf]{mathpazo}   % With old-style figures and real smallcaps.
+\linespread{1.030}              % Palatino leads a little more leading
+
+% Euler for math and numbers
+\usepackage[euler-digits,small]{eulervm}
+\AtBeginDocument{\renewcommand{\hbar}{\hslash}}
+
+% Latex plots and drawings
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, angles, quotes}
+\tikzset{>={Latex[width=3mm,length=3mm]}}  %setas mais visíveis no tikz
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+
+% some useful math shortcuts
+\newtheorem{lema}{Lema }
+\newtheorem{teorema}{Teorema }
+\newtheorem{corolario}[teorema]{Corolário }
+\newtheorem{definicao}{Definição }[section]
+\newtheorem{postulado}{Postulado }[section]
+\newtheorem{proposicao}{Proposição }[section]
+\newtheorem{problema}{Problema }
+\newcommand{\cart}{\times}
+\newcommand{\ses}{\Longleftrightarrow}
+\newcommand{\entao}{\Longrightarrow}
+\newcommand{\e}{\wedge}
+\newcommand{\ou}{\vee}
+\newcommand{\vazio}{\varnothing}
+\newcommand{\sobre}{\longrightarrow}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\La}{\mathcal{L}}
+\newcommand{\cmod}[3]{#1 \equiv #2\textrm{ (mod }#3\textrm{)}}
+\newcommand{\tq}{\textrm{ tal que }}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\dsum}{\displaystyle \sum}
+\newcommand{\divg}[1]{\vec{\nabla} \cdot #1}
+\newcommand{\rot}[1]{\vec{\nabla} \times #1}
+\newcommand{\vecb}[1]{\mathbf{ #1}}
+\newcommand{\veb}[1]{\mathbf{\hat{#1}}}
+
+
+\begin{document}
+\title{Resolução da Lista 5 de Mecânica Quântica I\\ (F689, Turma B)}
+\author{Pedro Rangel Caetano\footnote{Email: p.r.caetano@gmail.com}} 
+\date{Universidade Estadual de Campinas, 1o. semestre de 2017}
+\maketitle
+
+\tableofcontents
+\pagebreak
+
+
+\begin{enumerate}
+% Exercício 1
+\addcontentsline{toc}{section}{Exercício 1}
+\item Dado a equação de autovalores para spin $s=1$, ache a representação matricial de $S^2$, $S_z$, $S_x$ e $S_y$.
+
+\begin{equation}
+S^2 \ket{s\,m_s} = s(s+1)\hbar^2\ket{s\,m_s} \qquad
+S_z \ket{s\,m_s} = m_s \hbar \ket{s\,m_s}
+\end{equation}
+
+\noindent siga o raciocínio feito na aula do dia 12 de junho e descrito nas notas de aula 22 a 24 que estão no link do curso nas páginas 217 a 219. A forma matricial de $S_x$ é igual à de $L_x$ dada no exercício 4 da Lista 5.
+
+\textbf{Resolução: }
+
+Quando $s = 1$, $m_s$ pode assumir os valores $1$, $0$ e $-1$. Há portanto três autoestados simultâneos de $S^2$ e $S_z$:
+
+\[
+  \ket{1} \equiv \ket{1\,1} \qquad
+  \ket{0} \equiv \ket{1\,0} \qquad
+  \ket{-1} \equiv \ket{1\,-1}
+\]
+
+Lembremos agora como obter a representação de um operador $A$ numa base ortonormal $\ket{e_i}$ de um espaço vetorial: se $\ket{v} = \sum v_i \ket{e_i}$ e $\ket{w} = A\ket{v} = \sum w_i \ket{e_i}$ temos
+
+\begin{align*}
+  w_i &= \left\langle e_i | w\right\rangle \\
+  &= \bra{e_i} A \ket{v} \\
+  &= \sum_j \bra{e_i} A \ket{e_j} v_j \\
+  &= \sum_j A_{ij} v_j
+\end{align*}
+
+\noindent ou seja, o elemento $A_{ij}$ da representação matricial de $A$ é dado por
+
+\[ A_{ij} = \bra{e_i} A \ket{e_j} \]
+
+Começaremos então escrevendo a representação matricial de $S^2$. Primeiramente, calculando $S^2$ nos vetores da base temos
+
+\[
+S^2 \ket{1} = 2 \hbar^2 \ket{1} \qquad S^2 \ket{0} = 2\hbar^2 \ket{0} \qquad S^2 \ket{-1} = 2\hbar^2 \ket{-1}
+\]
+
+A representação matricial de $S^2$ é portanto (lembrando que a base $\{\ket{1}, \ket{0}, \ket{-1}\}$ é ortonormal)
+
+\[
+S^2 = \begin{pmatrix} 
+  \bra{1} S^2 \ket{1} & \bra{1} S^2 \ket{0} & \bra{1} S^2 \ket{-1} \\
+  \bra{0} S^2 \ket{1} & \bra{0} S^2 \ket{0} & \bra{0} S^2 \ket{-1} \\
+  \bra{-1} S^2 \ket{1} & \bra{-1} S^2 \ket{0} & \bra{-1} S^2 \ket{-1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  2 \hbar^2 & 0 & 0 \\
+  0 & 2\hbar^2 & 0 \\
+  0 & 0 & 2\hbar^2
+\end{pmatrix}
+\]
+
+\noindent o que já era esperado pois a base que utilizamos é, por definição, a base comum de $S^2$ e $S_z$: $S^2$ e $S_z$ devem portanto ser diagonais. Para $S_z$ portanto obtemos
+
+\[ 
+S_z\ket{1} = \hbar \ket{1} \qquad S_z \ket{0} = \hbar \ket{0} \qquad S_z \ket{-1} = \hbar \ket{-1} 
+\]
+
+\noindent logo
+
+\[
+S_z = \begin{pmatrix}
+  \bra{1} S_z \ket{1} & \bra{1} S_z \ket{0} & \bra{1} S_z \ket{-1} \\
+  \bra{0} S_z \ket{1} & \bra{0} S_z \ket{0} & \bra{0} S_z \ket{-1} \\
+  \bra{-1} S_z \ket{1} & \bra{-1} S_z \ket{0} & \bra{-1} S_z \ket{-1}
+\end{pmatrix}
+= 
+\begin{pmatrix}
+  \hbar & 0 & 0 \\
+  0 & 0 & 0 \\
+  0 & 0 & \hbar
+\end{pmatrix}
+\]
+
+Para calcular $S_x$ e $S_y$, o truque é lembrar que os operadores de levantamento/abaixamento são escritos
+
+\[ S_+ = S_x + iS_y \qquad S_- = S_x - iS_y \]
+
+Portanto
+
+\[ S_x = \frac{S_+ + S_-}{2} \qquad S_y = \frac{S_+ - S_-}{2i}\]
+
+Basta portanto obter as representações matriciais de $S_+$ e $S_-$ e conseguiremos as representações de $S_x$ e $S_y$. Como
+
+\[ S_\pm \ket{s\,m_s} = \sqrt{s(s+1) - m_s(m_s \pm 1)}\hbar\ket{s\,m_s\pm 1} \]
+
+\noindent temos
+
+\begin{align*}
+  S_+ \ket{1} = 0 \qquad S_+ \ket{0} = \sqrt{2}\hbar\ket{1} \qquad S_+ \ket{-1} = \sqrt{2} \hbar \ket{-1} \\
+  S_- \ket{1} = \sqrt{2} \ket{0} \qquad S_- \ket{0} = \sqrt{2} \ket{-1} \qquad S_- \ket{-1} = 0
+\end{align*}
+
+\noindent e, portanto
+
+\[
+  S_+ = \begin{pmatrix} 
+  \bra{1} S_+ \ket{1} & \bra{1} S_+ \ket{0} & \bra{1} S_+ \ket{-1} \\
+  \bra{0} S_+ \ket{1} & \bra{0} S_+ \ket{0} & \bra{0} S_+ \ket{-1} \\
+  \bra{-1} S_+ \ket{1} & \bra{-1} S_+ \ket{0} & \bra{-1} S_+ \ket{-1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  0 & \sqrt{2} \hbar & 0 \\
+  0 & 0 & \sqrt{2} \hbar \\
+  0 & 0 & 0
+\end{pmatrix}
+\]
+
+\[
+  S_- = \begin{pmatrix} 
+  \bra{1} S_- \ket{1} & \bra{1} S_- \ket{0} & \bra{1} S_- \ket{-1} \\
+  \bra{0} S_- \ket{1} & \bra{0} S_- \ket{0} & \bra{0} S_- \ket{-1} \\
+  \bra{-1} S_- \ket{1} & \bra{-1} S_- \ket{0} & \bra{-1} S_- \ket{-1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+  0 & 0 & 0 \\
+  \sqrt{2}\hbar & 0 & 0 \\
+  0 & \sqrt{2}\hbar & 0
+\end{pmatrix}
+\]
+
+Note duas coisas: primeiramente, só precisamos calcular uma dentre $S_+$ e $S_-$ para obter a outra, pois, como $S_- = S_+^\dagger$, podemos obter a representação matricial de uma a partir da outra simplemente transpondo e conjugando. Ademais, note que $S_+$ possui apenas a diagonal imediatamente acima da diagonal principal preenchida (e $S_-$ a diagonal imediatamente abaixo). Isto sempre acontece com os operadores levantamento e abaixamento (afinal, eles são operadores de levantamento e abaixamento!).
+
+Agora, é imediato obter
+
+\[
+S_x = \frac{S_+ + S_-}{2} = \begin{pmatrix}
+  0 & \frac{\hbar}{\sqrt{2}} & 0 \\
+  \frac{\hbar}{\sqrt{2}} & 0 & \frac{\hbar}{\sqrt{2}} \\
+  0 & \frac{\hbar}{\sqrt{2}} & 0
+\end{pmatrix}
+\]
+
+\noindent e
+
+\[
+S_y = \frac{S_+ - S_-}{2i} = \begin{pmatrix}
+  0 & \frac{-i\hbar}{\sqrt{2}} & 0 \\
+  \frac{i\hbar}{\sqrt{2}} & 0 & \frac{-i\hbar}{\sqrt{2}} \\
+  0 & \frac{i\hbar}{\sqrt{2}} & 0
+\end{pmatrix}
+\]
+
+Note que $S_x$ e $S_y$ são hermiteanos, como necessariamente deveriam ser!
+
+
+% Exercício 2
+\addcontentsline{toc}{section}{Exercício 2}
+\item Cohen, página 476, Complemento $J_{IV}$, exercício 1.\newline
+\textit{Precessão de Larmor}\newline
+Considere uma partícula de spin $1/2$ de momento magnético $\vec{M} = \gamma \vec{S}$. Os estados de spin são descritos na base de vetores $\ket{+}$ e $\ket{-}$, autovetores de $S_z$ com autovalores $\hbar/2$ e $-\hbar/2$. No tempo $t=0$, o estado do sistema é
+
+\begin{equation}
+  \ket{\Psi(t=0)} = \ket{+}
+\label{eq:psi.t0}
+\end{equation}
+
+\textit{Observação: na notação do Cohen $\ket{+}$ é o estado de spin up na direção z, ou sendo mais preciso, $\ket{1/2\,1/2}_z$.}\newline
+\textit{Observação: na notação do Griffiths, $\gamma = \frac{qg_s}{2m}$, onde $q$ é a carga, $g_s$ é o fator giromagnético e $m$ é a massa da partícula.}
+
+\begin{enumerate}[(a)]
+ \item Se o observável $S_x$ é medido no tempo $t=0$, quais resultados são possíveis e com quais probabilidades?
+ \item Em vez de medir o resultado no tempo $t=0$, o sistema é deixado evoluir sob a influência de um campo magnético na direção $y$, de módulo $B_0$. Calcule na base $\ket{+}$, $\ket{-}$, o estado do sistema no instante $t$.
+ \item No tempo $t$, nós medimos os observáveis $S_x$, $S_y$ e $S_z$. Quais são os valores destas quantidades que podemos encontrar e com quais probabilidades?
+ \item Qual é a relação entre $B_0$ e $t$ para qual o resultado de uma das medidas é sem incerteza? Dê uma interpretação física desta condição.
+\end{enumerate}
+
+\textbf{Resolução:}
+  
+%FIM DOS EXERCÍCIOS
+\end{enumerate}
+\end{document}
