@@ -60,7 +60,7 @@
 
 
 \begin{document}
-\title{Resolução da Lista 5 de Mecânica Quântica I\\ (F689, Turma B)}
+\title{Resolução da Lista 6 de Mecânica Quântica I\\ (F689, Turma B)}
 \author{Pedro Rangel Caetano\footnote{Email: p.r.caetano@gmail.com}} 
 \date{Universidade Estadual de Campinas, 1o. semestre de 2017}
 \maketitle
@@ -244,7 +244,225 @@ Considere uma partícula de spin $1/2$ de momento magnético $\vec{M} = \gamma \
 \end{enumerate}
 
 \textbf{Resolução:}
+\begin{enumerate}[(a)]
+  \item Como de costume, os valores possíveis são os autovalores do operador $S_x$ e as respectivas probabilidades são obtidas pela projeção nos autovetores. Já esperamos que os autovalores sejam $\hbar/2$ e $-\hbar/2$, como os de $S_z$, mas podemos checar isto: o operador $S_x$ é representado na base $\{\ket{+}, \ket{-}\}$ como
   
+\[
+  S_x = \frac{\hbar}{2} \sigma_x = \frac{\hbar}{2}\begin{pmatrix}
+  0 & 1 \\
+  1 & 0
+  \end{pmatrix}
+\]
+
+Logo os autovalores são dados por
+
+\begin{align*} 
+  \begin{vmatrix}
+   -s_x & \frac{\hbar}{2} \\
+   \frac{\hbar}{2} & -s_x
+   \end{vmatrix} &= 0 \\
+   s_x^2 - \frac{\hbar^2}{4} &= 0 \\
+   \therefore s_x &= \pm \frac{\hbar}{2}
+\end{align*}
+
+Representando o autovetor associado a $\hbar/2$ como $\ket{+}_x$ (e o autovetor associado a $-\hbar/2$, $\ket{-}_x$) temos
+
+\begin{align*}
+  S_x \ket{+}_x &= \frac{\hbar}{2} \ket{+}_x \\
+  \frac{\hbar}{2}\begin{pmatrix}
+  0 & 1 \\
+  1 & 0
+  \end{pmatrix}\begin{pmatrix}
+  \alpha \\
+  \beta
+  \end{pmatrix} &= 
+  \frac{\hbar}{2}\begin{pmatrix}
+  \alpha \\
+  \beta
+  \end{pmatrix} \\
+  \begin{pmatrix} \alpha \\ \beta \end{pmatrix} &=
+  \begin{pmatrix} \beta \\ \alpha \end{pmatrix}
+\end{align*}
+
+Já impondo a normalização, temos portanto que $\ket{+}_x$ é representado na base de autovetores de $S_z$ como
+
+\begin{align*}
+ \ket{+}_x &= \begin{pmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{pmatrix} \\
+  &= \frac{1}{\sqrt{2}} \ket{+} + \frac{1}{\sqrt{2}} \ket{-}
+\end{align*}
+
+Procedimento semelhante para $\ket{-}_x$ fornece
+
+\begin{align*}
+  \ket{-}_x &= \frac{1}{\sqrt{2}} \ket{+} - \frac{1}{\sqrt{2}} \ket{-}
+\end{align*}
+
+\noindent (alternativamente podemos lembrar que, já que $\ket{+}_x$ e $\ket{-}_x$ devem ser ortogonais, basta trocar o sinal de uma das componentes para obter um a partir do outro).
+
+Como em $t = 0$ a partícula esta no estado $\ket{+}$, temos que a probabilidade de obter o valor $\hbar/2$ para uma medida de $S_x$ é
+
+\begin{align*}
+  \mathcal{P}\left[ S_x = \hbar/2\right] &= \left|\prescript{}{x}{\left\langle -|+\right\rangle}\right|^2 \\
+  &= \left|\left[ \frac{1}{\sqrt{2}} \bra{+} + \frac{1}{\sqrt{2}} \bra{-} \right] \ket{+}\right|^2 \\
+  &= \frac{1}{2}
+\end{align*}
+
+\noindent e a probabilidade de obter o valor $-\hbar/2$ por sua vez vale
+
+\begin{align*}
+  \mathcal{P}\left[ S_x = -\hbar/2\right] &= \left|\prescript{}{x}{\left\langle -|+\right\rangle}\right|^2 \\
+  &= \left| \left[\frac{1}{\sqrt{2}}\bra{+} - \frac{1}{\sqrt{2}}\bra{-} \right]\ket{+}\right|^2 \\
+  &= \frac{1}{2}
+\end{align*}
+
+\item Começamos lembrando que a energia potencial de uma particula com momento magnético $\vec{M}$ num campo magnético $\vec{B}$ é dada por $-\vec{M}\cdot\vec{B}$. A energia potencial neste caso vale, portanto, $-\gamma B_0 S_y$. O Hamiltoniano da partícula é, então\footnote{Onde foi parar a energia cinética? Neste caso a dinâmica dos graus de liberdade ligados à translação é desacoplada da dinâmica dos graus de liberdade de spin. Podemos resolvê-los separadamente, portanto. A situação é de certa forma análoga à separação de variáveis ao resolver uma EDP.}
+
+\[ H = -V = \gamma B_0 S_y \]
+
+Os autoestados de $H$ são então $\ket{+}_y$ e $\ket{-}_y$, os autovetores de $S_y$. Na base destes autovetores, o Hamiltoniano é representado como
+
+\[ H = \frac{\gamma B_0 \hbar}{2} 
+  \begin{pmatrix} 
+  1 && 0 \\
+  0 && -1
+  \end{pmatrix} = \begin{pmatrix}
+  E_+ & 0 \\
+  0 & E_-
+  \end{pmatrix}
+\]
+
+A vantagem de trabalhar na base de autoestados é que a evolução temporal é simples: se em $t=0$ o sistema esta no estado $a \ket{+}_y + b\ket{-}_y$, no tempo $t$ sabemos que ele estará no estado $ae^{-\frac{iE_+t}{\hbar}} \ket{+}_y + be^{-\frac{iE_-t}{\hbar}} \ket{-}_y$. Para obter o estado do sistema no instante $t$ temos então que
+
+\begin{itemize}
+  \item Escrever o estado do sistema em $t=0$ na base de autovetores de $S_y$, a base de autoestados de $H$;
+  \item Nesta nova base, calcular o estado do sistema no tempo $t$ e, por fim;
+  \item Reescrever o estado do sistema na base original
+\end{itemize}
+
+Para realizar essas mudanças de base precisamos calcular os autovetores de $S_y$ na base de $S_z$. Lembrando que a representação de $S_y$ nesta base é
+
+\[ S_y = \frac{\hbar}{2}\sigma_y = \frac{\hbar}{2} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \]
+
+\noindent temos que o autovetor $\ket{+}_y$ pode ser calculado por
+
+\begin{align*}
+  S_y \ket{+}_y &= \frac{\hbar}{2} \ket{+}_y \\
+  \frac{\hbar}{2} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}  \begin{pmatrix} \alpha \\ \beta \end{pmatrix} &=
+  \frac{\hbar}{2} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} \\
+  \begin{pmatrix}-i\beta \\ i\alpha \end{pmatrix} &= \begin{pmatrix} \alpha \\ \beta \end{pmatrix}
+\end{align*}
+
+\noindent já normalizando o vetor, encontramos então
+
+\begin{align*}
+  \ket{+}_y &= \begin{pmatrix} \frac{1}{\sqrt{2}}\\ \frac{i}{\sqrt{2}} \end{pmatrix} \\
+  &= \frac{1}{\sqrt{2}} \ket{+} + \frac{i}{\sqrt{2}} \ket{-}
+\end{align*}
+
+Procedendo analogamente, ou utilizando a condição de ortogonalidade, temos que $\ket{-}_y$ é dado por
+
+\begin{align*}
+  \ket{-}_y &= \begin{pmatrix} \frac{1}{\sqrt{2}}\\ \frac{-i}{\sqrt{2}} \end{pmatrix} \\
+  &= \frac{1}{\sqrt{2}} \ket{+} - \frac{i}{\sqrt{2}} \ket{-}
+\end{align*}
+
+Para expressar $\ket{+}$ na base de $S_y$, lembremos agora a identidade
+
+\[ 1 = \ket{+}_y \prescript{}{y}{\bra{+}} + \ket{-}_y \prescript{}{y}{\bra{-}} \]
+
+\noindent de onde obtemos
+
+\[ \ket{+} = 1\ket{+} = \prescript{}{y}{\left\langle + | + \right\rangle}\ket{+} + \prescript{}{y}{\left\langle - | + \right\rangle}\ket{-} \]
+
+Portanto, conjugando as expressões para $\ket{+}_y$ e $\ket{-}_y$ obtidas
+
+\begin{align*}
+  \ket{+} &= \left[ \frac{1}{\sqrt{2}} \left\langle +|+ \right\rangle + \frac{i}{\sqrt{2}} \left\langle -|+ \right\rangle \right] \ket{+}_y + \left[ \frac{1}{\sqrt{2}} \left\langle +|- \right\rangle - \frac{i}{\sqrt{2}} \left\langle -|- \right\rangle \right] \ket{-}_y \\
+  &= \frac{1}{\sqrt{2}} \ket{+}_y + \frac{1}{\sqrt{2}} \ket{-}_y
+\end{align*}
+
+Já expressamos $\ket{\Psi(t = 0)}$ na base de $S_y$. Seguindo com nosso plano, podemos agora calcular $\ket{\Psi(t)}$ nesta base
+
+\begin{align*}
+  \ket{\Psi(t)} &= \frac{1}{\sqrt{2}} e^{-iE_+ t/\hbar}\ket{+}_y + \frac{1}{\sqrt{2}} e^{-iE_-t/\hbar} \ket{-}_y \\
+  &= \frac{1}{\sqrt{2}} e^{-\gamma B_0 t/2} \ket{+}_y + \frac{1}{\sqrt{2}} e^{\gamma B_0 t/2} \ket{-}_y
+\end{align*}
+
+Por fim, resta-nos reexpressar este estado na base de $S_z$:
+
+\begin{align*}
+  \ket{\Psi(t)} &= \frac{1}{\sqrt{2}} e^{-\gamma B_0 t/2} \left[ \frac{1}{\sqrt{2}} \ket{+} + \frac{i}{\sqrt{2}} \ket{-}\right] + \frac{1}{\sqrt{2}} e^{\gamma B_0 t/2} \left[ \frac{1}{\sqrt{2}} \ket{+} - \frac{i}{\sqrt{2}} \ket{-}\right] \\
+  &= \frac{1}{2} \left(e^{-\gamma B_0 t/2} + e^{\gamma B_0 t/2}\right) \ket{+} + \frac{1}{2i}\left(e^{\gamma B_0 t/2} - e^{-\gamma B_0 t/2}\right) \ket{-} \\
+  &= \cos \frac{\gamma B_0 t}{2} \ket{+} + \sin \frac{\gamma B_0 t}{2} \ket{-} \\
+  &= \cos \omega t \ket{+} + \sin \omega t \ket{-}
+\end{align*}
+
+% ALTERNATIVA
+\item Os valores que podemos encontrar são os autovalores dos observáveis: $+ \hbar/2$ e $- \hbar/2$. Como já obtemos $\ket{\Psi(t)}$ e as expressões das bases de $S_x$ e $S_y$ em termos da base de $S_z$, tudo o que nos resta são contas corriqueiras. Começando com $S_x$, podemos calcular as probabilidades
+
+\begin{align*}
+  \mathcal{P}\left[ S_x = \frac{\hbar}{2}\right] &= \left| \prescript{}{x}{\left\langle +|\Psi(t)\right\rangle} \right|^2 \\
+  &= \left| \left[\frac{1}{\sqrt{2}} \bra{+} + \frac{1}{\sqrt{2}}\bra{-}\right] \left[\cos \omega t \ket{+} + \sin \omega t \ket{-} \right] \right |^2 \\
+  &= \left|\frac{\cos \omega t}{\sqrt{2}}  + \frac{\sin\omega t}{\sqrt{2}}\right|^2 \\
+  &= \frac{1}{2}\left[ 1 + \sin \gamma B_0 t\right]
+\end{align*}
+
+\noindent e
+
+\begin{align*}
+  \mathcal{P}\left[S_x = -\frac{\hbar}{2}\right] &= 1 - \mathcal{P}\left[S_x = -\frac{\hbar}{2}\right] \\
+  &= \frac{1}{2}\left[1 - \sin \gamma B_0 t \right]
+\end{align*}
+
+Já para $S_y$:
+
+\begin{align*}
+  \mathcal{P}\left[ S_y = \frac{\hbar}{2}\right] &= \left| \prescript{}{y}{\left\langle + | \Psi(t) \right\rangle} \right|^2 \\
+  &= \left| \left[\frac{1}{\sqrt{2}} \bra{+} - \frac{i}{\sqrt{2}}\bra{-}\right] \left[\cos \omega t \ket{+} + \sin \omega t \ket{-} \right] \right |^2 \\
+  &= \left|\frac{\cos \omega t}{\sqrt{2}} - \frac{i\sin\omega t}{\sqrt{2}}\right|^2 \\
+  &= \frac{1}{2}
+\end{align*}
+
+\noindent e portanto
+
+\begin{align*}
+  \mathcal{P}\left[ S_y = \frac{\hbar}{2} \right] &= \frac{1}{2}
+\end{align*}
+
+Por fim, temos para $S_z$:
+
+\begin{align*}
+  \mathcal{P} \left[ S_z = \frac{\hbar}{2} \right] &= \left|\left\langle +| \Psi(t) \right\rangle \right|^2 \\
+  &= \left| \bra{+} \left[\cos \omega t \ket{+} + \sin \omega t \ket{-} \right] \right|^2 \\
+  &= \cos^2 \frac{\gamma B_0 t}{2}
+\end{align*}
+
+\noindent e
+
+\begin{align*}
+  \mathcal{P} \left[ S_z = -\frac{\hbar}{2} \right] &= \sin^2 \frac{\gamma B_0 t}{2}
+\end{align*}
+
+\item Para que o resultado de uma medida seja sem incerteza, a probabilidade de obtê-la deve ser exatamente 1. Das expressões deduzidas no item anterior, notamos que tanto para $S_x$ quanto para $S_z$ esta condição pode ser satisfeita. Para que uma medida de $S_x$ resulte $\hbar / 2$ ou $-\hbar/2$ com certeza, é necessário que
+
+\[ \gamma B_0 t = \frac{\pi}{2} + 2n\pi \qquad \text{ ou } \qquad \gamma B_0 t = \frac{3\pi}{2} + 2n\pi \]
+
+Por outro lado, para que uma medida de $S_z$ resulte $\hbar/2$ ou $-\hbar/2$ com certeza, devemos ter
+
+\[ \gamma B_0 t = 2n\pi \qquad \text{ ou } \qquad \gamma B_0 t = (2n + 1) \pi \]
+
+O que todas estas relações tem em comum é que, a cada intervalo de tempo de $T = \frac{2\pi}{\gamma B_0}$ elas se repetem. Este tempo é justamente o período de precessão. Classicamente, quando aplicamos um campo magnético $\vec{B} = B_0\hat{y}$ a um sistema com momento de dipolo $\vec{M} = \gamma L_z\hat{z}$, este sistema sofre um torque $\vec{\tau} = \vec{M} \times \vec{B} = \gamma B_0 L_z \hat{x} $. Como este torque é perpendicular ao momento angular $L_z$, este momento precessiona ao redor do eixo $y$, com velocidade angular de precessão
+
+\[ \omega_p = \frac{\tau}{L_z} = \gamma B_0 \]
+
+O período de precessão é portanto
+
+\[ T = \frac{2\pi}{\omega_p} = \frac{2\pi}{\gamma B_0} \]
+
+O que coincide exatamente com o período que encontramos acima. Na transição de clássico para quântico, o que acontece é que a maneira correta de interpretar a precessão é diferente: agora pensamos na precessão do valor esperado do observável $\vec{S}$. Ocorre que, no caso que estamos tratando, quando os valores esperados das componentes $S_x$ ou $S_z$ são $\pm \hbar / 2$ não pode haver incerteza (por exemplo, note que se o valor esperado de $S_x$ for $\hbar / 2$, sendo este valor dado por $\left\langle S_x \right\rangle = \mathcal{P}\left[S_x = \hbar/2\right] \frac{\hbar}{2} + \mathcal{P}\left[S_x = -\hbar/2\right]\frac{-\hbar}{2}$ é claro que a probabilidade de obter o resultado $\hbar/2$ deve ser $1$). Para uma discussão mais detalhada, recomendo consultar a seção 4.4.2 do Griffiths.
+
+\end{enumerate}
+
 %FIM DOS EXERCÍCIOS
 \end{enumerate}
 \end{document}
