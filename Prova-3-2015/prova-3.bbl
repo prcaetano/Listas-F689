@@ -1,0 +1,45 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.4 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{nty}{nty}
+    \entry{townsend}{book}{}
+      \name{labelname}{1}{}{%
+        {{hash=fb3b5e63adda96a5c0678e7d63e99699}{Townsend}{T\bibinitperiod}{John}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \name{author}{1}{}{%
+        {{hash=fb3b5e63adda96a5c0678e7d63e99699}{Townsend}{T\bibinitperiod}{John}{J\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {University Science Books}%
+      }
+      \strng{namehash}{fb3b5e63adda96a5c0678e7d63e99699}
+      \strng{fullhash}{fb3b5e63adda96a5c0678e7d63e99699}
+      \field{sortinit}{T}
+      \field{sortinithash}{9378dd666f3c24d81538df53aa99e23d}
+      \field{labeltitle}{A Modern Approach to Quantum Mechanics}
+      \field{edition}{2nd}
+      \field{isbn}{1891389130,9781891389139}
+      \field{title}{A Modern Approach to Quantum Mechanics}
+      \field{year}{2000}
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+
